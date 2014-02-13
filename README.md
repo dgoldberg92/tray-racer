@@ -1,4 +1,0 @@
-tray-racer
-==========
-
-Ray tracer
