@@ -2,23 +2,26 @@
 
 #ifndef POINT_H_
 #define POINT_H_
-#include "vector.h"
 
+#include "vector.h"
 #include <iostream>
 
 class Point{
 public:
-	Point(){}; //public default constructor
-	double distance(){ return distance_ };
-	double transform(){};
+	Point(); //public default constructor
+	Point(double x, double y, double z); 
+	virtual ~Point();
+	double distance(Point other);
+	void transform();
 
-	Vector operator- const(Point& b){} const;
+	double getX(){ return point_.getX();};
+	double getY(){return point_.getY();};
+	double getZ(){ return point_.getZ();};
+
+	Vector operator- const(Point& b) const;
 
 private:
-	double x_;
-	double y_;
-	double z_;
-	double distance_;
+	Vector point_;
 };
 
 #endif
