@@ -8,7 +8,8 @@
 class Colour{
 
 public:
-	Colour(){}; 
+	Colour(double r, double g, double b); 
+	virtual ~Colour();
 
 	static const Colour black;
 	static const Colour red;
@@ -20,12 +21,12 @@ public:
 	double getG() const { return g; };
 	double getB() const { return b; };
 
-	void setR(double r){};
-	void setG(double g){};
-	void setB(double b){};
-	void setRGB(double r, double g, double b){};
+	void setR(double r);
+	void setG(double g);
+	void setB(double b);
+	void setRGB(double r, double g, double b);
 
-	Colour operator* (const Colour& b){} const;
+	Colour operator* (const Colour& b) const;
 
 private:
 	double r_;
