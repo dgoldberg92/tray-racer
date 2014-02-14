@@ -20,4 +20,6 @@ class Ray {
     Point origin_;
     Vector direction_;
 
-i
+}
+
+#endif
