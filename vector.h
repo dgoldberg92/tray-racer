@@ -7,10 +7,6 @@
 #include <Eigen/Dense>
 
 class Vector {
-  friend Vector operator+(const Vector& v1, const Vector& v2) const;
-  friend Vector operator-(const Vector& v1, const Vector& v2) const;
-  friend Vector operator*(const Vector& v1, const Vector& v2) const;
-  friend Vector operator**(const Vector& v1, const Vector& v2) const;
   public:
     Vector();
     Vector(double x, double y, double z);
@@ -24,6 +20,12 @@ class Vector {
     double getLength() const {return vector_.norm()};
     void normalize() {return vector_.normalize()};
     void transform(Eigen::Matrix4d);
+
+    Vector operator+(const Vector& v1, const Vector& v2) const;
+    Vector operator-(const Vector& v1, const Vector& v2) const;
+    Vector operator*(const Vector& v1, const Vector& v2) const;
+    Vector operator**(const Vector& v1, const Vector& v2) const;
+    double& operator[](const int index) const;
 
   private:
     Eigen::Vector3d vector_;
