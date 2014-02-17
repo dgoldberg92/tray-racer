@@ -12,7 +12,7 @@ public:
 	Point(double x, double y, double z); 
 	virtual ~Point();
 	double distance(Point other);
-	void transform();
+	void transform(Eigen::Matrix4d);
 
 	double getX(){ return point_.getX();};
 	double getY(){return point_.getY();};

@@ -29,5 +29,5 @@ class Vector {
 
   private:
     Eigen::Vector3d vector_;
-}
+};
 #endif
