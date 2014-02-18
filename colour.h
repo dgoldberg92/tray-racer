@@ -8,6 +8,7 @@
 class Colour{
 
 public:
+	Colour();
 	Colour(double r, double g, double b); 
 	virtual ~Colour();
 
@@ -17,9 +18,9 @@ public:
 	static const Colour blue;
 	static const Colour white;
 	
-	double getR() const { return r; };
-	double getG() const { return g; };
-	double getB() const { return b; };
+	double getR() const { return r_; };
+	double getG() const { return g_; };
+	double getB() const { return b_; };
 
 	void setR(double r);
 	void setG(double g);
