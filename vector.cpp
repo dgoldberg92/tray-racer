@@ -23,33 +23,27 @@ void Vector::transform(const Eigen::Matrix4d mat){
   vector_(2) = newV(2);
 }
 
-Vector Vector::operator+(const Vector& v1, const Vector& v2) const{
-  
-  return Vector(v1(0)+v2(0),v1(1)+v2(1),v1(2)+v2(2));
-
+Vector Vector::cross(const Vector& other) const {
+  return getVector().cross(other.getVector());
 }
 
-Vector Vector::operator-(const Vector& v1, const Vector& v2) const{
-  return v1+(-1)*v2;
+Vector Vector::operator+(const Vector& v2) const {
+  return Vector(getX()+v2.getX(),getY()+v2.getY(),getZ()+v2.getZ());
 }
 
-Vector Vector::operator*(const Vector& v1, const Vector& v2) const{
-  return Vector(v1.getVector()*v2.getVector());
+Vector Vector::operator-(const Vector& v2) const {
+  return Vector(getX()-v2.getX(),getY()-v2.getY(),getZ()-v2.getZ());
 }
 
-Vector Vector::operator*(const double& a, const Vector& v1) const{
-  return Vector(v1(0)*a,v1(1)*a,v1(2)*a);
+double Vector::operator*(const Vector& v2) const {
+  return getVector().dot(v2.getVector());
 }
 
-Vector Vector::operator*(const Vector& v1, const double& a) const{
-  return Vector(v1(0)*a,v1(1)*a,v1(2)*a);
+Vector Vector::operator*(const double& a) const {
+  return Vector(getX()*a,getY()*a,getZ()*a);
 }
 
-Vector Vector::operator**(const Vector& v1, const Vector& v2) const{
-  return (v1.getVector()).cross(v2.getVector());
-}
-
-double& operator()(const int index) const{
+double& Vector::operator()(const int index) {
   assert(index >= 0 && index<3);
 
   return vector_(index);

@@ -15,21 +15,20 @@ class Vector {
     Vector(const Eigen::Vector3d vec);
     virtual ~Vector();
 
-    double getX() const {return vector_(0)};
-    double getY() const {return vector_(1)};
-    double getZ() const {return vector_(2)};
-    Eigen::Vector3d getVector() const {return vector_};
-    double getLength() const {return vector_.norm()};
-    void normalize() {return vector_.normalize()};
+    double getX() const {return vector_(0);};
+    double getY() const {return vector_(1);};
+    double getZ() const {return vector_(2);};
+    Eigen::Vector3d getVector() const {return vector_;};
+    double getLength() const {return vector_.norm();};
+    void normalize() {return vector_.normalize();};
     void transform(const Eigen::Matrix4d);
+    Vector cross(const Vector& other) const;
 
-    Vector operator+(const Vector& v1, const Vector& v2) const;
-    Vector operator-(const Vector& v1, const Vector& v2) const;
-    Vector operator*(const Vector& v1, const Vector& v2) const;
-    Vector operator*(const Vector& v1, const double a) const;
-    Vector operator*(const double a, const Vector& v1) const;
-    Vector operator**(const Vector& v1, const Vector& v2) const;
-    double& operator()(const int index) const;
+    Vector operator+(const Vector& v2) const;
+    Vector operator-(const Vector& v2) const;
+    double operator*(const Vector& v2) const;
+    Vector operator*(const double& a) const;
+    double& operator()(const int index) ;
 
   private:
     Eigen::Vector3d vector_;
