@@ -3,6 +3,7 @@
 #ifndef COLOUR_H_
 #define COLOUR_H_
 
+// Included Dependencies
 #include <iostream>
 
 class Colour{
