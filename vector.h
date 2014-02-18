@@ -4,6 +4,7 @@
 #ifndef VECTOR_H_
 #define VECTOR_H_
 
+// Included Dependencies
 #include <Eigen/Dense>
 
 class Vector {

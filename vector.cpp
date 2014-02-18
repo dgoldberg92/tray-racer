@@ -5,7 +5,7 @@
 
 Vector::Vector() :  {}
 
-Vector::Vector(double x, double y, double z{}
+Vector::Vector(double x, double y, double z){}
 
 Vector::Vector(const Vector& other){}
 
