@@ -14,6 +14,8 @@ class Ray {
     Ray(const Point&,const Vector&);
     Ray(const Ray& other);
     virtual ~Light();
+
+    Vector getDirection();
     
 
   private:

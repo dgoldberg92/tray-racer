@@ -5,9 +5,11 @@
 #define SPHERE_H_
 
 // Included Dependencies
-#include "ray.h"
 #include <iostream>
+#include <math.h>
 #include <Eigen/Dense>
+#include "ray.h"
+#include "point.h"
 
 class Sphere:Object{
 
@@ -15,11 +17,15 @@ public:
 
 	Sphere(); // initial constructor
 
-	Sphere(double r, double c);
+	Sphere(double r, Point c);
+
+	void setCenter( Point c ); // change center to move sphere
+
+	Point getCenter() { return c_; } // returns center to get coordinates
 
 	double intersect(Ray& b); // intersect method
 
 private:
-	double r_;
-	double c_;
+	double r_; // radius
+	Point c_; // center
 };
