@@ -1,5 +1,5 @@
 #include <iostream>
-#include "colour.h"
+#include "aux/colour.h"
 
 int main() {
   

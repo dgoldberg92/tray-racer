@@ -23,6 +23,8 @@ public:
 
 	Point getCenter() { return c_; } // returns center to get coordinates
 
+  virtual ~Sphere(){}
+
 	double intersect(Ray& b); // intersect method
 
 private:

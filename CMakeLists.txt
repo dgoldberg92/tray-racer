@@ -31,8 +31,8 @@ if (cmake_build_type_tolower STREQUAL "release")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
 endif()
 
-file(GLOB_RECURSE SOURCES "*/*.cpp")
-file(GLOB_RECURSE HEADERS "*/*.h")
+file(GLOB_RECURSE HEADERS "*/*.h" "*.h")
+file(GLOB_RECURSE SOURCES "*/*.cpp" "*.cpp")
 
 add_library(tray_racer ${SOURCES} ${HEADERS})
 

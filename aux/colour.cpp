@@ -8,6 +8,8 @@ Colour::Colour()
 Colour::Colour(double r, double g, double b)
 	: r_(r), g_(g), b_(b){}
 
+Colour::~Colour(){}
+
 void Colour::setR(double r){ r_ = r; }
 
 void Colour::setG(double g){ g_ = g; }

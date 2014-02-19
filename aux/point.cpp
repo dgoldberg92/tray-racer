@@ -8,7 +8,10 @@ Point::Point()
 Point::Point(double x, double y, double z)
 	: point_(Vector(x, y, z)){}
 
-Point::distance(Point other){
+Point::Point(Vector v)
+  : point_(Vector(v)){}
+
+double Point::distance(Point& other){
 	double xx = pow( (other.getX()-getX()), 2);
 	double yy = pow( (other.getY()-getY()), 2);
 	double zz = pow( (other.getZ()-getZ()), 2);
@@ -17,13 +20,19 @@ Point::distance(Point other){
 	return distance; 
 }
 
-Point::transform(Eigen::Matrix4d){
-	point_.transform(Eigen::Matrix4d);
+void Point::transform(Eigen::Matrix4d mat){
+	point_.transform(mat);
 }
 
-Point Point::operator-(const Point& b) const{
-	double x = other.getX()-getX();
-	double y = other.getY()-getY();
-	double z = other.getZ()-getZ();
+Vector Point::operator-(const Point& b) const{
+	double x = getX()-b.getX();
+	double y = getY()-b.getY();
+	double z = getZ()-b.getZ();
 	return Vector(x,y,z);
+}
+
+double& Point::operator()(const int index) {
+  assert(index>=0 && index<3);
+
+  return point_(index);
 }
