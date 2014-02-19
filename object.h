@@ -13,7 +13,9 @@ class Object{
 public:
 
 	Object(); // initial constructor
-
+  
+  virtual ~Object(){}
+  
 	double intersect(Ray& b); // initial intersect method
 
 

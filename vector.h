@@ -13,7 +13,7 @@ class Vector {
     Vector(double x, double y, double z);
     Vector(const Vector& other);
     Vector(const Eigen::Vector3d vec);
-    virtual ~Vector();
+    virtual ~Vector(){};
 
     double getX() const {return vector_(0);};
     double getY() const {return vector_(1);};

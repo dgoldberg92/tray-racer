@@ -17,6 +17,8 @@ public:
 
 	Sphere(double r, double c);
 
+  virtual ~Sphere(){}
+
 	double intersect(Ray& b); // intersect method
 
 private:

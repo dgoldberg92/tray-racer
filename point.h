@@ -13,7 +13,7 @@ public:
 	Point(); //public default constructor
 	Point(double x, double y, double z); 
   Point(Vector v);
-	virtual ~Point();
+	virtual ~Point(){};
 	double distance(Point& other);
 	void transform(Eigen::Matrix4d);
 

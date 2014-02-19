@@ -34,8 +34,6 @@ endif()
 file(GLOB_RECURSE HEADERS "*/*.h" "*.h")
 file(GLOB_RECURSE SOURCES "*/*.cpp" "*.cpp")
 
-
-
 add_library(tray_racer ${SOURCES} ${HEADERS})
 
 add_executable(main main.cpp)

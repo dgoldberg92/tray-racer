@@ -11,10 +11,15 @@
 class Ray {
   public:
     Ray();
-    Ray(const Point&,const Vector&);
+    Ray(const Point& p,const Vector& v);
     Ray(const Ray& other);
-    virtual ~Light();
+    virtual ~Ray(){};
     
+    Point getOrigin() const {return origin_;};
+    Vector getDirection() const {return direction_;};
+    
+    void setOrigin(Point& p) {origin_=p;};
+    void setDirection(Vector& v) {direction_=v;};
 
   private:
     Point origin_;
