@@ -14,7 +14,6 @@ class Ray {
     Ray(const Point& p,const Vector& v);
     Ray(const Ray& other);
 <<<<<<< HEAD:ray.h
-    virtual ~Light();
 
     Vector getDirection();
 =======
