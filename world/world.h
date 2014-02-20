@@ -8,6 +8,7 @@
 #include <list>
 #include <Eigen/Dense>
 #include "world/object.h"
+#include "aux/colour.h"
 
 class World {
   public:
@@ -21,7 +22,7 @@ class World {
     Object transform(Object o,const Eigen::Matrix4d mat){return o.transform(mat);};
     void transformAll(Eigen::Matrix4d mat);
 
-    void spawn(const Ray& r) const {}
+    Colour spawn(const Ray& r) const {}
 
   private:
     std::list<Object> objects_;
