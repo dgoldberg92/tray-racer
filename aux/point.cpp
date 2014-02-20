@@ -20,10 +20,6 @@ double Point::distance(Point& other){
 	return distance; 
 }
 
-void Point::transform(Eigen::Matrix4d mat){
-	point_.transform(mat);
-}
-
 Vector Point::operator-(const Point& b) const{
 	double x = getX()-b.getX();
 	double y = getY()-b.getY();
