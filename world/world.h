@@ -17,9 +17,9 @@ class World {
     
     std::list<Object> getObjectList() const {return objects_;};
     
-    void add(const Object o){objects_.push_front(o);};
+    void add(const Object& o){objects_.push_front(o);};
     
-    Object transform(Object o,const Eigen::Matrix4d mat){return o.transform(mat);};
+    void transform(Object& o,const Eigen::Matrix4d& mat){o.transform(mat);};
     void transformAll(Eigen::Matrix4d mat);
 
     Colour spawn(const Ray& r) const {}

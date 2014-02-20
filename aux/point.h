@@ -16,7 +16,7 @@ public:
   Point(Vector v);
 	virtual ~Point(){};
 	double distance(Point& other);
-	void transform(Eigen::Matrix4d);
+	void transform(Eigen::Matrix4d mat){point_.transform(mat);};
 
 	double getX()const{ return point_.getX();};
 	double getY()const{ return point_.getY();};

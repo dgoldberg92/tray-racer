@@ -21,9 +21,21 @@ class Vector {
     Eigen::Vector3d getVector() const {return vector_;};
     double getLength() const {return vector_.norm();};
     void normalize() {return vector_.normalize();};
-    void transform(const Eigen::Matrix4d);
+    void transform(const Eigen::Matrix4d mat);
     Vector cross(const Vector& other) const;
 
+    static Eigen::Matrix4d makeTraslation(double& xt, double& yt, double& zt);
+    static Eigen::Matrix4d makeScale(double& xs, double& ys, double& zs);
+    static Eigen::Matrix4d makeRotation(double& xr, double& yr, double& zr);
+    static Eigen::Matrix4d makeTransformMatrix( double& xt,
+                                                double& yt,
+                                                double& zt,
+                                                double& xs,
+                                                double& ys,
+                                                double& zs,
+                                                double& xr,
+                                                double& yr,
+                                                double& zr );
     Vector operator+(const Vector& v2) const;
     Vector operator-(const Vector& v2) const;
     double operator*(const Vector& v2) const;
