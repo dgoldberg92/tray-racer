@@ -18,6 +18,7 @@ public:
 	Camera();
 	Camera(Point pos, Vector look, double f);
 	virtual ~Camera(){};
+	render(World world);
 
 private:
 	Point pos_;
