@@ -12,7 +12,7 @@ class Vector {
     Vector();
     Vector(double x, double y, double z);
     Vector(const Vector& other);
-    Vector(const Eigen::Vector3d vec);
+    Vector(const Eigen::Vector3d& vec);
     virtual ~Vector(){};
 
     double getX() const {return vector_(0);};
@@ -24,18 +24,6 @@ class Vector {
     void transform(const Eigen::Matrix4d mat);
     Vector cross(const Vector& other) const;
 
-    static Eigen::Matrix4d makeTraslation(double& xt, double& yt, double& zt);
-    static Eigen::Matrix4d makeScale(double& xs, double& ys, double& zs);
-    static Eigen::Matrix4d makeRotation(double& xr, double& yr, double& zr);
-    static Eigen::Matrix4d makeTransformMatrix( double& xt,
-                                                double& yt,
-                                                double& zt,
-                                                double& xs,
-                                                double& ys,
-                                                double& zs,
-                                                double& xr,
-                                                double& yr,
-                                                double& zr );
     Vector operator+(const Vector& v2) const;
     Vector operator-(const Vector& v2) const;
     double operator*(const Vector& v2) const;
