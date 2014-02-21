@@ -12,6 +12,8 @@ Camera::Camera() {
   width_ = 0;
 }
 
+void Camera::~Camera(){} // deconstructor
+
 Camera::Camera(Point& pos, Vector& look, double& f) {
   pos_ = pos;
   look_ = look;

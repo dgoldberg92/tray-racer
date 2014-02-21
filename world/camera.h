@@ -20,7 +20,7 @@ public:
 	Camera(Point pos, Vector look, double f);
   Camera::Camera(Point& pos, Vector& look, double& f,
               unsigned int pixW, unsigned int pixH, double height, double width);
-	virtual ~Camera(){};
+	virtual ~Camera();
   
   void setPixDim(unsigned int pixW, unsigned int pixH);
   void setDim(double wid, double hei);
