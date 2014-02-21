@@ -6,10 +6,11 @@
 
 // Included Dependencies
 #include <iostream>
-#include <math.h>
-#include "vector.h"
-#include "ray.h"
-#include "point.h"
+#include <cmath>
+#include "aux/vector.h"
+#include "aux/ray.h"
+#include "aux/point.h"
+#include "world/image.h"
 
 class Camera{
 

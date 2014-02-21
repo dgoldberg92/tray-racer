@@ -27,21 +27,6 @@ Vector Vector::cross(const Vector& other) const {
   return getVector().cross(other.getVector());
 }
 
-Eigen::Matrix4d makeTranslation( double& xt, double& yt, double& zt ) {
-  
-  Eigen::Matrix4d out = Eigen::Matrix3d::Identity();
-
-
-
-
-
-
-
-
-
-
-
-
 Vector Vector::operator+(const Vector& v2) const {
   return Vector(getX()+v2.getX(),getY()+v2.getY(),getZ()+v2.getZ());
 }
