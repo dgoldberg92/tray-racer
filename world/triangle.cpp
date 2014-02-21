@@ -3,7 +3,7 @@
 #include "triangle.h"
 
 Triangle::Triangle() // initial constructor
-	: v0_(0), v1_(0), v2_(0){} 
+	: v0_(Point()), v1_(Point()), v2_(Point()){} 
 
 Triangle::Triangle(Point v0, Point v1, Point v2) // constructor w vertices
 	: v0_(v0), v1_(v1), v2_(v2){}
@@ -36,21 +36,21 @@ double Triangle::intersect(const Ray& b){ // intersection between triangle and r
 
 	// define dot products for matrix
 	double pe1 = p_ * e1; // denominator 
-	double fraction = 1/pe1;
+	double fraction = 1.0/pe1;
 
 	// matrix
-	Eigen::MatrixXd m(3,1);
-	m(0,0) = q_ * e2;
-	m(1,0) = p_* t_;
-	m(2,0) = q_ * d;
+	Eigen::Vector3d m;
+	m(0) = q_ * e2;
+	m(1) = p_* t_;
+	m(2) = q_ * d;
 
 	// t u v matrix
-	Vector tuv = fraction * m;
+	Eigen::Vector3d tuv = fraction * m;
 
 	// defining t u and v
-	double t = tuv.getX();
-	double u = tuv.getY();
-	double v = tuv.getZ();
+	double t = tuv(0);
+	double u = tuv(1);
+	double v = tuv(2);
 
 	bool hit = true;
 
