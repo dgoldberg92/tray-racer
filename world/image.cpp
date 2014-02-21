@@ -48,11 +48,26 @@ void Image::toPPM(const std::string fname) const{
   // width space height
   file << strWidth << " " << strHeight << "\n";
   
+  Colour c;
+  
   for (unsigned int i = 0; i<width_;++i){
     for (unsigned int j = 0; j<height_;++j){
-      ss << (unsigned char)(im_[i][j]*255);
+      c = im_[i][j];
+      
+      ss << (unsigned char)(c.getR()*255);
       file << ss.str() << "\t";
       ss.str(std::string());
+
+      ss << (unsigned char)(c.getG()*255);
+      file << ss.str() << "\t";
+      ss.str(std::string());
+
+      ss << (unsigned char)(c.getB()*255);
+      file << ss.str() << "\t";
+      ss.str(std::string());
+
+
+
     }
     file << "\n";
   }

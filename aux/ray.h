@@ -5,8 +5,8 @@
 #define RAY_H_
 
 // Included Dependencies
-#include "vector.h"
-#include "point.h"
+#include "../aux/vector.h"
+#include "../aux/point.h"
 
 class Ray {
   public:

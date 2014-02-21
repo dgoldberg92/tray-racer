@@ -7,7 +7,7 @@
 // Included Dependencies
 #include <iostream>
 #include <cmath>
-#include "vector.h"
+#include "../aux/vector.h"
 
 class Point{
 public:

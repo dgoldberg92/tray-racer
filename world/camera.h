@@ -7,10 +7,10 @@
 // Included Dependencies
 #include <iostream>
 #include <cmath>
-#include "aux/vector.h"
-#include "aux/ray.h"
-#include "aux/point.h"
-#include "world/image.h"
+#include "../aux/vector.h"
+#include "../aux/ray.h"
+#include "../aux/point.h"
+#include "../world/image.h"
 
 class Camera{
 
@@ -25,7 +25,7 @@ public:
   void setPixDim(unsigned int pixW, unsigned int pixH);
   void setDim(double wid, double hei);
   
-	void render(World world);
+	void render(World& world);
   
 
 private:
