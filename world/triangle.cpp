@@ -8,13 +8,19 @@ Triangle::Triangle() // initial constructor
 Triangle::Triangle(Point v0, Point v1, Point v2) // constructor w vertices
 	: v0_(v0), v1_(v1), v2_(v2){}
 
-Triangle::transform(Eigen::Matrix4d& mat){
+void Triangle::~Triangle(){} // deconstructor
+
+Triangle::transform(const Eigen::Matrix4d& mat){
 	v0_.transform(mat);
 	v1_.transform(mat);
 	v2_.transform(mat);
 } // transform
 
-Triangle::intersect(Ray& b){ // intersection between triangle and ray b
+void Sphere::setColour(const Colour& c){
+	col_ = c;
+} // setColour
+
+Triangle::intersect(const Ray& b){ // intersection between triangle and ray b
 	double distance = 0; // distance to return
 
 	// Define Ray properties

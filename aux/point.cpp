@@ -11,6 +11,8 @@ Point::Point(double x, double y, double z)
 Point::Point(Vector v)
   : point_(Vector(v)){}
 
+void Point::~Point(){} // deconstructor
+
 double Point::distance(Point& other){
 	double xx = pow( (other.getX()-getX()), 2);
 	double yy = pow( (other.getY()-getY()), 2);

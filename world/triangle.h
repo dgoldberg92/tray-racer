@@ -17,13 +17,15 @@ public:
 
 	Triangle(); // initial constructor
 	Triangle(Point v0, Point v1, Point v2);
-	virtual ~Triangle(){}; // deconstructor 
-	double intersect(Ray& b) override; // intersect method
-	void transform(Eigen::Matrix4d& mat) override;
+	virtual ~Triangle(); // deconstructor 
+	double intersect(const Ray& b); // intersect method
+	void transform(const Eigen::Matrix4d& mat);
+	void setColour(const Colour& c);
 
 private:
 	Point v0_;
 	Point v1_;
 	Point v2_;
 	double normal_;
+	Colour col_;
 };

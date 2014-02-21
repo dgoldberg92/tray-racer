@@ -2,21 +2,27 @@
 
 #include "sphere.h"
 
-Sphere::Sphere()
+Sphere::Sphere() // constructor
 	: r_(0), c_() {}
 
 Sphere::Sphere(double r, Point c)
 	: r_(r), c_(c){}
 
-Sphere::setCenter( Point c ){
+Sphere::~Sphere(){} // deconstructor
+
+void Sphere::setCenter(const Point c ){
 	c_ = c; 
 } // setCenter
 
-Sphere::transform(Eigen::Matrix4d& mat){
+void Sphere::transform(Eigen::Matrix4d& mat){
 	c_.transform(mat);
 } // transform
 
-Sphere::intersect(Ray& b){ // intersect method
+void Sphere::setColour(const Colour& c){
+	col_ = c;
+} // setColour
+
+double Sphere::intersect(const Ray& b){ // intersect method
 	// Get the origin point of Ray b
 	Point o = b.getOrigin(); 
 	double xo_ = o.getX();

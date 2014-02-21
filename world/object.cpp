@@ -2,5 +2,6 @@
 
 #include "object.h"
 
-Object::Object()
-	: {}
+Object::Object(){} // constructor
+
+Object::~Object(){} // deconstructor

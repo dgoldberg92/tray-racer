@@ -17,13 +17,15 @@ public:
 
 	Sphere(); // initial constructor
 	Sphere(double r, Point c);
-	virtual ~Sphere(){}; // deconstructor 
-	void setCenter( Point c ); // change center to move sphere
+	virtual ~Sphere(); // deconstructor 
+	void setCenter(const Point c ); // change center to move sphere
 	Point getCenter() { return c_; } // returns center to get coordinates
-	double intersect(Ray& b) override; // intersect method
-	void transform(Eigen::Matrix4d& mat) override;
+	double intersect(const Ray& b); // intersect method
+	void transform(const Eigen::Matrix4d& mat);
+	void setColour(const Colour& c);
 
 private:
 	double r_; // radius
 	Point c_; // center
+	Colour col_; // object colour
 };

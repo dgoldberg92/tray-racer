@@ -13,9 +13,10 @@ class Object{
 public:
 
 	Object(); // initial constructor
-  	virtual ~Object(){};
-	virtual double intersect(Ray& b) = 0; // initial intersect method
+  	virtual ~Object();
+	virtual double intersect(const Ray& b) = 0; // initial intersect method
 	virtual void transform(Eigen::Matrix4d& mat) = 0; // transform method
+	virtual void setColour(const Colour& c);
 
 private:
 	// material_; needed later

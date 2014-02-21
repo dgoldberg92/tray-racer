@@ -8,19 +8,19 @@ Colour::Colour()
 Colour::Colour(double r, double g, double b)
 	: r_(r), g_(g), b_(b){}
 
-Colour::~Colour(){}
+Colour::~Colour(){} // deconstructor
 
-void Colour::setR(double r){ r_ = r; }
+void Colour::setR(double r){ r_ = r; } // setR
 
-void Colour::setG(double g){ g_ = g; }
+void Colour::setG(double g){ g_ = g; } // setG
 
-void Colour::setB(double b){ b_ = b;}
+void Colour::setB(double b){ b_ = b;} // setB
 
 void Colour::setRGB(double r, double g, double b){
 	r_ = r; 
 	g_ = g;
 	b_ = b;
-}
+}// setRGB
 
 //const Colour::Colour black(0,0,0);
 //const Colour::Colour red(1,0,0);
@@ -34,6 +34,6 @@ Colour Colour::operator*( const Colour& other ) const{
 	result.g_ = other.g_ * g_;
 	result.b_ = other.b_ * b_;
 	return result;
-}
+}// operator*
 
 

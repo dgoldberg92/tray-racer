@@ -12,4 +12,5 @@ Ray::Ray(const Point& p, const Vector& v)
 Ray::Ray(const Ray& other)
   : origin_(other.getOrigin()), direction_(other.getDirection()){}
 
+void Ray::~Ray(){}
 
