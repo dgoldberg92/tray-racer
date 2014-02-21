@@ -1,0 +1,11 @@
+# Ignore swap files
+*.swp
+
+# Output compile files
+*.o
+
+# possible output
+a.out
+
+# output of main compile
+main
