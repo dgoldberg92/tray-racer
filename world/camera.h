@@ -18,17 +18,24 @@ public:
 
 	Camera();
 	Camera(Point pos, Vector look, double f);
+  Camera::Camera(Point& pos, Vector& look, double& f,
+              unsigned int pixW, unsigned int pixH, double height, double width);
 	virtual ~Camera(){};
-	render(World world);
+  
+  void setPixDim(unsigned int pixW, unsigned int pixH);
+  void setDim(double wid, double hei);
+  
+	void render(World world);
+  
 
 private:
 	Point pos_;
 	Vector look_;
 	double focal_;
-	double height_; // pixels
-	double width_; // pixels
-	double pheight_; // world coordinates
-	double pwidth_; // world coordinates
+	unsigned int pixH_; // pixels
+	unsigned int pixW_; // pixels
+	double height_; // world coordinates
+	double width_; // world coordinates
 
 };
 
