@@ -16,16 +16,12 @@ class Sphere:Object{
 public:
 
 	Sphere(); // initial constructor
-
 	Sphere(double r, Point c);
-
+	virtual ~Sphere(){}; // deconstructor 
 	void setCenter( Point c ); // change center to move sphere
-
 	Point getCenter() { return c_; } // returns center to get coordinates
-
-  virtual ~Sphere(){}
-
-	double intersect(Ray& b); // intersect method
+	double intersect(Ray& b) override; // intersect method
+	void transform(Eigen::Matrix4d& mat) override;
 
 private:
 	double r_; // radius

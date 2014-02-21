@@ -13,14 +13,12 @@ class Object{
 public:
 
 	Object(); // initial constructor
-  
-  virtual ~Object(){}
-  
-	double intersect(Ray& b); // initial intersect method
-
+  	virtual ~Object(){};
+	virtual double intersect(Ray& b) = 0; // initial intersect method
+	virtual void transform(Eigen::Matrix4d& mat) = 0; // transform method
 
 private:
-	//float material_; needed later
+	// material_; needed later
 };
 
 #endif

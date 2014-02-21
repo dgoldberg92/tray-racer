@@ -10,7 +10,11 @@ Sphere::Sphere(double r, Point c)
 
 Sphere::setCenter( Point c ){
 	c_ = c; 
-}
+} // setCenter
+
+Sphere::transform(Eigen::Matrix4d& mat){
+	c_.transform(mat);
+} // transform
 
 Sphere::intersect(Ray& b){ // intersect method
 	// Get the origin point of Ray b
@@ -48,7 +52,7 @@ Sphere::intersect(Ray& b){ // intersect method
 	}
 
 	return w; // return the distance
-}
+} // intersect
 
 
 

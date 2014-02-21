@@ -16,10 +16,10 @@ class Triangle:Object{
 public:
 
 	Triangle(); // initial constructor
-
 	Triangle(Point v0, Point v1, Point v2);
-
-	double intersect(Ray& b); // intersect method
+	virtual ~Triangle(){}; // deconstructor 
+	double intersect(Ray& b) override; // intersect method
+	void transform(Eigen::Matrix4d& mat) override;
 
 private:
 	Point v0_;
