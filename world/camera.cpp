@@ -35,16 +35,42 @@ Camera::Camera(Point& pos, Vector& look, double& f,
   width_ = width;
 }
 
-Camera::setPixDim(const unsigned int& pixW, const unsigned int& pixH){
+void Camera::setPixDim(const unsigned int& pixW, const unsigned int& pixH){
   pixH_ = pixH;
   pixW_ = pixW;
 }
 
-Camera::setDim(const double& wid, const double& hei){
+void Camera::setDim(const double& wid, const double& hei){
   height_ = hei;
   width_ = wid;
 }
 
-Camera::render(World world){
+Image Camera::render(World& world){
+  double pixHeight = height_/(double)pixH_;
+  double pixWidth = width_/(double)pixW_;
   
-}
+  
+  double x = -width_/2. + 0.5*pixWidth;
+  double y = height_/2. - .5*pixHeight;
+  double z = focal_;
+  
+  Ray r;
+  Colour c;
+  Point origin;
+  Vector dir;
+  Image im(pixW_,pixH_);
+  
+  for (int i=0;i<pixW_;++i){
+    for (int j=0;j<pixH_;++j){
+      dir = Vector(x,y,z);
+      r.setDirection(dir);
+      c = world.spawn(r);
+      im.setPixel(i,j,c);
+      x+=pixWidth;
+    }
+    y-=pixHeight;
+  }
+  
+  return im;
+  
+} 
