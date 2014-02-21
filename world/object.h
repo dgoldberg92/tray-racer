@@ -5,8 +5,9 @@
 #define OBJECT_H_
 
 // Included Dependencies
-#include "ray.h"
 #include <iostream>
+#include "../aux/ray.h"
+
 
 class Object{
 

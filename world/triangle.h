@@ -6,12 +6,14 @@
 
 // Included Dependencies
 #include <iostream>
-#include <math.h>
+#include <cmath>
 #include <Eigen/Dense>
-#include "ray.h"
-#include "point.h"
+#include "../aux/ray.h"
+#include "../aux/point.h"
+#include "../aux/colour.h"
+#include "../world/object.h"
 
-class Triangle:Object{
+class Triangle: public Object{
 
 public:
 
@@ -29,3 +31,5 @@ private:
 	double normal_;
 	Colour col_;
 };
+
+#endif

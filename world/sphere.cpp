@@ -14,7 +14,7 @@ void Sphere::setCenter(const Point c ){
 	c_ = c; 
 } // setCenter
 
-void Sphere::transform(Eigen::Matrix4d& mat){
+void Sphere::transform(const Eigen::Matrix4d& mat){
 	c_.transform(mat);
 } // transform
 
@@ -41,13 +41,13 @@ double Sphere::intersect(const Ray& b){ // intersect method
 	double zc_ = c_.getZ();
 
 	// Intersection equations
-	double a = pow( dx_, 2) + pow( dy_, 2) + pow( dz_, 2);
-	double b = 2*( (dx_*(xo_ - xc_) + (dy_*(yo_ - yc_) + (dz_*(zo_ - zc_) );
-	double c = pow((xo_ - xc_), 2) + pow((yo_ - yc_), 2) + pow((zo_ - zc_), 2) - pow(r_, 2); 
+	double a_ = pow( dx_, 2) + pow( dy_, 2) + pow( dz_, 2);
+	double b_ = 2*( (dx_*(xo_ - xc_)) + (dy_*(yo_ - yc_)) + (dz_*(zo_ - zc_)) );
+	double c_ = pow((xo_ - xc_), 2) + pow((yo_ - yc_), 2) + pow((zo_ - zc_), 2) - pow(r_, 2); 
 
 	// Master equation to find omega
-	double posw = (-b + sqrt( (b, 2) - (4*a*c) ) ) / (2*a) ;
-	double negw = (-b - sqrt( (b, 2) - (4*a*c) ) ) / (2*a) ;
+	double posw = (-b_ + sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
+	double negw = (-b_ - sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
 
 	double w;
 	if ( posw < 0.0 ) { 

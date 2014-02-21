@@ -8,19 +8,19 @@ Triangle::Triangle() // initial constructor
 Triangle::Triangle(Point v0, Point v1, Point v2) // constructor w vertices
 	: v0_(v0), v1_(v1), v2_(v2){}
 
-void Triangle::~Triangle(){} // deconstructor
+Triangle::~Triangle(){} // deconstructor
 
-Triangle::transform(const Eigen::Matrix4d& mat){
+void Triangle::transform(const Eigen::Matrix4d& mat){
 	v0_.transform(mat);
 	v1_.transform(mat);
 	v2_.transform(mat);
 } // transform
 
-void Sphere::setColour(const Colour& c){
+void Triangle::setColour(const Colour& c){
 	col_ = c;
 } // setColour
 
-Triangle::intersect(const Ray& b){ // intersection between triangle and ray b
+double Triangle::intersect(const Ray& b){ // intersection between triangle and ray b
 	double distance = 0; // distance to return
 
 	// Define Ray properties
@@ -39,7 +39,7 @@ Triangle::intersect(const Ray& b){ // intersection between triangle and ray b
 	double fraction = 1/pe1;
 
 	// matrix
-	MatrixXd m(3,1);
+	Eigen::MatrixXd m(3,1);
 	m(0,0) = q_ * e2;
 	m(1,0) = p_* t_;
 	m(2,0) = q_ * d;
@@ -63,12 +63,12 @@ Triangle::intersect(const Ray& b){ // intersection between triangle and ray b
 		hit = false;
 	}
 	
-	if (u< 0, v < 0, u+v >1) { // intersect outside of triangle
+	if (u< 0 && v < 0 && u+v >1) { // intersect outside of triangle
 		hit = false;
 	}
 
 	// yes hit case
-	if (hit = true){ 
+	if (hit == true){ 
 		distance = t;
 	}
 
