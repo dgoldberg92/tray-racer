@@ -20,7 +20,7 @@ class Vector {
     double getZ() const {return vector_(2);};
     Eigen::Vector3d getVector() const {return vector_;};
     double getLength() const {return vector_.norm();};
-    void normalize() {return vector_.normalize();};
+    Vector normalize() {return Vector(vector_.normalized());};
     void transform(const Eigen::Matrix4d mat);
     Vector cross(const Vector& other) const;
 

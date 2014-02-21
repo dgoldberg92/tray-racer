@@ -23,9 +23,10 @@ public:
 	double getX()const{ return point_.getX();};
 	double getY()const{ return point_.getY();};
 	double getZ()const{ return point_.getZ();};
+  Vector getVec()const{return point_;};
 
 	Vector operator-(const Point& b) const;
-  	double& operator()(const int index);
+  double& operator()(const int index);
 
 private:
 	Vector point_;
