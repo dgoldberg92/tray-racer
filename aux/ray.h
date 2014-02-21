@@ -15,7 +15,7 @@ class Ray {
     Ray(const Ray& other);
 
     Vector getDirection();
-    virtual ~Ray(){};
+    virtual ~Ray();
     
     Point getOrigin() const {return origin_;};
     Vector getDirection() const {return direction_;};

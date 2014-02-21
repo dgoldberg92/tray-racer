@@ -12,6 +12,8 @@ World::World(Colour c)
 World::World(Colour c, Objects o)
   : objects_(o), bgcolour_(c) {}
 
+void World::World(){}
+
 void World::transformAll(Eigen::Matrix4d mat){
   std::list<Object>::iterator it;
   for(it = objects_.begin(); it != objects_.end(); it++)

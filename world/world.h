@@ -18,7 +18,7 @@ class World {
     World();
     World(Colour c);
     World(Colour c, Objects o);
-    virtual ~World(){};
+    virtual ~World();
     
     std::list<Object> getObjectList() const {return objects_;};
     void setBgColour(const Colour& c) {colour_=c;};
@@ -34,4 +34,4 @@ class World {
   private:
     std::list<Object> objects_;
     Colour bgcolour_; 
-} 
+};
