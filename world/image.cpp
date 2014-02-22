@@ -6,18 +6,18 @@
 Image::Image(){
   height_ = 1024;
   width_ = 768;
-  double** im_ = new double*[width_];
-  for(unsigned int i = 0; i < width_; ++i)
-    im_[i] = new double[height_];
+  im_ = new Colour[width_*height_];
+  //for(unsigned int i = 0; i < width_; ++i)
+  //  im_[i] = new double[height_];
   // im_(new double(768,1024))
 }
 
 Image::Image(unsigned int w, unsigned int h){
-  height_=(h);
-  width_=(w);
-  double** im_ = new double*[width_];
-  for(unsigned int i = 0; i < width_; ++i)
-    im_[i] = new double[height_];
+  height_=h;
+  width_=w;
+  im_ = new Colour[width_*height_];
+  //for(unsigned int i = 0; i < width_; ++i)
+  //  im_[i] = new double[height_];
 }
 
 // PROBLEM IS HERE
@@ -31,15 +31,13 @@ Image::~Image(){
   // break point to test?
   // with Phil's help:
   // im_ = new Colour[width_*height_];
-  // or im_ = new Colour[y*width_+x];
-  im_ = new Colour*[width_*height_];
+  // im_ = new Colour[y*width_+x];
+  delete[] im_;
 }
 
 void Image::toPPM(const std::string fname) const{
   std::ofstream file;
 //  std::string::size_type sz;
-
- 
   std::ostringstream ss;
   //ss << Number;
   //ss.str();
@@ -55,25 +53,26 @@ void Image::toPPM(const std::string fname) const{
   file << "P3\n";
   // width space height
   file << strWidth << " " << strHeight << "\n";
+  // Max Value
+  file << "255\n";
   
   Colour c;
   
   for (unsigned int i = 0; i<width_;++i){
     for (unsigned int j = 0; j<height_;++j){
-      c = im_[i][j];
+      c = this->getPixel(i,j);
       
-      ss << (unsigned char)(c.getR()*255);
-      file << ss.str() << "\t";
+      ss << (int)(c.getR()*255);
+      file << ss.str() << " ";
       ss.str(std::string());
 
-      ss << (unsigned char)(c.getG()*255);
-      file << ss.str() << "\t";
+      ss << (int)(c.getG()*255);
+      file << ss.str() << " ";
       ss.str(std::string());
 
-      ss << (unsigned char)(c.getB()*255);
-      file << ss.str() << "\t";
+      ss << (int)(c.getB()*255);
+      file << ss.str() << " ";
       ss.str(std::string());
-
 
 
     }
