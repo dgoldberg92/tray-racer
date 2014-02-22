@@ -1,7 +1,7 @@
 //Vic McGowen and Dan Goldberg Ray Tracer
 
 #include "object.h"
-#include "colour.h"
+#include "../aux/colour.h"
 
 Object::Object()
   : c_(Colour()){}
