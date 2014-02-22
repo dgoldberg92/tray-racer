@@ -55,20 +55,36 @@ Image Camera::render(World& world){
   Vector v = (n.cross(u)).normalize();
 
   Vector eyepoint = pos_.getVec();
+  Vector neyepoint = eyepoint.operator*(-1); // multiplication
   Eigen::Matrix4d viewMat;
 
   viewMat(0,0) = u.getX();
   viewMat(0,1) = u.getY();
   viewMat(0,2) = u.getZ();
-  viewMat(0,3) = (pos_.getVec())*u*(-1.);
+
+//<<<<<<< HEAD
+//  viewMat(0,3) = (pos_.getVec())*u*(-1.);
+//  viewMat(1,0) = v.getX();
+//  viewMat(1,1) = v.getY();
+//  viewMat(1,2) = v.getZ();
+//  viewMat(1,3) = (pos_.getVec())*v*(-1.);
+//  viewMat(2,0) = n.getX();
+//  viewMat(2,1) = n.getY();
+//  viewMat(2,2) = n.getZ();
+//  viewMat(2,3) = (pos_.getVec())*n*(-1.);
+//=======
+  viewMat(0,3) = neyepoint*(u); // dot product
   viewMat(1,0) = v.getX();
   viewMat(1,1) = v.getY();
   viewMat(1,2) = v.getZ();
-  viewMat(1,3) = (pos_.getVec())*v*(-1.);
+  viewMat(1,3) = neyepoint*(v); // dot product
   viewMat(2,0) = n.getX();
   viewMat(2,1) = n.getY();
+
+
   viewMat(2,2) = n.getZ();
-  viewMat(2,3) = (pos_.getVec())*n*(-1.);
+  viewMat(2,3) = neyepoint*(n); // dot product
+//>>>>>>> 6f2f489990ee4ccfa07d293c118c74cdfa119727
   viewMat(3,3) = 1.;
  
   world.transformAll(viewMat);
