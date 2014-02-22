@@ -7,11 +7,12 @@
 // Included Dependencies
 #include <iostream>
 #include <cmath>
-#include <Eigen:Dense>
+#include <Eigen/Dense>
 #include "../aux/vector.h"
 #include "../aux/ray.h"
 #include "../aux/point.h"
 #include "../world/image.h"
+#include "../world/world.h"
 
 class Camera{
 
@@ -19,7 +20,7 @@ public:
 
 	Camera();
 	Camera(Point pos, Point look, Vector up, double f);
-  Camera(Point pos, Point look, Vector up, double f,
+  	Camera(Point pos, Point look, Vector up, double f,
               unsigned int pixW, unsigned int pixH, double height, double width);
 	virtual ~Camera();
   

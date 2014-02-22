@@ -13,9 +13,9 @@ Camera::Camera() {
   width_ = 0;
 }
 
-void Camera::~Camera(){} // deconstructor
+Camera::~Camera(){} // deconstructor
 
-Camera::Camera(Point& pos, Point& look, Vector& up, double& f) {
+Camera::Camera(Point pos, Point look, Vector up, double f) {
   pos_ = pos;
   look_ = look;
   up_ = up;
@@ -26,7 +26,7 @@ Camera::Camera(Point& pos, Point& look, Vector& up, double& f) {
   width_ = 0;
 }
 
-Camera::Camera(Point& pos, Point& look, Vector& up, double& f,
+Camera::Camera(Point pos, Point look, Vector up, double f,
               unsigned int pixW, unsigned int pixH, double height, double width) {
   pos_ = pos;
   look_ = look;
@@ -38,12 +38,12 @@ Camera::Camera(Point& pos, Point& look, Vector& up, double& f,
   width_ = width;
 }
 
-void Camera::setPixDim(const unsigned int& pixW, const unsigned int& pixH){
+void Camera::setPixDim(const unsigned int pixW, const unsigned int pixH){
   pixH_ = pixH;
   pixW_ = pixW;
 }
 
-void Camera::setDim(const double& wid, const double& hei){
+void Camera::setDim(const double wid, const double hei){
   height_ = hei;
   width_ = wid;
 }
@@ -54,12 +54,13 @@ Image Camera::render(World& world){
   Vector u = (up_.cross(n)).normalize();
   Vector v = (n.cross(u)).normalize();
 
+  Vector eyepoint = pos_.getVec();
   Eigen::Matrix4d viewMat;
 
   viewMat(0,0) = u.getX();
   viewMat(0,1) = u.getY();
   viewMat(0,2) = u.getZ();
-  viewMat(0,3) = -1.*(pos_.getVec())*u;
+  viewMat(0,3) = (-eyepoint)*u;
   viewMat(1,0) = v.getX();
   viewMat(1,1) = v.getY();
   viewMat(1,2) = v.getZ();
@@ -67,10 +68,10 @@ Image Camera::render(World& world){
   viewMat(2,0) = n.getX();
   viewMat(2,1) = n.getY();
   viewMat(2,2) = n.getZ();
-  viewMat(2,3) = -1.*(pos_.getVec())*n;
+  viewMat(2,3) = (-1.*(pos_.getVec()))*n;
   viewMat(3,3) = 1.;
  
-  w.transformAll(viewMat);
+  world.transformAll(viewMat);
   
   double pixHeight = height_/(double)pixH_;
   double pixWidth = width_/(double)pixW_;

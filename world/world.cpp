@@ -41,7 +41,9 @@ Colour World::spawn(const Ray& r) {
   
   if (close_o){
     return close_o->getColour();
-  } else {
+  } 
+  else{
     return getBgColour();
   }
+
 }

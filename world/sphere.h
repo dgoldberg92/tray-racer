@@ -22,7 +22,7 @@ public:
 	virtual ~Sphere(); // deconstructor 
 	void setCenter(const Point c ); // change center to move sphere
 	Point getCenter() { return c_; } // returns center to get coordinates
-	double intersect(const Ray& b); // intersect method
+	double intersect(const Ray& b) const; // intersect method
 	void transform(const Eigen::Matrix4d& mat);
 	void setColour(const Colour& c);
 

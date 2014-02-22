@@ -12,6 +12,7 @@
 #include <Eigen/Dense>
 #include "../world/object.h"
 #include "../aux/colour.h"
+#include "../aux/ray.h"
 
 class World {
   public:

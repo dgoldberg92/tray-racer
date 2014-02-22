@@ -1,9 +1,10 @@
 #include <iostream>
-#include "../world/world.h"
-#include "../aux/colour.h"
-#include "../world/object.h"
-#include "../world/sphere.h"
-#include "../world/triangle.h"
+#include "world/world.h"
+#include "aux/colour.h"
+#include "world/object.h"
+#include "world/sphere.h"
+#include "world/triangle.h"
+#include "world/camera.h"
 
 int main() {
   

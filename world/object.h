@@ -16,7 +16,7 @@ public:
 
 	Object(); // initial constructor
   	virtual ~Object();
-	virtual double intersect(const Ray& b) = 0; // initial intersect method
+	virtual double intersect(const Ray& b) const = 0; // initial intersect method
 	virtual void transform(const Eigen::Matrix4d& mat) = 0; // transform method
 	virtual void setColour(const Colour& c) = 0;
 

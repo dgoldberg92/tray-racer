@@ -22,7 +22,7 @@ void Sphere::setColour(const Colour& c){
 	col_ = c;
 } // setColour
 
-double Sphere::intersect(const Ray& b){ // intersect method
+double Sphere::intersect(const Ray& b) const{ // intersect method
 	// Get the origin point of Ray b
 	Point o = b.getOrigin(); 
 	double xo_ = o.getX();
@@ -46,8 +46,8 @@ double Sphere::intersect(const Ray& b){ // intersect method
 	double c_ = pow((xo_ - xc_), 2) + pow((yo_ - yc_), 2) + pow((zo_ - zc_), 2) - pow(r_, 2); 
 
 	// Master equation to find omega
-	double posw = (-b_ + sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
-	double negw = (-b_ - sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
+	double posw = (-1.*b_ + sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
+	double negw = (-1.*b_ - sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
 
 	double w;
 	if ( posw < 0.0 ) { 
