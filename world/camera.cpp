@@ -55,20 +55,21 @@ Image Camera::render(World& world){
   Vector v = (n.cross(u)).normalize();
 
   Vector eyepoint = pos_.getVec();
+  Vector neyepoint = eyepoint.operator*(-1); // multiplication
   Eigen::Matrix4d viewMat;
 
   viewMat(0,0) = u.getX();
   viewMat(0,1) = u.getY();
   viewMat(0,2) = u.getZ();
-  viewMat(0,3) = (-eyepoint)*u;
+  viewMat(0,3) = eyepoint.operator*(u); // dot product
   viewMat(1,0) = v.getX();
   viewMat(1,1) = v.getY();
   viewMat(1,2) = v.getZ();
-  viewMat(1,3) = -1.*(pos_.getVec())*v;
+  viewMat(1,3) = eyepoint.operator*(v); // dot product
   viewMat(2,0) = n.getX();
   viewMat(2,1) = n.getY();
   viewMat(2,2) = n.getZ();
-  viewMat(2,3) = (-1.*(pos_.getVec()))*n;
+  viewMat(2,3) = eyepoint.operator*(n); // dot product
   viewMat(3,3) = 1.;
  
   world.transformAll(viewMat);
