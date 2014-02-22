@@ -12,7 +12,12 @@ World::World(Colour& c)
 World::World(Colour& c, std::list<Object*>& olist)
   : objects_(olist), bgcolour_(c) {}
 
-World::~World(){}
+World::~World(){
+  std::list<Object*>::iterator it; 
+  for(it = objects_.begin(); it != objects_.end(); it++)
+    delete *it;
+
+}
 
 void World::transformAll(const Eigen::Matrix4d& mat){
   std::list<Object*>::iterator it;

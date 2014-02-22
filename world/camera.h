@@ -20,7 +20,7 @@ public:
 
 	Camera();
 	Camera(Point pos, Point look, Vector up, double f);
-  	Camera(Point pos, Point look, Vector up, double f,
+  Camera(Point pos, Point look, Vector up, double f,
               unsigned int pixW, unsigned int pixH, double height, double width);
 	virtual ~Camera();
   

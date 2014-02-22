@@ -15,15 +15,15 @@ Image::Image(){
 Image::Image(unsigned int w, unsigned int h){
   height_=(h);
   width_=(w);
-  double** im_ = new double*[width_];
+  double** im_ = new double*[width_];i
   for(unsigned int i = 0; i < width_; ++i)
     im_[i] = new double[height_];
 }
 
 Image::~Image(){
   for (unsigned int i = 0; i < width_; ++i)
-    delete im_[i];
-  delete im_;
+    delete[] im_[i];
+  delete[] im_;
 }
 
 void Image::toPPM(const std::string fname) const{

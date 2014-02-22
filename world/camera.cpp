@@ -49,15 +49,19 @@ void Camera::setDim(const double wid, const double hei){
 }
 
 Image Camera::render(World& world){
-
+  
+ // std::cout << "First call\n"<<std::flush;
+  
   Vector n = (pos_ - look_).normalize();
   Vector u = (up_.cross(n)).normalize();
   Vector v = (n.cross(u)).normalize();
 
   Vector eyepoint = pos_.getVec();
-  Vector neyepoint = eyepoint.operator*(-1); // multiplication
+  Vector neyepoint = eyepoint*(-1); // multiplication
   Eigen::Matrix4d viewMat;
 
+  //std::cout << "view Matrix construction\n"<<std::flush;
+  
   viewMat(0,0) = u.getX();
   viewMat(0,1) = u.getY();
   viewMat(0,2) = u.getZ();
@@ -80,15 +84,14 @@ Image Camera::render(World& world){
   viewMat(1,3) = neyepoint*(v); // dot product
   viewMat(2,0) = n.getX();
   viewMat(2,1) = n.getY();
-
-
   viewMat(2,2) = n.getZ();
   viewMat(2,3) = neyepoint*(n); // dot product
 //>>>>>>> 6f2f489990ee4ccfa07d293c118c74cdfa119727
   viewMat(3,3) = 1.;
- 
+
+  //std::cout << "transform all call\n"<<std::flush;
   world.transformAll(viewMat);
-  
+  //std::cout << "DoNE\n"<<std::flush;
   double pixHeight = height_/(double)pixH_;
   double pixWidth = width_/(double)pixW_;
   
@@ -101,7 +104,6 @@ Image Camera::render(World& world){
   Point origin;
   Vector dir;
   Image im(pixW_,pixH_);
-  
   for (unsigned int i=0;i<pixW_;++i){
     for (unsigned int j=0;j<pixH_;++j){
       dir = Vector(x,y,z);
@@ -112,7 +114,7 @@ Image Camera::render(World& world){
     }
     y-=pixHeight;
   }
-  
+
   return im;
   
 } 
