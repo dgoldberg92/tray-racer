@@ -28,7 +28,7 @@ Image::~Image(){
 
 void Image::toPPM(const std::string fname) const{
   std::ofstream file;
-  std::string::size_type sz;
+//  std::string::size_type sz;
 
  
   std::ostringstream ss;

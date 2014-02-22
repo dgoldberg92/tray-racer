@@ -11,11 +11,11 @@ int main() {
   Colour bgColour(0,7.,7.);
   World w(bgColour);
   
-  Object o1 = Sphere(1., Point(-4.5, 4.45, -3.05));
-  o1.setColour(Colour(1.,0.,0.));
+  Object* o1 = new Sphere(1., Point(-4.5, 4.45, -3.05));
+  o1->setColour(Colour(1.,0.,0.));
 
-  Object o2 = Sphere(.75, Point(-3.17, 3.48, -.2767));
-  o2.setColour(Colour(0.,1.,0.));
+  Object* o2 = new Sphere(.75, Point(-3.17, 3.48, -.2767));
+  o2->setColour(Colour(0.,1.,0.));
   
   double xShift = .7151;
   double yShift = -1.3497;
@@ -26,11 +26,11 @@ int main() {
   Point botLeft(-zShift, -3.5+xShift, -3.+yShift);
   Point botRight(-zShift, 3.5+xShift, -3.+yShift);
   
-  Object t1 = Triangle(topLeft, topRight, botLeft);
-  Object t2 = Triangle(topRight, botRight, botLeft);
+  Object* t1 = new Triangle(topLeft, topRight, botLeft);
+  Object* t2 = new Triangle(topRight, botRight, botLeft);
   
-  t1.setColour(Colour(0.,0.,1.));
-  t2.setColour(Colour(0.,0.,1.));
+  t1->setColour(Colour(0.,0.,1.));
+  t2->setColour(Colour(0.,0.,1.));
 
   w.add(t1);
   w.add(t2);
