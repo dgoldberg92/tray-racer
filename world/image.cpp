@@ -15,15 +15,24 @@ Image::Image(){
 Image::Image(unsigned int w, unsigned int h){
   height_=(h);
   width_=(w);
-  double** im_ = new double*[width_];i
+  double** im_ = new double*[width_];
   for(unsigned int i = 0; i < width_; ++i)
     im_[i] = new double[height_];
 }
 
+// PROBLEM IS HERE
 Image::~Image(){
-  for (unsigned int i = 0; i < width_; ++i)
-    delete[] im_[i];
-  delete[] im_;
+ /* Old code: 
+    for (unsigned int i = 0; i < width_; ++i){
+        delete[] im_[i];
+  }
+  delete[] im_;*/
+
+  // break point to test?
+  // with Phil's help:
+  // im_ = new Colour[width_*height_];
+  // or im_ = new Colour[y*width_+x];
+  im_ = new Colour*[width_*height_];
 }
 
 void Image::toPPM(const std::string fname) const{

@@ -8,6 +8,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <cmath>
 #include "../aux/colour.h"
 
 class Image {
