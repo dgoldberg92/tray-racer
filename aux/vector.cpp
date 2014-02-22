@@ -15,7 +15,7 @@ Vector::Vector(const Vector& other)
 Vector::Vector(const Eigen::Vector3d& vec)
   : vector_(vec){}
 
-void Vector::~Vector(){}
+Vector::~Vector(){}
 
 void Vector::transform(const Eigen::Matrix4d mat){
   Eigen::Vector4d v(vector_(0),vector_(1),vector_(2),1.0);
