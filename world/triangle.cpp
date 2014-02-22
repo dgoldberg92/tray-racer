@@ -20,7 +20,7 @@ void Triangle::setColour(const Colour& c){
 	col_ = c;
 } // setColour
 
-double Triangle::intersect(const Ray& b){ // intersection between triangle and ray b
+double Triangle::intersect(const Ray& b) const{ // intersection between triangle and ray b
 	double distance = 0; // distance to return
 
 	// Define Ray properties
