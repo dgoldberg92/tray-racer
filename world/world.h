@@ -18,14 +18,14 @@ class World {
   public:
     World();
     World(Colour& c);
-    World(Colour& c, std::list<Object>& olist);
+    World(Colour& c, std::list<Object*>& olist);
     virtual ~World();
     
-    std::list<Object> getObjectList() const {return objects_;};
+    std::list<Object*> getObjectList() const {return objects_;};
     void setBgColour(const Colour& c) {bgcolour_=c;};
     Colour getBgColour() const {return bgcolour_;};
     
-    void add(const Object& o){objects_.push_front(o);};
+    void add(Object* o){objects_.push_front(o);};
     
     void transform(Object& o,const Eigen::Matrix4d& mat){o.transform(mat);};
     void transformAll(const Eigen::Matrix4d& mat);
@@ -34,7 +34,7 @@ class World {
     Colour spawn(const Ray& r);
 
   private:
-    std::list<Object> objects_;
+    std::list<Object*> objects_;
     Colour bgcolour_; 
 };
 
