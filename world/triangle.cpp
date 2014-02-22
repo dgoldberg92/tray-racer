@@ -16,9 +16,11 @@ void Triangle::transform(const Eigen::Matrix4d& mat){
 	v2_.transform(mat);
 } // transform
 
+/*
 void Triangle::setColour(const Colour& c){
 	col_ = c;
 } // setColour
+*/
 
 double Triangle::intersect(const Ray& b) const{ // intersection between triangle and ray b
 	double distance = 0; // distance to return

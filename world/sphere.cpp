@@ -18,9 +18,11 @@ void Sphere::transform(const Eigen::Matrix4d& mat){
 	c_.transform(mat);
 } // transform
 
+/*
 void Sphere::setColour(const Colour& c){
 	col_ = c;
 } // setColour
+*/
 
 double Sphere::intersect(const Ray& b) const{ // intersect method
 	// Get the origin point of Ray b

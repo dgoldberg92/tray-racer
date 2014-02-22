@@ -23,14 +23,14 @@ public:
 	virtual ~Triangle(); // deconstructor 
 	double intersect(const Ray& b) const; // intersect method
 	void transform(const Eigen::Matrix4d& mat);
-	void setColour(const Colour& c);
+//	void setColour(const Colour& c);
 
 private:
 	Point v0_;
 	Point v1_;
 	Point v2_;
 	double normal_;
-	Colour col_;
+//	Colour col_;
 };
 
 #endif
