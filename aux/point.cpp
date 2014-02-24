@@ -34,3 +34,18 @@ double& Point::operator()(const int index) {
 
   return point_(index);
 }
+
+
+std::ostream& operator<< (std::ostream &out, Point& p)
+{
+    // Since operator<< is a friend of the Point class, we can access
+    // Point's members directly.
+    out << p.point_;
+    return out;
+}
+ 
+std::istream& operator>> (std::istream &in, Point& p)
+{
+    in >> p.point_;
+    return in;
+}

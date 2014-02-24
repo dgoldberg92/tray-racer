@@ -52,3 +52,20 @@ double& Vector::operator()(const int index) {
 }
 
 
+std::ostream& operator<< (std::ostream &out, Vector &v)
+{
+    // Since operator<< is a friend of the Point class, we can access
+    // Point's members directly.
+    out << "(" << v.vector_(0) << ", " <<
+        v.vector_(1) << ", " <<
+        v.vector_(2) << ")";
+    return out;
+}
+ 
+std::istream& operator>> (std::istream &in, Vector& v)
+{
+    in >> v.vector_(0);
+    in >> v.vector_(1);
+    in >> v.vector_(2);
+    return in;
+}

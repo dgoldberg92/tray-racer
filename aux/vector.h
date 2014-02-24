@@ -29,7 +29,9 @@ class Vector {
     double operator*(const Vector& v2) const;
     Vector operator*(const double& a) const;
     double& operator()(const int index) ;
-
+    friend std::ostream& operator<< (std::ostream &out, Vector &v);
+    friend std::istream& operator>> (std::istream &in, Vector &v);
+  
   private:
     Eigen::Vector3d vector_;
 };

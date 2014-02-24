@@ -27,7 +27,9 @@ public:
 
 	Vector operator-(const Point& b) const;
   double& operator()(const int index);
-
+  friend std::ostream& operator<< (std::ostream &out, Point &p);
+  friend std::istream& operator>> (std::istream &in, Point &p);
+  
 private:
 	Vector point_;
 };

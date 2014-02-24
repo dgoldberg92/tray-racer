@@ -8,25 +8,12 @@
 
 int main() {
   
-  Colour bgColour(0,.7,.7);
+  Colour bgColour(0,7.,7.);
   World w(bgColour);
   
   Object* o1 = new Sphere(1., Point(-4.5, 4.45, -3.05));
   o1->setColour(Colour(1.,0.,0.));
-  
-  w.add(o1);
 
-  Vector v1(0,0,0);
-  Vector v2(1,1,1);
-  Vector v=v1-v2;
-  
-  
-  
-  std::cout << v1 <<std::endl;
-  std::cout<<v2<<std::endl;
-  std::cout<<v<<std::endl;
-
-/*
   Object* o2 = new Sphere(.75, Point(-3.17, 3.48, -.2767));
   o2->setColour(Colour(0.,1.,0.));
   
@@ -49,22 +36,17 @@ int main() {
   w.add(t2);
   w.add(o1);
   w.add(o2);
-*/
-
   
-/*
   Point camPos(-6.01, 13.44, -2.59);
   Point look(-4.5,4.45,-3.05);
   Vector up(-1.,0.,0.);
   Camera cam(camPos,look,up, .027);
-  
-  cam.setPixDim();
+  cam.setPixDim(1280,720);
   cam.setDim(8.88889,5.);
-
+  
   Image im = cam.render(w);
   
   im.toPPM("test.ppm");
-*/
   
 /*  Colour c0(.8,.8,.8);
   Colour c1(.5,.5,.5);
