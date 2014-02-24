@@ -51,18 +51,37 @@ double Sphere::intersect(const Ray& b) const{ // intersect method
 	double posw = (-1.*b_ + sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
 	double negw = (-1.*b_ - sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
 
+	double test = pow(b_, 2) - (4*a_*c_);
+
 	//double posw = (-1.*b_ + sqrt( pow(b_, 2) - (4*c_) ) ) / (2) ;
 	//double negw = (-1.*b_ - sqrt( pow(b_, 2) - (4*c_) ) ) / (2) ;
 
-	double w;
+	double w = std::numeric_limits<double>::max();
+
 	if ( posw < 0.0 ) { 
-		w = negw; 
+		
+		if( negw <0){
+			return w;
+		}
+		else{
+			w = negw; 
+		}
 	}
-	else{ 
-		w = posw; 
+	else{
+		if( negw > 0.0){
+			if( negw > posw){
+				w = posw;
+			}
+			else{
+				w = negw;
+			}
+		}
+		else{
+			w = posw;
+		}
 	}
 
-	return w; // return the distance
+	return w;
 } // intersect
 
 
