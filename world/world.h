@@ -22,6 +22,7 @@ class World {
     virtual ~World();
     
     std::list<Object*> getObjectList() const {return objects_;};
+    Object* getFrontObject() const {return objects_.front();};
     void setBgColour(const Colour& c) {bgcolour_=c;};
     Colour getBgColour() const {return bgcolour_;};
     

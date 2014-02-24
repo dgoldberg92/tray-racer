@@ -84,7 +84,10 @@ Image Camera::render(World& world){
 
   //std::cout << "transform all call\n"<<std::flush;
   
+<<<<<<< HEAD
   // CHANGED IT HERE
+=======
+>>>>>>> 40d37e4717dbf5051fc101628f37c46122d87707
   world.transformAll(viewMat);
   
   //std::cout << "DoNE\n"<<std::flush;
