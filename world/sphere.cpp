@@ -32,7 +32,7 @@ double Sphere::intersect(const Ray& b) const{ // intersect method
 	double zo_ = o.getZ();
 
 	// Get the direction point of Ray b
-	Vector dir = b.getDirection(); 
+	Vector dir = (b.getDirection()).normalize(); 
 	double dx_ = dir.getX();
 	double dy_ = dir.getY();
 	double dz_ = dir.getZ();
@@ -50,6 +50,9 @@ double Sphere::intersect(const Ray& b) const{ // intersect method
 	// Master equation to find omega
 	double posw = (-1.*b_ + sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
 	double negw = (-1.*b_ - sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
+
+	//double posw = (-1.*b_ + sqrt( pow(b_, 2) - (4*c_) ) ) / (2) ;
+	//double negw = (-1.*b_ - sqrt( pow(b_, 2) - (4*c_) ) ) / (2) ;
 
 	double w;
 	if ( posw < 0.0 ) { 

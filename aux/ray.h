@@ -14,11 +14,10 @@ class Ray {
     Ray(const Point& p,const Vector& v);
     Ray(const Ray& other);
 
-    Vector getDirection();
     virtual ~Ray();
     
     Point getOrigin() const {return origin_;};
-    Vector getDirection() const {return direction_;};
+    Vector getDirection() const {return direction_; };
     
     void setOrigin(Point& p) {origin_=p;};
     void setDirection(Vector& v) {direction_=v;};
