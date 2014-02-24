@@ -47,16 +47,18 @@ double Sphere::intersect(const Ray& b) const{ // intersect method
 	double b_ = 2*( (dx_*(xo_ - xc_)) + (dy_*(yo_ - yc_)) + (dz_*(zo_ - zc_)) );
 	double c_ = pow((xo_ - xc_), 2) + pow((yo_ - yc_), 2) + pow((zo_ - zc_), 2) - pow(r_, 2); 
 
+	double test = pow(b_, 2) - (4*a_*c_);
+
+	double w = std::numeric_limits<double>::max();
+
+	if( test < 0 ){ // imaginary roots
+		return w;
+	}
+
 	// Master equation to find omega
 	double posw = (-1.*b_ + sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
 	double negw = (-1.*b_ - sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
 
-	double test = pow(b_, 2) - (4*a_*c_);
-
-	//double posw = (-1.*b_ + sqrt( pow(b_, 2) - (4*c_) ) ) / (2) ;
-	//double negw = (-1.*b_ - sqrt( pow(b_, 2) - (4*c_) ) ) / (2) ;
-
-	double w = std::numeric_limits<double>::max();
 
 	if ( posw < 0.0 ) { 
 		
