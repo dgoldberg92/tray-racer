@@ -1,4 +1,6 @@
 #include <iostream>
+#include <Eigen/Dense>
+#include <list>
 #include "world/world.h"
 #include "aux/colour.h"
 #include "world/object.h"
@@ -15,16 +17,34 @@ int main() {
   o1->setColour(Colour(1.,0.,0.));
   
   w.add(o1);
+  
+  Eigen::Matrix4d viewMat; 
+  
+  viewMat(0,0) = 1;//u.getX();
+  viewMat(0,1) = 0;//u.getY();
+  viewMat(0,2) = 0;//u.getZ();
+  viewMat(0,3) = 0;//neyepoint*(u); // dot product
+ 
+  viewMat(1,0) = 0;//v.getX();
+  viewMat(1,1) = 1;//v.getY();
+  viewMat(1,2) = 0;//v.getZ();
+  viewMat(1,3) = 0;//neyepoint*(v); // dot product
+  
+  viewMat(2,0) = 0;//n.getX();
+  viewMat(2,1) = 0;//n.getY();
+  viewMat(2,2) = 1;//n.getZ();
+  viewMat(2,3) = 0;//neyepoint*(n); // dot product
 
-  Vector v1(0,0,0);
-  Vector v2(1,1,1);
-  Vector v=v1-v2;
-  
-  
-  
-  std::cout << v1 <<std::endl;
-  std::cout<<v2<<std::endl;
-  std::cout<<v<<std::endl;
+  viewMat(3,0) = 0;
+  viewMat(3,1) = 0;
+  viewMat(3,2) = 0;
+  viewMat(3,3) = 1;
+
+  w.transformAll(viewMat);
+
+  Sphere* s = dynamic_cast<Sphere*>(w.getFrontObject());
+  Point c(s->getCenter());
+  std::cout << c << std::endl;
 
 /*
   Object* o2 = new Sphere(.75, Point(-3.17, 3.48, -.2767));
