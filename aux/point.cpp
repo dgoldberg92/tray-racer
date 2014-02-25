@@ -2,6 +2,7 @@
 
 #include "point.h"
 
+// Constructors
 Point::Point()
 	: point_(Vector(0.0, 0.0, 0.0)){}
 
