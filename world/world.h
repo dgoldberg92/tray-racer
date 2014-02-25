@@ -5,6 +5,7 @@
 #define WORLD_H_
 
 // Dependencies
+#include <iostream>
 #include <list>
 #include <algorithm>
 #include <limits>
