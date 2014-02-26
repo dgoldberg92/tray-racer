@@ -85,13 +85,9 @@ Image Camera::render(World& world){
   //std::cout << "transform all call\n"<<std::flush;
   
 
-<<<<<<< HEAD
   // CHANGED IT HERE
   world.transformAll(viewMat);
-=======
- // world.transformAll(viewMat);
->>>>>>> 838da8f86c4df13c3a9b5a4509c62661f704715f
-  
+ 
   //std::cout << "DoNE\n"<<std::flush;
   double pixHeight = height_/(double)pixH_;
   double pixWidth = width_/(double)pixW_;
