@@ -1,4 +1,4 @@
-i// Dan Goldberg and Vic McGowen
+// Dan Goldberg and Vic McGowen
 // Ray class
 
 #include "ray.h"
