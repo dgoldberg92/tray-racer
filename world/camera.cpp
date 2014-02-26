@@ -85,8 +85,12 @@ Image Camera::render(World& world){
   //std::cout << "transform all call\n"<<std::flush;
   
 
+<<<<<<< HEAD
   // CHANGED IT HERE
   world.transformAll(viewMat);
+=======
+ // world.transformAll(viewMat);
+>>>>>>> 838da8f86c4df13c3a9b5a4509c62661f704715f
   
   //std::cout << "DoNE\n"<<std::flush;
   double pixHeight = height_/(double)pixH_;
@@ -95,6 +99,10 @@ Image Camera::render(World& world){
   double x = -width_/2. + 0.5*pixWidth;
   double y = height_/2. - .5*pixHeight;
   double z = focal_;
+
+  //std::cout << z << "\n";
+  //std::cout << x << "\n";
+  //std::cout<<y<<"\n";
   
   Ray r;
   Colour c;
@@ -103,13 +111,15 @@ Image Camera::render(World& world){
   Image im(pixW_,pixH_);
   for (unsigned int i=0;i<pixW_;++i){
     for (unsigned int j=0;j<pixH_;++j){
-      dir = Vector(x,y,z);
+      dir = Vector(x,y,z).normalize();
       r.setDirection(dir);
       c = world.spawn(r);
       im.setPixel(i,j,c);
-      x+=pixWidth;
+      y-=pixHeight;
+      //x+=pixWidth;
     }
-    y-=pixHeight;
+    //y-=pixHeight;
+    x+=pixWidth;
   }
 
   return im;

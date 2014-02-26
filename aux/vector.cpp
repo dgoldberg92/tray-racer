@@ -3,6 +3,7 @@
 
 #include "vector.h"
 
+// Constructors
 Vector::Vector()
   : vector_(Eigen::Vector3d())  {}
 
@@ -17,6 +18,13 @@ Vector::Vector(const Eigen::Vector3d& vec)
 
 Vector::~Vector(){}
 
+/**
+  Transforms vector by 4x4 matrix mat:
+    1) Puts 3D Vector in 4D Eigen Vector
+    2) does multiplication using Eigen's but in *
+    3) puts result back into the same 3D Vector
+
+*/
 void Vector::transform(const Eigen::Matrix4d mat){
   Eigen::Vector4d v(vector_(0),vector_(1),vector_(2),1.0);
   Eigen::Vector4d newV = mat*v;
@@ -25,33 +33,57 @@ void Vector::transform(const Eigen::Matrix4d mat){
   vector_(2) = newV(2);
 }
 
+/**
+  Wrapped around Eigen's cross
+*/
 Vector Vector::cross(const Vector& other) const {
-  return getVector().cross(other.getVector());
+  return Vector(getVector().cross(other.getVector()));
 }
 
+/**
+  add two vector's components
+*/
 Vector Vector::operator+(const Vector& v2) const {
   return Vector(getX()+v2.getX(),getY()+v2.getY(),getZ()+v2.getZ());
 }
 
+/**
+  subtract two vectors components
+*/
 Vector Vector::operator-(const Vector& v2) const {
   return Vector(getX()-v2.getX(),getY()-v2.getY(),getZ()-v2.getZ());
 }
 
+/**
+  do Eigen's dot product
+*/  
 double Vector::operator*(const Vector& v2) const {
   return getVector().dot(v2.getVector());
 }
 
+/**
+  Multiply the scaler by each component
+*/
 Vector Vector::operator*(const double& a) const {
   return Vector(getX()*a,getY()*a,getZ()*a);
 }
 
+/**
+  try to do indexing
+*/
 double& Vector::operator()(const int index) {
   assert(index >= 0 && index<3);
 
   return vector_(index);
 }
 
+/**
+  Non-member class (no Vector::) means it takes 2 inputs (left and right)
+  these were adapted from examples from 
 
+http://stackoverflow.com/questions/19369975/c-overriding-and-operators
+
+*/
 std::ostream& operator<< (std::ostream &out, Vector &v)
 {
     // Since operator<< is a friend of the Point class, we can access

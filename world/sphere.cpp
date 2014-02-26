@@ -47,7 +47,7 @@ double Sphere::intersect(const Ray& b) const{ // intersect method
 	double b_ = 2*( (dx_*(xo_ - xc_)) + (dy_*(yo_ - yc_)) + (dz_*(zo_ - zc_)) );
 	double c_ = pow((xo_ - xc_), 2) + pow((yo_ - yc_), 2) + pow((zo_ - zc_), 2) - pow(r_, 2); 
 
-	double test = pow(b_, 2) - (4*a_*c_);
+	double test = pow(b_, 2) - (4*c_);
 
 	double w = std::numeric_limits<double>::max();
 
@@ -56,21 +56,30 @@ double Sphere::intersect(const Ray& b) const{ // intersect method
 	}
 
 	// Master equation to find omega
-	double posw = (-1.*b_ + sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
-	double negw = (-1.*b_ - sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
-
-
+//	double posw = (-1.*b_ + sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
+//	double negw = (-1.*b_ - sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
+  double posw = (-1.*b_ + sqrt( pow(b_, 2) - (4*c_) ) ) *.5 ;
+  double negw = (-1.*b_ - sqrt( pow(b_, 2) - (4*c_) ) ) *.5 ;
+  
+  
+  // If one is neg
 	if ( posw < 0.0 ) { 
-		
+		// If the other is also neg
 		if( negw <0){
 			return w;
 		}
+    // if the other is pos - Hit
 		else{
-			w = negw; 
+      std::cout << "1 Hit\n";
+			w = negw;
 		}
 	}
+  // If first is pos
 	else{
+    // If second is also pos
 		if( negw > 0.0){
+      std::cout << "2 hits\n";
+      // If second is greater
 			if( negw > posw){
 				w = posw;
 			}
@@ -78,7 +87,9 @@ double Sphere::intersect(const Ray& b) const{ // intersect method
 				w = negw;
 			}
 		}
+    // Second is neg
 		else{
+      std::cout<<"1 hit\n";
 			w = posw;
 		}
 	}
