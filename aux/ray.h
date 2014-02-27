@@ -23,6 +23,8 @@ class Ray {
     void setDirection(Vector& v) {direction_=v;};
 
     friend std::ostream& operator<< (std::ostream &out, Ray& r);
+    friend std::istream& operator>> (std::istream &in, Ray& r);
+  
 
   private:
     Point origin_;

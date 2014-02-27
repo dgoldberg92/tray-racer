@@ -10,6 +10,7 @@ class Colour{
 
 public:
 	Colour();
+  Colour(double a);
 	Colour(double r, double g, double b); 
 	virtual ~Colour();
 
@@ -26,6 +27,7 @@ public:
 	void setR(double r);
 	void setG(double g);
 	void setB(double b);
+  void setRGB(double a);
 	void setRGB(double r, double g, double b);
 
 	Colour operator* (const Colour& b) const;

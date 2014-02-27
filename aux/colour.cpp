@@ -5,6 +5,9 @@
 Colour::Colour() 
 	: r_(0), g_(0), b_(0){}
 
+Colour::Colour(double a)
+  : r_(a), g_(a), b_(a){}
+
 Colour::Colour(double r, double g, double b)
 	: r_(r), g_(g), b_(b){}
 
@@ -15,6 +18,12 @@ void Colour::setR(double r){ r_ = r; } // setR
 void Colour::setG(double g){ g_ = g; } // setG
 
 void Colour::setB(double b){ b_ = b;} // setB
+
+void Colour::setRGB(double a){
+  r_ = a;
+  g_ = a;
+  b_ = a;
+}
 
 void Colour::setRGB(double r, double g, double b){
 	r_ = r; 

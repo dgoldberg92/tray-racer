@@ -22,4 +22,10 @@ std::ostream& operator<< (std::ostream &out, Ray &r)
   return out;
 }
 
+std::istream& operator>> (std::istream &in, Ray &r)
+{
+    in >> r.origin_;
+    in >> r.direction_;
+    return in;
+}
 

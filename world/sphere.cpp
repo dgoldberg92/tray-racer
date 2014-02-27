@@ -79,7 +79,7 @@ double Sphere::intersect(const Ray& ray) const{ // intersect method
 		}
     // if the other is pos - Hit
 		else{
-      std::cout << "1 Hit\n";
+      //std::cout << "1 Hit\n";
 			w = negw;
 		}
 	}
@@ -87,7 +87,7 @@ double Sphere::intersect(const Ray& ray) const{ // intersect method
 	else{
     // If second is also pos
 		if( negw > 0.0){
-      std::cout << "2 hits\n";
+      //std::cout << "2 hits\n";
       // If second is greater
 			if( negw > posw){
 				w = posw;
@@ -98,7 +98,7 @@ double Sphere::intersect(const Ray& ray) const{ // intersect method
 		}
     // Second is neg
 		else{
-      std::cout<<"1 hit\n";
+      //std::cout<<"1 hit\n";
 			w = posw;
 		}
 	}
