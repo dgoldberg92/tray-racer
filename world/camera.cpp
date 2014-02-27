@@ -85,7 +85,6 @@ Image Camera::render(World& world){
   //std::cout << "transform all call\n"<<std::flush;
   
 
-  // CHANGED IT HERE
   world.transformAll(viewMat);
  
   //std::cout << "DoNE\n"<<std::flush;
@@ -94,8 +93,8 @@ Image Camera::render(World& world){
   
   double x = -width_/2. + 0.5*pixWidth;
   double y = height_/2. - .5*pixHeight;
+  double topY = y;
   double z = focal_;
-
   //std::cout << z << "\n";
   //std::cout << x << "\n";
   //std::cout<<y<<"\n";
@@ -114,7 +113,7 @@ Image Camera::render(World& world){
       y-=pixHeight;
       //x+=pixWidth;
     }
-    //y-=pixHeight;
+    y=topY;
     x+=pixWidth;
   }
 

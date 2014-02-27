@@ -43,7 +43,7 @@ double Sphere::intersect(const Ray& b) const{ // intersect method
 	double zc_ = c_.getZ();
 
 	// Intersection equations
-	double a_ = pow( dx_, 2) + pow( dy_, 2) + pow( dz_, 2);
+	//double a_ = pow( dx_, 2) + pow( dy_, 2) + pow( dz_, 2);
 	double b_ = 2*( (dx_*(xo_ - xc_)) + (dy_*(yo_ - yc_)) + (dz_*(zo_ - zc_)) );
 	double c_ = pow((xo_ - xc_), 2) + pow((yo_ - yc_), 2) + pow((zo_ - zc_), 2) - pow(r_, 2); 
 

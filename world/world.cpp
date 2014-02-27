@@ -33,7 +33,7 @@ Colour World::spawn(const Ray& r) {
   double least_w = std::numeric_limits<double>::max();
   double w;
   // Can't have null reference
-  Object** close_o = NULL;
+  Object* close_o = NULL;
   
   std::list<Object*>::iterator it;
   
@@ -42,12 +42,12 @@ Colour World::spawn(const Ray& r) {
     //std::cout<<w<<"\n";
     if (std::isfinite(w) && w < least_w){
       least_w = w;
-      close_o = &(*it);
+      close_o = (*it);
     }
   }
   
   if (close_o){
-    return (*close_o)->getColour();
+    return close_o->getColour();
   } 
   else{
     return getBgColour();
