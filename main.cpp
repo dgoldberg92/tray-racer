@@ -36,9 +36,9 @@ int main() {
   t1->setColour(Colour(0.,0.,1.));
   t2->setColour(Colour(0.,0.,1.));
 
-  w.add(t1);
-  w.add(t2);
-  //w.add(o1);
+  //w.add(t1);
+  //w.add(t2);
+  w.add(o1);
   //w.add(o2);
   //w.add(o3);
   //w.add(o2);
@@ -53,6 +53,7 @@ int main() {
   //Camera cam(camPos,look,up, 3.5);
   Camera cam(camPos,look,up, .5);
   cam.setPixDim(720,540);
+  //cam.setPixDim(540,720);
   cam.setDim(4,3);
   
   Image im = cam.render(w);

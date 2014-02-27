@@ -24,44 +24,53 @@ void Sphere::setColour(const Colour& c){
 } // setColour
 */
 
-double Sphere::intersect(const Ray& b) const{ // intersect method
+double Sphere::intersect(const Ray& ray) const{ // intersect method
 	// Get the origin point of Ray b
-	Point o = b.getOrigin(); 
-	double xo_ = o.getX();
-	double yo_ = o.getY();
-	double zo_ = o.getZ();
+	Point o = ray.getOrigin(); 
+	double xo = o.getX();
+	double yo = o.getY();
+	double zo = o.getZ();
 
 	// Get the direction point of Ray b
-	Vector dir = (b.getDirection()).normalize(); 
-	double dx_ = dir.getX();
-	double dy_ = dir.getY();
-	double dz_ = dir.getZ();
+	Vector dir = (ray.getDirection()).normalize(); 
+	double dx = dir.getX();
+	double dy = dir.getY();
+	double dz = dir.getZ();
 
 	// Get the centre point of sphere
-	double xc_ = c_.getX();
-	double yc_ = c_.getY();
-	double zc_ = c_.getZ();
+	double xc = c_.getX();
+	double yc = c_.getY();
+	double zc = c_.getZ();
+
+  double xdiff = xo-xc;
+  double ydiff = yo-yc;
+  double zdiff = zo-zc;
 
 	// Intersection equations
 	//double a_ = pow( dx_, 2) + pow( dy_, 2) + pow( dz_, 2);
-	double b_ = 2*( (dx_*(xo_ - xc_)) + (dy_*(yo_ - yc_)) + (dz_*(zo_ - zc_)) );
-	double c_ = pow((xo_ - xc_), 2) + pow((yo_ - yc_), 2) + pow((zo_ - zc_), 2) - pow(r_, 2); 
+	//double b = 2*( dx*(xo - xc) + (dy*(yo - yc)) + (dz*(zo - zc)) );
+	//double c = pow((xo - xc), 2) + pow((yo - yc), 2) + pow((zo - zc), 2) - pow(r_, 2); 
+  double b = 2 * ( dx*xdiff + dy*ydiff + dz*zdiff);
+  double c = xdiff*xdiff + ydiff*ydiff + zdiff*zdiff - r_*r_;
 
-	double test = pow(b_, 2) - (4*c_);
+	//double test = pow(b, 2) - (4*c);
+	double det = b*b - (4*c);
+  double sqDet = sqrt(det);
 
 	double w = std::numeric_limits<double>::max();
 
-	if( test < 0 ){ // imaginary roots
+	if( det < 0 ){ // imaginary roots
 		return w;
 	}
 
 	// Master equation to find omega
 //	double posw = (-1.*b_ + sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
 //	double negw = (-1.*b_ - sqrt( pow(b_, 2) - (4*a_*c_) ) ) / (2*a_) ;
-  double posw = (-1.*b_ + sqrt( pow(b_, 2) - (4*c_) ) ) *.5 ;
-  double negw = (-1.*b_ - sqrt( pow(b_, 2) - (4*c_) ) ) *.5 ;
-  
-  
+//  double posw = (-1.*b_ + sqrt( pow(b_, 2) - (4*c_) ) ) *.5 ;
+//  double negw = (-1.*b_ - sqrt( pow(b_, 2) - (4*c_) ) ) *.5 ;
+  double posw = (-b + sqDet) *.5;
+  double negw = (-b - sqDet) *.5;
+   
   // If one is neg
 	if ( posw < 0.0 ) { 
 		// If the other is also neg
