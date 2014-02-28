@@ -54,23 +54,23 @@ void Image::toPPM(const std::string fname) const{
   // width space height
   file << strWidth << " " << strHeight << "\n";
   // Max Value
-  file << "255\n";
+  file << "1\n";
   
   Colour c;
   
-  for (unsigned int i = 0; i<width_;++i){
-    for (unsigned int j = 0; j<height_;++j){
+  for (unsigned int j = 0; j<height_;++j){
+    for (unsigned int i = 0; i<width_;++i){
       c = this->getPixel(i,j);
       
-      ss << (int)(c.getR()*255);
+      ss << (int)(c.getR());//*255);
       file << ss.str() << " ";
       ss.str(std::string());
 
-      ss << (int)(c.getG()*255);
+      ss << (int)(c.getG());//*255);
       file << ss.str() << " ";
       ss.str(std::string());
 
-      ss << (int)(c.getB()*255);
+      ss << (int)(c.getB());//*255);
       file << ss.str() << " ";
       ss.str(std::string());
 
