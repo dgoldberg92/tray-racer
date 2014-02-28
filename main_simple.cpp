@@ -7,6 +7,7 @@
 #include "world/sphere.h"
 #include "world/triangle.h"
 #include "world/camera.h"
+#include "world/image.h"
 
 int main() {
   
@@ -18,7 +19,8 @@ int main() {
   
   w.add(o1);
   
-  Eigen::Matrix4d viewMat; 
+  
+Eigen::Matrix4d viewMat; 
   
   viewMat(0,0) = 1;//u.getX();
   viewMat(0,1) = 0;//u.getY();
@@ -43,8 +45,24 @@ int main() {
   w.transformAll(viewMat);
 
   Sphere* s = dynamic_cast<Sphere*>(w.getFrontObject());
-  Point c(s->getCenter());
-  std::cout << c << std::endl;
+  Point center(s->getCenter());
+  std::cout << center << std::endl;
+
+  unsigned int pixW_ = 3;
+  unsigned int pixH_ = 4;
+  double num(0);
+  Colour c;
+  Image im(pixW_,pixH_);
+  for (unsigned int i=0;i<pixW_;++i){
+    for (unsigned int j=0;j<pixH_;++j){
+      c.setRGB(num);
+      im.setPixel(i,j,c);
+      num++;
+    }
+  }
+ 
+  im.toPPM("small.ppm");
+
 
 /*
   Object* o2 = new Sphere(.75, Point(-3.17, 3.48, -.2767));
