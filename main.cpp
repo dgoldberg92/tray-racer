@@ -32,10 +32,10 @@ int main() {
   t1->setColour(Colour(0.,0.,1.));
   t2->setColour(Colour(0.,0.,1.));
 
-  w.add(t1);
-  w.add(t2);
+  //w.add(t1);
+  //w.add(t2);
   w.add(o1);
-  w.add(o2);
+  //w.add(o2);
   
   Point camPos(-6.01, 13.44, -2.59);
   Point look(-4.5,4.45,-3.05);
