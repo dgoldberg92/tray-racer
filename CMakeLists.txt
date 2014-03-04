@@ -26,9 +26,13 @@ endif()
 #include_directories(${IMMERSIVE_GAMING_BINARY_DIR})
 include_directories(${EIGEN3_INCLUDE_DIR})
 
-set(CMAKE_CXX_FLAGS "-Wall -g")
+set(CMAKE_CXX_FLAGS "-Wall")
 if (cmake_build_type_tolower STREQUAL "release")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
+endif()
+
+if (cmake_build_type_tolower STREQUAL "debug")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 endif()
 
 file(GLOB_RECURSE HEADERS "*/*.h" "*.h")
