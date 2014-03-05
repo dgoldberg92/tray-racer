@@ -101,7 +101,7 @@ Image Camera::render(World& world){
   Image im(pixW_,pixH_);
   for (unsigned int i=0;i<pixW_;++i){
     for (unsigned int j=0;j<pixH_;++j){
-      dir = (Point(x,y,z)-origin).normalize();
+      dir = (origin-Point(x,y,z)).normalize();
       //dir = Vector(x,y,z).normalize();
       r.setDirection(dir);
       c = world.spawn(r);

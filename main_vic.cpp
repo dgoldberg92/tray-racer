@@ -21,7 +21,7 @@ int main() {
 //  Object* o1 = new Sphere(5, Point(-2, 2, 6));
   o1->setColour(Colour(1.,0.,0.));
 
-  Object* o2 = new Sphere(5, Point(5, 0, 8));
+//  Object* o2 = new Sphere(5, Point(5, 0, 8));
   o2->setColour(Colour(0.,1.,0.));
 
   //Point topLeft(-2, 2, -2000);//6., -2., 0.);
@@ -34,7 +34,7 @@ int main() {
   Point topRight(16,5, 200);//6., 2., 0.);
   Point botLeft(-16,0, 200);//,4., 2., 0.);
   Point botRight(16,0, 200);//,4., 2., 0.);
-  Object* t1 = new Triangle(topLeft, topRight, botLeft);
+//  Object* t1 = new Triangle(topLeft, topRight, botLeft);
 // Point topLeft(-32, 2, 25);//6., -2., 0.);
 // Point topRight(45,2, 25);//6., 2., 0.);
 // Point botLeft(-32,-20, 5);//,4., 2., 0.);
@@ -51,7 +51,7 @@ int main() {
   w.add(t2);
   w.add(o1);
   w.add(o2);
-  w.add(o3);
+  //w.add(o3);
 
   //Point camPos(-6.01, 13.44, -2.59);
   //Point camPos(-1.8, 2.33, -10.32);

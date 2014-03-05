@@ -13,10 +13,10 @@ int main() {
   
  // Object* o1 = new Sphere(1., Point(-4.5, 4.45, -3.05));
 //Object* o1 = new Sphere(0.81, Point(17.89, 10.51, -5.65));
-  Object* o1 = new Sphere(50, Point(0, 0, 150));
+  Object* o1 = new Sphere(10, Point(0, 0, 150));
   o1->setColour(Colour(1.,0.,0.));
 
-  Object* o2 = new Sphere(50, Point(25, 10, 250));
+  Object* o2 = new Sphere(10, Point(25, 10, 250));
   o2->setColour(Colour(0.,1.,0.));
 
   Object* o3 = new Sphere(2, Point(0, 10, 0));
@@ -41,8 +41,8 @@ int main() {
   t1->setColour(Colour(0.,0.,1.));
   t2->setColour(Colour(0.,0.,1.));
 
-  //w.add(t1);
-  //w.add(t2);
+  w.add(t1);
+  w.add(t2);
   w.add(o1);
   w.add(o2);
   w.add(o3);
