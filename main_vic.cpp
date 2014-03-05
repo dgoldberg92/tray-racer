@@ -14,10 +14,10 @@ int main() {
   
  // Object* o1 = new Sphere(1., Point(-4.5, 4.45, -3.05));
 //Object* o1 = new Sphere(0.81, Point(17.89, 10.51, -5.65));
-  Object* o1 = new Sphere(10, Point(0, 0, 20));
+  Object* o1 = new Sphere(10, Point(0, 0, 200));
   o1->setColour(Colour(1.,0.,0.));
 
-  Object* o2 = new Sphere(10, Point(25, 0, 25));
+  Object* o2 = new Sphere(10, Point(25, 10, 250));
   o2->setColour(Colour(0.,1.,0.));
 
   Object* o3 = new Sphere(2, Point(0, 10, 0));
@@ -30,10 +30,10 @@ int main() {
   //Point botRight(2,-2,-2000);//4., -2., 0.);
   
 // TESTING
-  Point topLeft(-16, 5, 20);//6., -2., 0.);
-  Point topRight(16,5, 20);//6., 2., 0.);
-  Point botLeft(-16,0, 20);//,4., 2., 0.);
-  Point botRight(-16,0, 20);//,4., 2., 0.);
+  Point topLeft(-16, 5, 200);//6., -2., 0.);
+  Point topRight(16,5, 200);//6., 2., 0.);
+  Point botLeft(-16,0, 200);//,4., 2., 0.);
+  Point botRight(16,0, 200);//,4., 2., 0.);
   Object* t1 = new Triangle(topLeft, topRight, botLeft);
 
   //Object* t1 = new Triangle(topLeft, topRight, botLeft);
@@ -43,10 +43,10 @@ int main() {
   t2->setColour(Colour(0.,0.,1.));
 
   w.add(t1);
-  //w.add(t2);
-  //w.add(o1);
-  //w.add(o2);
-  //w.add(o3);
+  w.add(t2);
+  w.add(o1);
+  w.add(o2);
+  w.add(o3);
   //w.add(o2);
 
   //Point camPos(-6.01, 13.44, -2.59);
@@ -55,15 +55,25 @@ int main() {
   //Point look(-4.5,4.45,-3.05);
   Point look(0, 0, 5);
   //Point look(0.,0.,0.);
-  Vector up(0.,0.,1.);
+  Vector up(1,0,0);
   //Camera cam(camPos,look,up, 3.5);
-  Camera cam(camPos,look,up, .5);
+  Camera cam(camPos,look,up, 5);
   cam.setPixDim(720,540);
   //cam.setPixDim(540,720);
   cam.setDim(4,3);
   
   Image im = cam.render(w);
   
+  std::list<Object*>::iterator it;
+  std::list<Object*> objects = w.getObjectList();
+  
+  std::cout<<objects.size()<<"\n";
+  std::cout<<w.getNumObjects()<<"\n";
+
+  for(it = objects.begin(); it != objects.end(); it++){
+  //  std::cout<<(*it)<<"\n";
+  }
+
   im.toPPM("test.ppm");
   
 /*  Colour c0(.8,.8,.8);

@@ -6,6 +6,7 @@
 
 // Included Dependencies
 #include <iostream>
+#include <string>
 #include "../aux/ray.h"
 #include "../aux/colour.h"
 
@@ -18,6 +19,7 @@ public:
   virtual ~Object();
 	virtual double intersect(const Ray& b) const = 0; // initial intersect method
 	virtual void transform(const Eigen::Matrix4d& mat) = 0; // transform method
+  virtual std::string toString() const = 0;
 	void setColour(const Colour& c){colour_=c;};
   Colour getColour() const {return colour_;};
 

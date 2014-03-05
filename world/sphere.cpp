@@ -14,6 +14,14 @@ void Sphere::setCenter(const Point c ){
 	c_ = c; 
 } // setCenter
 
+
+std::string Sphere::toString() const {
+  std::ostringstream ss;
+  ss << "Sphere: " << c_.toString() << ", " << r_;
+  return ss.str();
+}
+
+
 void Sphere::transform(const Eigen::Matrix4d& mat){
 	c_.transform(mat);
 } // transform

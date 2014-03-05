@@ -6,6 +6,8 @@
 
 // Included Dependencies
 #include <iostream>
+#include <string>
+#include <sstream>
 #include <cmath>
 #include <Eigen/Dense>
 #include "../aux/ray.h"
@@ -20,8 +22,12 @@ public:
 	Sphere(); // initial constructor
 	Sphere(double r, Point c);
 	virtual ~Sphere(); // deconstructor 
+
 	void setCenter(const Point c ); // change center to move sphere
-	Point getCenter() { return c_; } // returns center to get coordinates
+	Point getCenter() const { return c_; }; // returns center to get coordinates
+
+  std::string toString() const;
+
 	double intersect(const Ray& b) const; // intersect method
 	void transform(const Eigen::Matrix4d& mat);
 	//void setColour(const Colour& c);

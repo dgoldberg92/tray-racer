@@ -6,6 +6,7 @@
 
 // Included Dependencies
 #include <iostream>
+#include <string>
 #include <cmath>
 #include <Eigen/Dense>
 #include "../aux/vector.h"
@@ -24,6 +25,7 @@ public:
 	double getY()const{ return point_.getY();};
 	double getZ()const{ return point_.getZ();};
   Vector getVec()const{return point_;};
+  std::string toString()const{return point_.toString();};
 
 	Vector operator-(const Point& b) const;
   double& operator()(const int index);

@@ -10,6 +10,11 @@ Triangle::Triangle(Point v0, Point v1, Point v2) // constructor w vertices
 
 Triangle::~Triangle(){} // deconstructor
 
+
+std::string Triangle::toString() const {
+  return "Triangle: ("+v0_.toString()+", "+v1_.toString()+", "+v2_.toString()+")";
+}
+
 void Triangle::transform(const Eigen::Matrix4d& mat){
 	v0_.transform(mat);
 	v1_.transform(mat);
@@ -56,7 +61,7 @@ double Triangle::intersect(const Ray& b) const{ // intersection between triangle
 
 	//bool hit = true;
 	// added elses in front of ifs
-	bool hit_ = true;
+	//bool hit_ = true;
 
 ///PROBLEM pe1_ AND t_ NEVER REACH NO INTERSECTION
 

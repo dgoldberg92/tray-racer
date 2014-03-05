@@ -50,36 +50,35 @@ void Camera::setDim(const double wid, const double hei){
 
 Image Camera::render(World& world){
   
- // std::cout << "First call\n"<<std::flush;
-  
-  Vector n = (pos_ - look_).normalize();
+  Vector n = (pos_-look_).normalize();
+  //std::cout<<n<<"\n";
   Vector u = (up_.cross(n)).normalize();
+  //std::cout<<u<<"\n";
   Vector v = (n.cross(u)).normalize();
+  //std::cout<<v<<"\n";
 
   Vector eyepoint = pos_.getVec();
   Vector neyepoint = eyepoint*(-1); // multiplication
   Eigen::Matrix4d viewMat;
 
-  //std::cout << "view Matrix construction\n"<<std::flush;
-  
   viewMat(0,0) = u.getX();
-  viewMat(0,1) = u.getY();
-  viewMat(0,2) = u.getZ();
-  viewMat(0,3) = neyepoint*(u); // dot product
+  viewMat(1,0) = u.getY();
+  viewMat(2,0) = u.getZ();
+  viewMat(3,0) = neyepoint*(u); // dot product
  
-  viewMat(1,0) = v.getX();
+  viewMat(0,1) = v.getX();
   viewMat(1,1) = v.getY();
-  viewMat(1,2) = v.getZ();
-  viewMat(1,3) = neyepoint*(v); // dot product
+  viewMat(2,1) = v.getZ();
+  viewMat(3,1) = neyepoint*(v); // dot product
   
-  viewMat(2,0) = n.getX();
-  viewMat(2,1) = n.getY();
+  viewMat(0,2) = n.getX();
+  viewMat(1,2) = n.getY();
   viewMat(2,2) = n.getZ();
-  viewMat(2,3) = neyepoint*(n); // dot product
+  viewMat(3,2) = neyepoint*(n); // dot product
 
-  viewMat(3,0) = 0;
-  viewMat(3,1) = 0;
-  viewMat(3,2) = 0;
+  viewMat(0,3) = 0;
+  viewMat(1,3) = 0;
+  viewMat(2,3) = 0;
   viewMat(3,3) = 1.;
 
   //std::cout << "transform all call\n"<<std::flush;

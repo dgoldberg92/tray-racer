@@ -25,6 +25,7 @@ class World {
     std::list<Object*> getObjectList() const {return objects_;};
     Object* getFrontObject() const {return objects_.front();};
     int getNumObjects() const {return objects_.size();};
+    void printObjects() const;
     
     void setBgColour(const Colour& c) {bgcolour_=c;};
     Colour getBgColour() const {return bgcolour_;};

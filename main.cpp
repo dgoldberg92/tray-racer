@@ -7,7 +7,6 @@
 #include "world/camera.h"
 
 int main() {
-  
  // Colour bgColour(0,0.7,0.7);
   Colour bgColour(1,1,1);
   World w(bgColour);
@@ -55,25 +54,27 @@ int main() {
   //Point look(-4.5,4.45,-3.05);
   Point look(0, 0, 5);
   //Point look(0.,0.,0.);
-  Vector up(1,0,0);
+  Vector up(0,1,0);
   //Camera cam(camPos,look,up, 3.5);
   Camera cam(camPos,look,up, 5);
   cam.setPixDim(720,540);
   //cam.setPixDim(540,720);
   cam.setDim(4,3);
   
+  w.printObjects();  
+
   Image im = cam.render(w);
   
+  w.printObjects();
+  
+/*  
   std::list<Object*>::iterator it;
   std::list<Object*> objects = w.getObjectList();
   
-  std::cout<<objects.size()<<"\n";
-  std::cout<<w.getNumObjects()<<"\n";
-
   for(it = objects.begin(); it != objects.end(); it++){
-    std::cout<<(*it)<<"\n";
+    std::cout<<(*it)->toString()<<"\n";
   }
-
+*/
   im.toPPM("test.ppm");
   
 /*  Colour c0(.8,.8,.8);

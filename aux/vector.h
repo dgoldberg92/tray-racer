@@ -5,6 +5,8 @@
 #define VECTOR_H_
 
 // Included Dependencies
+#include <string>
+#include <sstream>
 #include <Eigen/Dense>
 
 class Vector {
@@ -20,6 +22,8 @@ class Vector {
     double getZ() const {return vector_(2);};
     Eigen::Vector3d getVector() const {return vector_;};
     double getLength() const {return vector_.norm();};
+    std::string toString() const;
+
     Vector normalize() {return Vector(vector_.normalized());};
     void transform(const Eigen::Matrix4d mat);
     Vector cross(const Vector& other) const;

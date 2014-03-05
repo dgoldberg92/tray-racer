@@ -24,9 +24,9 @@ double Point::distance(const Point& other){
 }
 
 Vector Point::operator-(const Point& b) const{
-	double x = getX()-b.getX();
-	double y = getY()-b.getY();
-	double z = getZ()-b.getZ();
+	double x = b.getX()-getX();
+	double y = b.getY()-getY();
+	double z = b.getZ()-getZ();
 	return Vector(x,y,z);
 }
 

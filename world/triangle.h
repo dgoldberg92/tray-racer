@@ -6,6 +6,7 @@
 
 // Included Dependencies
 #include <iostream>
+#include <string>
 #include <cmath>
 #include <Eigen/Dense>
 #include "../aux/ray.h"
@@ -21,6 +22,8 @@ public:
 	Triangle(); // initial constructor
 	Triangle(Point v0, Point v1, Point v2); // clockwise
 	virtual ~Triangle(); // deconstructor 
+
+  std::string toString() const;
 	double intersect(const Ray& b) const; // intersect method
 	void transform(const Eigen::Matrix4d& mat);
 //	void setColour(const Colour& c);

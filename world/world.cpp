@@ -19,6 +19,12 @@ World::~World(){
 
 }
 
+void World::printObjects()const{
+  std::list<Object*>::const_iterator it;
+  for(it = objects_.begin(); it != objects_.end(); it++)
+    std::cout<<(*it)->toString()<<"\n";
+}
+
 void World::transformAll(const Eigen::Matrix4d& mat){
   std::list<Object*>::iterator it;
   for(it = objects_.begin(); it != objects_.end(); it++)

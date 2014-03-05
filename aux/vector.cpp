@@ -18,6 +18,17 @@ Vector::Vector(const Eigen::Vector3d& vec)
 
 Vector::~Vector(){}
 
+
+std::string Vector::toString() const{
+  double v0 = vector_(0);
+  double v1 = vector_(1);
+  double v2 = vector_(2);
+  std::ostringstream strOut;
+  strOut << std::string("(") << v0 << ", " << v1 << ", " << v2 << ")";
+  return strOut.str();
+}
+
+
 /**
   Transforms vector by 4x4 matrix mat:
     1) Puts 3D Vector in 4D Eigen Vector
