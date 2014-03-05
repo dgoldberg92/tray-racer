@@ -35,9 +35,9 @@ double Triangle::intersect(const Ray& b) const{ // intersection between triangle
 	Point o_ = b.getOrigin();
 
 	// define triangle vectors
-	Vector e1_ = v1_ - v0_;
-	Vector e2_ = v2_ - v0_;
-	Vector T_ = o_ - v0_;
+	Vector e1_ = v0_ - v1_;
+	Vector e2_ = v0_ - v2_;
+	Vector T_ = v0_ - o_;
 	Vector p_ = d_.cross(e2_);
 	Vector q_ = T_.cross(e1_);
 
@@ -85,7 +85,7 @@ double Triangle::intersect(const Ray& b) const{ // intersection between triangle
 	else{// intersect
 		distance_ = t_;
 		//std::cout<<"hit\n";
-		//std::cout<<t_;
+		//std::cout<<t_<<"\n";
 		//std::cout<<"\n";
 	}
 
