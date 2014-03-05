@@ -29,10 +29,10 @@ int main() {
   //Point botRight(2,-2,-2000);//4., -2., 0.);
   
 // TESTING
-  Point topLeft(-16, 5, 200);//6., -2., 0.);
-  Point topRight(16,5, 200);//6., 2., 0.);
-  Point botLeft(-16,0, 200);//,4., 2., 0.);
-  Point botRight(16,0, 200);//,4., 2., 0.);
+  Point topLeft(-16, 5, 20);//6., -2., 0.);
+  Point topRight(16,5, 20);//6., 2., 0.);
+  Point botLeft(-16,0, 20);//,4., 2., 0.);
+  Point botRight(16,0, 20);//,4., 2., 0.);
   Object* t1 = new Triangle(topLeft, topRight, botLeft);
 
   //Object* t1 = new Triangle(topLeft, topRight, botLeft);
