@@ -58,7 +58,6 @@ double Sphere::intersect(const Ray& ray) const{ // intersect method
   double sqDet = sqrt(det);
 
 	double w = std::numeric_limits<double>::max();
-
 	if( det < 0 ){ // imaginary roots
 		return w;
 	}

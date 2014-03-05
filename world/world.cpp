@@ -40,7 +40,7 @@ Colour World::spawn(const Ray& r) {
   for(it = objects_.begin(); it != objects_.end(); it++){
     w = (*it)->intersect(r);
     //std::cout<<w<<"\n";
-    if (std::isfinite(w) && w < least_w){
+    if (std::isfinite(w) && (w < least_w) && (w>0)){
       least_w = w;
       close_o = (*it);
     }

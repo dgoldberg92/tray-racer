@@ -8,44 +8,72 @@
 
 int main() {
   
-  Colour bgColour(0,7.,7.);
+ // Colour bgColour(0,0.7,0.7);
+  Colour bgColour(1,1,1);
   World w(bgColour);
   
-  Object* o1 = new Sphere(1., Point(-4.5, 4.45, -3.05));
+ // Object* o1 = new Sphere(1., Point(-4.5, 4.45, -3.05));
+//Object* o1 = new Sphere(0.81, Point(17.89, 10.51, -5.65));
+  Object* o1 = new Sphere(10, Point(0, 0, 200));
   o1->setColour(Colour(1.,0.,0.));
 
-  Object* o2 = new Sphere(.75, Point(-3.17, 3.48, -.2767));
+  Object* o2 = new Sphere(10, Point(25, 10, 250));
   o2->setColour(Colour(0.,1.,0.));
+
+  Object* o3 = new Sphere(2, Point(0, 10, 0));
+  o3->setColour(Colour(1.,0.,0.));
+
+
+  //Point topLeft(-2, 2, -2000);//6., -2., 0.);
+  //Point topRight(2,2,-2000);//6., 2., 0.);
+  //Point botLeft(-2,-2,-2000);//,4., 2., 0.);
+  //Point botRight(2,-2,-2000);//4., -2., 0.);
   
-  double xShift = .7151;
-  double yShift = -1.3497;
-  double zShift = .9818;
-  
-  Point topLeft(-zShift, -3.5+xShift, 3.+yShift);
-  Point topRight(-zShift, 3.5+xShift, 3.+yShift);
-  Point botLeft(-zShift, -3.5+xShift, -3.+yShift);
-  Point botRight(-zShift, 3.5+xShift, -3.+yShift);
-  
+// TESTING
+  Point topLeft(-16, 5, 200);//6., -2., 0.);
+  Point topRight(16,5, 200);//6., 2., 0.);
+  Point botLeft(-16,0, 200);//,4., 2., 0.);
+  Point botRight(16,0, 200);//,4., 2., 0.);
   Object* t1 = new Triangle(topLeft, topRight, botLeft);
+
+  //Object* t1 = new Triangle(topLeft, topRight, botLeft);
   Object* t2 = new Triangle(topRight, botRight, botLeft);
   
   t1->setColour(Colour(0.,0.,1.));
   t2->setColour(Colour(0.,0.,1.));
 
-  //w.add(t1);
-  //w.add(t2);
+  w.add(t1);
+  w.add(t2);
   w.add(o1);
+  w.add(o2);
+  w.add(o3);
   //w.add(o2);
-  
-  Point camPos(-6.01, 13.44, -2.59);
-  Point look(-4.5,4.45,-3.05);
-  Vector up(-1.,0.,0.);
-  Camera cam(camPos,look,up, .027);
-  cam.setPixDim(1280,720);
-  cam.setDim(8.88889,5.);
+
+  //Point camPos(-6.01, 13.44, -2.59);
+  //Point camPos(-1.8, 2.33, -10.32);
+  Point camPos(0, 0, 0);
+  //Point look(-4.5,4.45,-3.05);
+  Point look(0, 0, 5);
+  //Point look(0.,0.,0.);
+  Vector up(1,0,0);
+  //Camera cam(camPos,look,up, 3.5);
+  Camera cam(camPos,look,up, 5);
+  cam.setPixDim(720,540);
+  //cam.setPixDim(540,720);
+  cam.setDim(4,3);
   
   Image im = cam.render(w);
   
+  std::list<Object*>::iterator it;
+  std::list<Object*> objects = w.getObjectList();
+  
+  std::cout<<objects.size()<<"\n";
+  std::cout<<w.getNumObjects()<<"\n";
+
+  for(it = objects.begin(); it != objects.end(); it++){
+    std::cout<<(*it)<<"\n";
+  }
+
   im.toPPM("test.ppm");
   
 /*  Colour c0(.8,.8,.8);

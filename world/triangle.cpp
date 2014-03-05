@@ -64,24 +64,24 @@ double Triangle::intersect(const Ray& b) const{ // intersection between triangle
 	// no hit cases
 	if (pe1_ == 0.0) { //parallel ray
 		distance_ = 0;
-		std::cout<<"No hit case 1\n";
+//		std::cout<<"No hit case 1\n";
 	}
 	
 	else if (t_ < 0.0) { //intersect behind origin
 		distance_ = 0;
-		std::cout<<"No hit case 2\n";
+//		std::cout<<"No hit case 2\n";
 	}
 	
 	else if (u_< 0.0 || v_ < 0.0 || u_+v_ >1.0) { // intersect outside of triangle
 		distance_ = 0;
-		std::cout<<"No hit case 3\n";
+//		std::cout<<"No hit case 3\n";
 	}
 
 	else{// intersect
 		distance_ = t_;
 		//std::cout<<"hit\n";
-		std::cout<<t_;
-		std::cout<<"\n";
+		//std::cout<<t_;
+		//std::cout<<"\n";
 	}
 
 	/*if (u_< 0.0){
