@@ -11,7 +11,7 @@ Colour::Colour(double a)
 Colour::Colour(double r, double g, double b)
 	: r_(r), g_(g), b_(b){}
 
-Colour::Colour(Colour c)
+Colour::Colour(const Colour& c)
   : r_(c.getR()), g_(c.getG()), b_(c.getB()){}
 
 Colour::~Colour(){} // deconstructor

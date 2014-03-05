@@ -12,8 +12,8 @@ class Light{
 
 public:
   Light();
-  Light(Point& p, Colour& c);
-  Light(Light& l);
+  Light(const Point& p, const Colour& c);
+  Light(const Light& l);
   virtual ~Light();
 
   Colour getColour() const {return col_;};
@@ -22,5 +22,6 @@ public:
 private:
   Point pos_;
   Colour col_;
+};
 
 #endif

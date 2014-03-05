@@ -12,75 +12,56 @@ int main() {
   Colour bgColour(1,1,1);
   World w(bgColour);
   
- // Object* o1 = new Sphere(1., Point(-4.5, 4.45, -3.05));
-//Object* o1 = new Sphere(0.81, Point(17.89, 10.51, -5.65));
-   Object* o1 = new Sphere(5, Point(-2, 2, 30));
+  // larger sphere
+  Object* o1 = new Sphere(2, Point(-0.75, 1, 11));
   o1->setColour(Colour(1.,0.,0.));
 
-  Object* o2 = new Sphere(5, Point(5, 0, 45));
+  // smaller sphere
+  Object* o2 = new Sphere(2, Point(2.75, 0, 17));
   o2->setColour(Colour(0.,1.,0.));
-
-//  Object* o2 = new Sphere(5, Point(5, 0, 8));
-  o2->setColour(Colour(0.,1.,0.));
-
-  //Point topLeft(-2, 2, -2000);//6., -2., 0.);
-  //Point topRight(2,2,-2000);//6., 2., 0.);
-  //Point botLeft(-2,-2,-2000);//,4., 2., 0.);
-  //Point botRight(2,-2,-2000);//4., -2., 0.);
   
-// TESTING
- // Point topLeft(-160, 50, 200);//6., -2., 0.);
- // Point topRight(160,50, 200);//6., 2., 0.);
- // Point botLeft(-160,0, 0);//,4., 2., 0.);
- // Point botRight(160,0, 0);//,4., 2., 0.);
-//  Object* t1 = new Triangle(topLeft, topRight, botLeft);
-Point topLeft(-32, 20, 25);//6., -2., 0.);
-Point topRight(45, 20, 25);//6., 2., 0.);
-Point botLeft(-32,-20, 25);//,4., 2., 0.);
-Point botRight(40,-20, 25);//,4., 2., 0.);
- 
-//Point topLeft(0, 0, 0);//6., -2., 0.);
-//Point topRight(25,0, 25);//6., 2., 0.);
-//Point botLeft(-32,-20, 25);//,4., 2., 0.);
-//Point botRight(32,-20, 5);//,4., 2., 0.);
+// plane coordinates
+ Point topLeft(-5, 2, 30);//6., -2., 0.);
+ Point topRight(7,2, 30);//6., 2., 0.);
+ Point botLeft(-15,-20, 1);//,4., 2., 0.);
+ Point botRight(25,-20, -10);//,4., 2., 0.);
 
+// triangle objects to make plane
 Object* t1 = new Triangle(topLeft, topRight, botLeft);
 Object* t2 = new Triangle(topRight, botRight, botLeft);
   
-  t1->setColour(Colour(0.,0.,1.));
-  t2->setColour(Colour(0.,0.,1.));
+t1->setColour(Colour(0.,0.,1.));
+t2->setColour(Colour(0.,0.,1.));
 
  w.add(t1);
  w.add(t2);
-  //w.add(t3);
-  //w.add(o1);
-  //w.add(o2);
-  //w.add(o3);
+ w.add(o1);
+ w.add(o2);
 
-  //Point camPos(-6.01, 13.44, -2.59);
-  //Point camPos(-1.8, 2.33, -10.32);
-  Point camPos(0, 0, 0);
-  //Point look(-4.5,4.45,-3.05);
-  Point look(0, 0, 5);
-  //Point look(0.,0.,0.);
-  Vector up(0,1,0);
-  //Camera cam(camPos,look,up, 3.5);
-  Camera cam(camPos,look,up, 5);
-  cam.setPixDim(720,540);
-  cam.setDim(4,3);
+// Front view camera
+Point camPos(0, 0, 0);
+Point look(0, 0, 5);
+Vector up(0,1,0);
+Camera cam(camPos,look,up, 5);
+cam.setPixDim(720,540);
+cam.setDim(4,3);
+
+// Side view camera
+//Point camPos1(-1.7, 0, 3);
+Point camPos1(5, 0, 0);
+Point look1(0, 5, 5);
+Vector up1(0,1,0);// camera rotation
+Camera cam1(camPos1,look1,up1, 5);
+cam1.setPixDim(720,540);
+cam1.setDim(4,3);
+
+//Image im = cam.render(w);
+Image im1 = cam1.render(w);
+
+//im.toPPM("test.ppm");
+im1.toPPM("perspective.ppm");
 
 
-  Image im = cam.render(w);
-
-  im.toPPM("test.ppm");
-  
-/*  Colour c0(.8,.8,.8);
-  Colour c1(.5,.5,.5);
-  
-  Colour c2 = c0*c1;
-  
-  std::cout << c2.getR() << ", " << c2.getG() << ", " << c2.getB() << std::endl;
-*/
   return 0;
 }
 
