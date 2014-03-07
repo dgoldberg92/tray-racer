@@ -11,6 +11,7 @@
 #include "../aux/vector.h"
 #include "../aux/colour.h"
 #include "../world/illuminationmodel.h"
+#include "../world/intersectdata.h"
 
 
 class Object{
@@ -22,7 +23,7 @@ public:
 
 	virtual double intersect(const Ray& b) const = 0; // initial intersect method
 	virtual void transform(const Eigen::Matrix4d& mat) = 0; // transform method
-  virtual void computeColour(const Ray& r,const double& w);
+  virtual void computeColour(const IntersectData& data);
 
   virtual std::string toString() const = 0;
 

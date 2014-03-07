@@ -38,6 +38,7 @@ Colour World::spawn(const Ray& r) {
   // Static functions are ::
   double least_w = std::numeric_limits<double>::max();
   double w;
+  IntersectData data;
   // Can't have null reference
   Object* close_o = NULL;
   
@@ -53,7 +54,8 @@ Colour World::spawn(const Ray& r) {
   }
   
   if (close_o){
-    close_o->computeColour(r,w);
+    
+    close_o->computeColour(data);
     return close_o->getColour();
   } 
   else{

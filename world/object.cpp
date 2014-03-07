@@ -13,4 +13,7 @@ double Object::intersect(const Ray& b) const{return 0.0;}
 void Object::transform(const Eigen::Matrix4d& mat){}
 
 // implementation
-void Object::computeColour(const Ray& r, const double& w){}
+void Object::computeColour(const IntersectData& data){
+  
+  iModel_.illuminate(data);
+}
