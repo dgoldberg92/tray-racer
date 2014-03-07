@@ -78,4 +78,8 @@ int main() {
 */
   return 0;
 }
-
+/*
+ 47   Sphere* s = dynamic_cast<Sphere*>(w.getFrontObject());
+ 48   Point center(s->getCenter());
+ 49   std::cout << center << std::endl;
+*/

@@ -12,6 +12,7 @@ public:
 	Colour();
   Colour(double a);
 	Colour(double r, double g, double b); 
+  Colour(const Colour& c);
 	virtual ~Colour();
 
 	static const Colour black;

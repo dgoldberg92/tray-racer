@@ -81,4 +81,20 @@ void Image::toPPM(const std::string fname) const{
 
   file.close();
 }
-
+/*
+ 50 
+ 51   unsigned int pixW_ = 3;
+ 52   unsigned int pixH_ = 4;
+ 53   double num(0);
+ 54   Colour c;
+ 55   Image im(pixW_,pixH_);
+ 56   for (unsigned int i=0;i<pixW_;++i){
+ 57     for (unsigned int j=0;j<pixH_;++j){
+ 58       c.setRGB(num);
+ 59       im.setPixel(i,j,c);
+ 60       num++;
+ 61     }
+ 62   }
+ 63 
+ 64   im.toPPM("small.ppm");
+*/
