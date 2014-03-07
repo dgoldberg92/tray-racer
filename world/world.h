@@ -15,7 +15,7 @@
 #include "../aux/colour.h"
 #include "../aux/ray.h"
 #include "../aux/light.h"
-#include "../world/instersectdata.h"
+#include "../world/intersectdata.h"
 
 class World {
   public:

@@ -5,12 +5,17 @@
 IlluminationModel::IlluminationModel()// empty constructor
 	:intersect_(IntersectData()){}
 
-IlluminationModel::IlluminationModel(IntersectData intersect)
+IlluminationModel::IlluminationModel(const IntersectData& intersect)
 	: intersect_(intersect){}
 
 IlluminationModel::~IlluminationModel(){}// deconstrucor
 
 //abstract illuminate method
-/*type?*/ void IlluminationModel::illuminate(IntersectData intersect){
-	
+Colour IlluminationModel::illuminate()const{
+	return Colour();
+}
+
+Colour IlluminationModel::illuminate(const IntersectData& intersect){
+  setIntersectData(intersect);
+  return illuminate();
 }

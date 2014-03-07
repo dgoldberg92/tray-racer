@@ -6,15 +6,21 @@
 
 // Included Dependencies
 #include <iostream>
+#include "../aux/colour.h"
+#include "../world/intersectdata.h"
 
 //Abstract IlluminationModel Class
 class IlluminationModel{
 public:
 	IlluminationModel();// empty constructor
-	IlluminationModel(IntersectData intersect);
+	IlluminationModel(const IntersectData& intersect);
 	virtual ~IlluminationModel();
 
-	void illuminate(IntersectData& intersect);
+	virtual Colour illuminate() const;
+  virtual Colour illuminate(const IntersectData& intersect);
+
+  virtual void setIntersectData(const IntersectData& intersect){intersect_=intersect;};
+  virtual IntersectData getIntersectData() const {return intersect_;};
 
 
 private:
