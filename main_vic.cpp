@@ -48,8 +48,8 @@ cam.setDim(4,3);
 
 // Side view camera
 //Point camPos1(-1.7, 0, 3);
-Point camPos1(5, 0, 0);
-Point look1(0, 5, 5);
+Point camPos1(1, 0, 0);
+Point look1(14, 1, 25);
 Vector up1(0,1,0);// camera rotation
 Camera cam1(camPos1,look1,up1, 5);
 cam1.setPixDim(720,540);
