@@ -1,5 +1,5 @@
 //Vic McGowen and Dan Goldberg Ray Tracer
-// Camera class
+// IntersectData class
 
 #ifndef INTERSECTDATA_H_
 #define INTERSECTDATA_H_
@@ -10,7 +10,6 @@
 #include <list>
 #include "../aux/light.h"
 #include "../aux/vector.h"
-#include "../aux/ray.h"
 #include "../aux/point.h"
 
 class IntersectData{

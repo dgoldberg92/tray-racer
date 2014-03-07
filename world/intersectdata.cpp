@@ -3,7 +3,7 @@
 #include "intersectdata.h"
 
 IntersectData::IntersectData()
-	: point_(Point()), normal_(Vector()), incoming_(Ray()), reflective_(Ray()){};
+	: point_(Point()), normal_(Vector()), incoming_(Ray()), reflective_(Ray()){}
 
 IntersectData::IntersectData(Point point, Vector normal, Ray incoming, Ray reflective)
 	: point_(point), normal_(normal), incoming_(incoming), reflective_(reflective){}
