@@ -8,6 +8,7 @@
 #include <iostream>
 #include <string>
 #include "../aux/ray.h"
+#include "../aux/vector.h"
 #include "../aux/colour.h"
 #include "../world/illuminationmodel.h"
 
@@ -18,18 +19,23 @@ public:
 
 	Object(); // initial constructor
   virtual ~Object();
+
 	virtual double intersect(const Ray& b) const = 0; // initial intersect method
 	virtual void transform(const Eigen::Matrix4d& mat) = 0; // transform method
+  virtual void computeColour(const Ray& r,const double& w);
+
   virtual std::string toString() const = 0;
-  void setModel(const IlluminationModel& m) = 0;
-  void computeColour(const Ray& r, double& w) const = 0;
-	void setColour(const Colour& c){colour_=c;};
-  Colour getColour(){return colour_;};
+
+  virtual void setNormal(const Vector& v){normal_=v;};
+  virtual void setModel(const IlluminationModel& m) {iModel_=m;};
+	virtual void setColour(const Colour& c){colour_=c;};
+
+  virtual Colour getColour(){return colour_;};
 
 private:
   IlluminationModel iModel_;
+  Vector normal_;
   Colour colour_;
-	// material_; needed later
 };
 
 #endif
