@@ -3,12 +3,12 @@
 #include "intersectdata.h"
 
 IntersectData::IntersectData()
-	: point_(Point()), normal_(Vector()), incoming_(Ray()), reflective(Ray()){};
+	: point_(Point()), normal_(Vector()), incoming_(Ray()), reflective_(Ray()){};
 
 IntersectData::IntersectData(Point point, Vector normal, Ray incoming, Ray reflective)
 	: point_(point), normal_(normal), incoming_(incoming), reflective_(reflective){}
 
-IntersectData::~Intersectdata(){} // deconstructor
+IntersectData::~IntersectData(){} // deconstructor
 
 void IntersectData::setPoint(Point point){
 	point_ = point;

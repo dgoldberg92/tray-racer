@@ -8,6 +8,7 @@
 #include <iostream>
 #include <Eigen/Dense>
 #include <list>
+#include "../aux/light.h"
 #include "../aux/vector.h"
 #include "../aux/ray.h"
 #include "../aux/point.h"
