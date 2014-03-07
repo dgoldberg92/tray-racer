@@ -53,7 +53,7 @@ Colour World::spawn(const Ray& r) {
   }
   
   if (close_o){
-    return close_o->getColour();
+    return close_o->getColour(r,w);
   } 
   else{
     return getBgColour();
