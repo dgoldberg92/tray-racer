@@ -32,8 +32,6 @@ private:
 	Point v0_;
 	Point v1_;
 	Point v2_;
-	double normal_;
-//	Colour col_;
 };
 
 #endif

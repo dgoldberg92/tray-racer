@@ -35,7 +35,6 @@ public:
 private:
 	double r_; // radius
 	Point c_; // center
-	//Colour col_; // object colour
 };
 
 #endif
