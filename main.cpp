@@ -9,7 +9,7 @@
 
 int main() {
    // Colour bgColour(0,0.7,0.7);
-  Colour bgColour(1,1,1);
+  Colour bgColour(0,0,0);
   World w(bgColour);
   
   // larger sphere
@@ -38,7 +38,7 @@ int main() {
   w.add(o1);
   w.add(o2);
 
-  Light* l = new Light();
+  Light* l = new Light(Point(10,0,0),Colour(1,1,1));
   w.add(l);
 
   // Front view camera

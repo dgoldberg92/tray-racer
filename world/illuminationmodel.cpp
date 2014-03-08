@@ -12,7 +12,8 @@ IlluminationModel::~IlluminationModel(){}// deconstrucor
 
 //abstract illuminate method
 Colour IlluminationModel::illuminate()const{
-	return Colour(1,1,1);
+  Light l(intersect_.getLight());
+	return l.getColour();
 }
 
 Colour IlluminationModel::illuminate(const IntersectData& intersect){
