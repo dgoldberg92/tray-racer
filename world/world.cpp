@@ -44,6 +44,7 @@ Colour World::spawn(const Ray& r) {
   Vector reflect;
   std::list<Light*> lights(getLightList());
   IntersectData data;
+  Light light;
 
   Colour outColour = getBgColour();
   Colour lightColour;
@@ -73,7 +74,9 @@ Colour World::spawn(const Ray& r) {
     for(it = lights.begin(); it != lights.end(); it++){
       incoming = p-((*it)->getPosition());
       reflect = ((*it)->getPosition()-p).reflect(normal);
-      
+      light.setColour((*it)->getColour());
+      light.setPosition((*it)->getPosition());
+      data.setLight(light);
       data.setIncoming(incoming);
       data.setReflective(reflect);
       close_o->computeIllumination(data);

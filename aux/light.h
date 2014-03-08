@@ -16,6 +16,9 @@ public:
   Light(const Light& l);
   virtual ~Light();
 
+  void setColour(const Colour& c) {col_=c;};
+  void setPosition(const Point& p) {pos_=p;};
+  
   Colour getColour() const {return col_;};
   Point getPosition() const {return pos_;};
 
