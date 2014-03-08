@@ -11,24 +11,32 @@
 
 int main() {
    // Colour bgColour(0,0.7,0.7);
-  Colour bgColour(0,0,0);
+  Colour bgColour(0);
   World w;
   w.setBgColour(bgColour);
-  IlluminationModel* p(new Phong);
+  Phong* p(new Phong);
+  p->setKd(.7);
+  p->setKs(.3);
+  p->setKe(10);
+//  p->setKs(0);
   w.setModel(p);
   
-  // Light
-  Light* l = new Light(Point(10,0,0),Colour(1000,1000,1000));
+  // White Light
+  Light* l = new Light(Point(0,100,0),Colour(1000));
+  // White Light2
+  Light* l2 = new Light(Point(100,0,0),Colour(1000));
   w.add(l);
+  w.add(l2);
 
 
   // larger sphere
   Object* o1 = new Sphere(2, Point(-0.75, 1, 11));
   o1->setColour(Colour(1.,0.,0.));
-
+  o1->setSpecular(Colour(1,0,0));
   // smaller sphere
   Object* o2 = new Sphere(2, Point(2.75, 0, 17));
   o2->setColour(Colour(0.,1.,0.));
+  o2->setSpecular(Colour(0,1,0));
   
   // plane coordinates
    Point topLeft(-5, 2, 30);//6., -2., 0.);
@@ -42,6 +50,8 @@ int main() {
     
   t1->setColour(Colour(0.,0.,1.));
   t2->setColour(Colour(0.,0.,1.));
+  t1->setSpecular(Colour(0,0,1));
+  t2->setSpecular(Colour(0,0,1));
 
   w.add(t1);
   w.add(t2);

@@ -74,7 +74,7 @@ Colour World::spawn(const Ray& r) {
     normal = close_o->getNormal();
 //    data.setPoint(p);
     data.setNormal(normal.normalize());
-    data.setViewing(p.getVec());
+    data.setViewing((p-Point()).normalize());
     std::list<Light*>::iterator it;
     for(it = lights.begin(); it != lights.end(); it++){
       lightW = close_o->intersect(Ray(p,p-(*it)->getPosition()));

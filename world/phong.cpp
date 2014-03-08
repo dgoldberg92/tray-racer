@@ -4,7 +4,7 @@
 #include "phong.h"
 
 Phong::Phong()
-  :kd_(.8),ks_(.5),ke_(10){}
+  :kd_(.8),ks_(.2),ke_(2){}
 
 Phong::~Phong(){}
 
@@ -26,7 +26,12 @@ Colour Phong::illuminate(const Object* o, const IntersectData& data){
   Colour Cs = o->getSpecular();
   double spec = R*V;
 
-  outColour = L*Co*diff*kd_ + L*Cs*std::pow(spec, ke_)*kd_;
+  if (spec<0)
+    spec = 0;
+  if (spec>1)
+    spec = 0;
+
+  outColour = L*Co*diff*kd_ + L*Cs*std::pow(spec, ke_)*ks_;
   
 /*  if (outColour.getR()<0||outColour.getG()<0||outColour.getB()<0){
     std::cout<<diff<<"\n"<<spec<<"\n";
