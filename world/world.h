@@ -15,6 +15,7 @@
 #include "../aux/colour.h"
 #include "../aux/ray.h"
 #include "../aux/light.h"
+#include "../world/illuminationmodel.h"
 #include "../world/intersectdata.h"
 
 class World {
@@ -23,7 +24,8 @@ class World {
     World(Colour& c);
     World(Colour& c, std::list<Object*>& olist);
     virtual ~World();
-    
+   
+    IlluminationModel* getModel() const{return model_;}; 
     std::list<Object*> getObjectList() const {return objects_;};
     std::list<Light*> getLightList() const {return lights_;};
     Object* getFrontObject() const {return objects_.front();};
@@ -32,6 +34,7 @@ class World {
     int getNumObjects() const {return objects_.size();};
     void printObjects() const;
     
+    void setModel(IlluminationModel* m){model_=m;};
     void setBgColour(const Colour& c) {bgcolour_=c;};
     Colour getBgColour() const {return bgcolour_;};
     
@@ -48,6 +51,7 @@ class World {
     std::list<Object*> objects_;
     std::list<Light*> lights_;
     Colour bgcolour_;
+    IlluminationModel* model_;
 };
 
 #endif
