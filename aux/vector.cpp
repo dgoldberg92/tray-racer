@@ -101,8 +101,11 @@ http://stackoverflow.com/questions/19369975/c-overriding-and-operators
 
 */
 
-Vector& operator*(const double& a, const Vector& v) {
-  return Vector(v.getX()*a,v.getY()*a,v.getZ()*a);
+Vector operator*(const double& a, const Vector& v) {
+  double x(v.getX()*a);
+  double y(v.getY()*a);
+  double z(v.getZ()*a);
+  return Vector(x,y,z);
 }
 
 

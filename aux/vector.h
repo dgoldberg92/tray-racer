@@ -35,7 +35,7 @@ class Vector {
     Vector operator*(const double& a) const;
     double& operator()(const int index) ;
 
-    friend Vector& operator*(const double& a, const Vector& v);
+    friend Vector operator*(const double& a, const Vector& v);
     friend std::ostream& operator<< (std::ostream &out, Vector &v);
     friend std::istream& operator>> (std::istream &in, Vector &v);
  

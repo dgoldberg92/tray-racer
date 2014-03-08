@@ -38,7 +38,7 @@ int main() {
   w.add(o1);
   w.add(o2);
 
-  Light l;
+  Light* l = new Light();
   w.add(l);
 
   // Front view camera
