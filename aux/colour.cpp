@@ -40,7 +40,7 @@ void Colour::setRGB(double r, double g, double b){
 //const Colour::Colour blue(0,0,1);
 //const Colour::Colour white(1,1,1);
 
-Colour Colour::operator*( const Colour& other ) const{
+Colour& Colour::operator*( const Colour& other ) const{
 	Colour result;
 	result.r_ = other.r_ * r_;
 	result.g_ = other.g_ * g_;
@@ -48,4 +48,6 @@ Colour Colour::operator*( const Colour& other ) const{
 	return result;
 }// operator*
 
-
+Colour& Colour::operator+( const Colour& o ) const{
+  return Colour(o.r_+r_,o.g_+g_,o.b_+b_);
+}

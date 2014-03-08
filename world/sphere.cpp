@@ -32,7 +32,7 @@ void Sphere::setColour(const Colour& c){
 } // setColour
 */
 
-double Sphere::intersect(const Ray& ray) const{ // intersect method
+double Sphere::intersect(const Ray& ray){ // intersect method
 	// Get the origin point of Ray b
 	Point o = ray.getOrigin(); 
 	double xo = o.getX();
@@ -115,7 +115,7 @@ double Sphere::intersect(const Ray& ray) const{ // intersect method
 	}
   
   if (hit) {
-    Point p(x0+dx*w, y0+dy*w, z0+dz*w);
+    Point p(xo+dx*w, yo+dy*w, zo+dz*w);
     Vector n = c_ - p;
     setNormal(n.normalize());
   }

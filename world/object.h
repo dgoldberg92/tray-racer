@@ -21,7 +21,7 @@ public:
 	Object(); // initial constructor
   virtual ~Object();
 
-	virtual double intersect(const Ray& b) = 0; // initial intersect method
+	virtual double intersect(const Ray& ray) = 0; // initial intersect method
 	virtual void transform(const Eigen::Matrix4d& mat) = 0; // transform method
   virtual void computeIllumination(const IntersectData& data);
 
@@ -33,7 +33,7 @@ public:
   virtual void addIllumination(const Colour& c){illumination_=illumination_+c;};
 
   virtual Vector getNormal()const{return normal_;};
-  virtual IlluminationModel()const{return iModel_;};
+  virtual IlluminationModel getModel()const{return iModel_;};
   virtual Colour getColour()const{return colour_;};
   virtual Colour getIllumination()const{return illumination_;};
 

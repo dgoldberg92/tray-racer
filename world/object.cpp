@@ -9,7 +9,7 @@ Object::Object()
 Object::~Object(){} // deconstructor
 
 // virtual, abstract methods
-double Object::intersect(const Ray& b) const{return 0.0;}
+double Object::intersect(const Ray& ray) {return 0.0;}
 void Object::transform(const Eigen::Matrix4d& mat){}
 
 // implementation

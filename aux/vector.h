@@ -33,12 +33,16 @@ class Vector {
     Vector operator-(const Vector& v2) const;
     double operator*(const Vector& v2) const;
     Vector operator*(const double& a) const;
-    Vector operator*(const double& a, Vector& v) const;
     double& operator()(const int index) ;
+
+    friend Vector& operator*(const double& a, const Vector& v);
     friend std::ostream& operator<< (std::ostream &out, Vector &v);
     friend std::istream& operator>> (std::istream &in, Vector &v);
-  
+ 
   private:
     Eigen::Vector3d vector_;
 };
+
+ 
+
 #endif

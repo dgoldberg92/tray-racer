@@ -28,8 +28,8 @@ std::string Vector::toString() const{
   return strOut.str();
 }
 
-Vector reflect(const Vector& n)const{
-  Vector S(this);
+Vector Vector::reflect(const Vector& n)const{
+  Vector S((*this));
   double magNinv = 1/(n.getLength()*n.getLength());
   return S-2*(S*n)*magNinv*n;
 }
@@ -84,10 +84,6 @@ Vector Vector::operator*(const double& a) const {
   return Vector(getX()*a,getY()*a,getZ()*a);
 }
 
-Vector operator*(const double& a, const Vector& v) const {
-  return Vector(v.getX()*a,v.getY()*a,v.getZ()*a);
-}
-
 /**
   try to do indexing
 */
@@ -104,6 +100,12 @@ double& Vector::operator()(const int index) {
 http://stackoverflow.com/questions/19369975/c-overriding-and-operators
 
 */
+
+Vector& operator*(const double& a, const Vector& v) {
+  return Vector(v.getX()*a,v.getY()*a,v.getZ()*a);
+}
+
+
 std::ostream& operator<< (std::ostream &out, Vector &v)
 {
     // Since operator<< is a friend of the Point class, we can access

@@ -62,15 +62,17 @@ Colour World::spawn(const Ray& r) {
   }
   
   if (close_o){
-    p = r.getOrigin()+r.getDirection()*least_w;
-    normal = close_o.getNormal();
+    Vector origin = (r.getOrigin()).getVec();
+    Vector dir = r.getDirection();
+    p = Point(origin+(dir*least_w));
+    normal = close_o->getNormal();
     data.setPoint(p);
     data.setNormal(normal.normalize());
     
     std::list<Light*>::iterator it;
     for(it = lights.begin(); it != lights.end(); it++){
       incoming = p-((*it)->getPosition());
-      reflect = ((*it)-getPosition()-p).reflect(normal);
+      reflect = ((*it)->getPosition()-p).reflect(normal);
       
       data.setIncoming(incoming);
       data.setReflective(reflect);
