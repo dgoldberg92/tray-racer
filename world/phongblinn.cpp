@@ -17,8 +17,7 @@ Colour PhongBlinn::illuminate(const Object* o, const IntersectData& data){
   Light l = data.getLight();
 
   // Calculate H
-  Vector H = (S + V);
-  H.normalize();
+  Vector H = (S + V).normalize();
 
   Colour L = l.getColour();
   Colour Co = o->getColour();
