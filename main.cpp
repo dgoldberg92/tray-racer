@@ -8,13 +8,15 @@
 #include "aux/light.h"
 #include "world/illuminationmodel.h"
 #include "world/phong.h"
+#include "world/phongblinn.h"
 
 int main() {
    // Colour bgColour(0,0.7,0.7);
   Colour bgColour(0);
   World w;
   w.setBgColour(bgColour);
-  Phong* p(new Phong);
+  //Phong* p(new Phong);
+  PhongBlinn* p(new PhongBlinn);
   p->setKd(.7);
   p->setKs(.3);
   p->setKe(10);
