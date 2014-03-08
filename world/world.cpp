@@ -49,9 +49,7 @@ Colour World::spawn(const Ray& r) {
   Vector reflect;
   std::list<Light*> lights(getLightList());
   IntersectData data;
-  Light light;
-
-  Colour c;
+  double lightW;
 
   Colour illumination = getBgColour();
   // Can't have null reference
@@ -74,25 +72,23 @@ Colour World::spawn(const Ray& r) {
     Vector dir = r.getDirection();
     p = Point(origin+(dir*least_w));
     normal = close_o->getNormal();
-    data.setPoint(p);
+//    data.setPoint(p);
     data.setNormal(normal.normalize());
-    
+    data.setViewing(p.getVec());
     std::list<Light*>::iterator it;
     for(it = lights.begin(); it != lights.end(); it++){
-      incoming = p-((*it)->getPosition());
-      reflect = ((*it)->getPosition()-p).reflect(normal);
-      light.setColour((*it)->getColour());
-      light.setPosition((*it)->getPosition());
-      data.setLight(light);
-      data.setLight(*(*it));
-      data.setIncoming(incoming);
-      data.setReflective(reflect);
-      
-      c = model_->illuminate(close_o,data);
-
-      illumination = illumination + c;
+      lightW = close_o->intersect(Ray(p,p-(*it)->getPosition()));
+      if (std::isfinite(lightW) || (lightW>0)){
+        incoming = p-((*it)->getPosition());
+        reflect = ((*it)->getPosition()-p).reflect(normal);
+        data.setLight(*(*it));
+        data.setIncoming(incoming.normalize());
+        data.setReflective(reflect.normalize());
+        illumination = illumination + model_->illuminate(close_o,data);
+      }
     }
-    //close_o->resetIllumination();
+    if (illumination.getR()==0 && illumination.getG()==0  && illumination.getB()==0)
+      illumination = getBgColour();
   }
   return illumination;
 }

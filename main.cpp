@@ -6,13 +6,22 @@
 #include "world/triangle.h"
 #include "world/camera.h"
 #include "aux/light.h"
+#include "world/illuminationmodel.h"
+#include "world/phong.h"
 
 int main() {
    // Colour bgColour(0,0.7,0.7);
   Colour bgColour(0,0,0);
   World w;
   w.setBgColour(bgColour);
+  IlluminationModel* p(new Phong);
+  w.setModel(p);
   
+  // Light
+  Light* l = new Light(Point(10,0,0),Colour(1000,1000,1000));
+  w.add(l);
+
+
   // larger sphere
   Object* o1 = new Sphere(2, Point(-0.75, 1, 11));
   o1->setColour(Colour(1.,0.,0.));
@@ -39,15 +48,13 @@ int main() {
   w.add(o1);
   w.add(o2);
 
-  Light* l = new Light(Point(10,0,0),Colour(1,1,1));
-  w.add(l);
-
-  // Front view camera
+   // Front view camera
   Point camPos(0, 0, 0);
   Point look(0, 0, 5);
   Vector up(0,1,0);
   Camera cam(camPos,look,up, 5);
   cam.setPixDim(720,540);
+//  cam.setPixDim(16,12);
   cam.setDim(4,3);
 
   Image im = cam.render(w);

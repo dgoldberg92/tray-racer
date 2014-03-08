@@ -7,6 +7,7 @@ Image::Image(){
   height_ = 1024;
   width_ = 768;
   im_ = new Colour[width_*height_];
+  factor_ = 1000;
   //for(unsigned int i = 0; i < width_; ++i)
   //  im_[i] = new double[height_];
   // im_(new double(768,1024))
@@ -16,6 +17,7 @@ Image::Image(unsigned int w, unsigned int h){
   height_=h;
   width_=w;
   im_ = new Colour[width_*height_];
+  factor_ = 1000;
   //for(unsigned int i = 0; i < width_; ++i)
   //  im_[i] = new double[height_];
 }
@@ -46,12 +48,13 @@ void Image::toneReproduction() {
     if (im_[i].getB()>max)
       max = im_[i].getB();
   }
+
   if (max>1)
     scale = 1/max;
   for (unsigned int i = 0; i<height_*width_;++i){
     im_[i] = im_[i]*scale;
   }
- 
+
 }
 
 void Image::toPPM(const std::string fname) const{
@@ -73,7 +76,7 @@ void Image::toPPM(const std::string fname) const{
   // width space height
   file << strWidth << " " << strHeight << "\n";
   // Max Value
-  file << "1\n";
+  file <<(unsigned int)(factor_)<< "\n";
   
   Colour c;
   
@@ -81,15 +84,15 @@ void Image::toPPM(const std::string fname) const{
     for (unsigned int i = 0; i<width_;++i){
       c = this->getPixel(i,j);
       
-      ss << (c.getR());
+      ss << (unsigned int) (c.getR()*factor_);
       file << ss.str() << " ";
       ss.str(std::string());
 
-      ss << (c.getG());
+      ss << (unsigned int) (c.getG()*factor_);
       file << ss.str() << " ";
       ss.str(std::string());
 
-      ss << (c.getB());
+      ss << (unsigned int) (c.getB()*factor_);
       file << ss.str() << " ";
       ss.str(std::string());
 

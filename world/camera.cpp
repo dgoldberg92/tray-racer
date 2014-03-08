@@ -97,12 +97,14 @@ Image Camera::render(World& world){
   Ray r;
   Colour c;
   Point origin;
+  Point p;
   Vector dir;
   Image im(pixW_,pixH_);
   for (unsigned int i=0;i<pixW_;++i){
     for (unsigned int j=0;j<pixH_;++j){
-      dir = (origin-Point(x,y,z)).normalize();
-      //dir = Vector(x,y,z).normalize();
+      p = Point(x,y,z);
+      dir = (origin-p).normalize();
+      r.setOrigin(p);
       r.setDirection(dir);
       c = world.spawn(r);
       im.setPixel(i,j,c);

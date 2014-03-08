@@ -28,6 +28,7 @@ class Image {
     unsigned int height_;
     unsigned int width_;
     Colour* im_;
+    double factor_;
 };
 
 #endif
