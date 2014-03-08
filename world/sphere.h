@@ -28,7 +28,7 @@ public:
 
   std::string toString() const;
 
-	double intersect(const Ray& b) const; // intersect method
+	double intersect(const Ray& b); // intersect method
 	void transform(const Eigen::Matrix4d& mat);
 	//void setColour(const Colour& c);
 

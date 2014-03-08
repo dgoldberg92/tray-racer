@@ -24,7 +24,8 @@ class Vector {
     double getLength() const {return vector_.norm();};
     std::string toString() const;
 
-    Vector normalize() {return Vector(vector_.normalized());};
+    Vector reflect(const Vector& normal)const;
+    Vector normalize()const {return Vector(vector_.normalized());};
     void transform(const Eigen::Matrix4d mat);
     Vector cross(const Vector& other) const;
 
@@ -32,6 +33,7 @@ class Vector {
     Vector operator-(const Vector& v2) const;
     double operator*(const Vector& v2) const;
     Vector operator*(const double& a) const;
+    Vector operator*(const double& a, Vector& v) const;
     double& operator()(const int index) ;
     friend std::ostream& operator<< (std::ostream &out, Vector &v);
     friend std::istream& operator>> (std::istream &in, Vector &v);

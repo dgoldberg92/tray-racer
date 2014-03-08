@@ -3,25 +3,34 @@
 #include "intersectdata.h"
 
 IntersectData::IntersectData()
-	: point_(Point()), normal_(Vector()), incoming_(Ray()), reflective_(Ray()){}
+	: point_(Point()), normal_(Vector()), incoming_(Vector()), reflective_(Vector()){}//, lights_(std::list<Light*>()){}
 
-IntersectData::IntersectData(Point point, Vector normal, Ray incoming, Ray reflective)
-	: point_(point), normal_(normal), incoming_(incoming), reflective_(reflective){}
+IntersectData::IntersectData(const Point& point,const Vector& normal,const Vector& incoming, const Vector& reflective)//,const std::list<Light*>& lights)
+	: point_(point), normal_(normal), incoming_(incoming), reflective_(reflective){}//, lights_(lights){}
+
+IntersectData::IntersectData(const IntersectData& o){
+  point_=o.getPoint();
+  normal_=o.getNormal();
+  incoming_=o.getIncoming();
+  reflective_=o.getReflective();
+//  lights_=o.getLightList();
+}
 
 IntersectData::~IntersectData(){} // deconstructor
-
-void IntersectData::setPoint(Point point){
+/*
+void IntersectData::setPoint(const Point& point){
 	point_ = point;
 }
-void IntersectData::setNormal(Vector normal){
+void IntersectData::setNormal(const Vector& normal){
 	normal_ = normal;
 }
-void IntersectData::setIncoming(Ray incoming){
+void IntersectData::setIncoming(const Vector& incoming){
 	incoming_ = incoming;
 }
-void IntersectData::setReflective(Ray reflective){
+void IntersectData::setReflective(const Vector& reflective){
 	reflective_ = reflective;
 }
-void IntersectData::setLightList(std::list<Light*> lights){
+void IntersectData::setLightList(const std::list<Light*>& lights){
 	lights_ = lights;
 }
+*/

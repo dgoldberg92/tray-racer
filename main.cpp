@@ -5,6 +5,7 @@
 #include "world/sphere.h"
 #include "world/triangle.h"
 #include "world/camera.h"
+#include "aux/light.h"
 
 int main() {
    // Colour bgColour(0,0.7,0.7);
@@ -32,10 +33,13 @@ int main() {
   t1->setColour(Colour(0.,0.,1.));
   t2->setColour(Colour(0.,0.,1.));
 
-   w.add(t1);
-   w.add(t2);
-   w.add(o1);
-   w.add(o2);
+  w.add(t1);
+  w.add(t2);
+  w.add(o1);
+  w.add(o2);
+
+  Light l;
+  w.add(l);
 
   // Front view camera
   Point camPos(0, 0, 0);

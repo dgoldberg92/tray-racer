@@ -38,7 +38,15 @@ Colour World::spawn(const Ray& r) {
   // Static functions are ::
   double least_w = std::numeric_limits<double>::max();
   double w;
+  Point p;
+  Vector normal;
+  Vector incoming;
+  Vector reflect;
+  std::list<Light*> lights(getLightList());
   IntersectData data;
+
+  Colour outColour = getBgColour();
+  Colour lightColour;
   // Can't have null reference
   Object* close_o = NULL;
   
@@ -50,16 +58,25 @@ Colour World::spawn(const Ray& r) {
     if (std::isfinite(w) && (w < least_w) && (w>0)){
       least_w = w;
       close_o = (*it);
-    }
+   }
   }
   
   if (close_o){
+    p = r.getOrigin()+r.getDirection()*least_w;
+    normal = close_o.getNormal();
+    data.setPoint(p);
+    data.setNormal(normal.normalize());
     
-    close_o->computeColour(data);
-    return close_o->getColour();
+    std::list<Light*>::iterator it;
+    for(it = lights.begin(); it != lights.end(); it++){
+      incoming = p-((*it)->getPosition());
+      reflect = ((*it)-getPosition()-p).reflect(normal);
+      
+      data.setIncoming(incoming);
+      data.setReflective(reflect);
+      close_o->computeIllumination(data);
+    }
+    outColour = close_o->getIllumination() * close_o->getColour();
   } 
-  else{
-    return getBgColour();
-  }
-
+  return outColour;
 }

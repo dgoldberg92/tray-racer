@@ -3,10 +3,14 @@
 #include "triangle.h"
 
 Triangle::Triangle() // initial constructor
-	: v0_(Point()), v1_(Point()), v2_(Point()){} 
+	: v0_(Point()), v1_(Point()), v2_(Point()){
+  setNormal(Vector());
+} 
 
 Triangle::Triangle(Point v0, Point v1, Point v2) // constructor w vertices
-	: v0_(v0), v1_(v1), v2_(v2){}
+	: v0_(v0), v1_(v1), v2_(v2){
+  setNormal(((v1-v0).cross(v2-v0)).normalize());
+}
 
 Triangle::~Triangle(){} // deconstructor
 
@@ -27,7 +31,7 @@ void Triangle::setColour(const Colour& c){
 } // setColour
 */
 
-double Triangle::intersect(const Ray& b) const{ // intersection between triangle and ray b
+double Triangle::intersect(const Ray& b) { // intersection between triangle and ray b
 	double distance_; // distance to return
 
 	// Define Ray properties

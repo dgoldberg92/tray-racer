@@ -77,6 +77,8 @@ double Sphere::intersect(const Ray& ray) const{ // intersect method
 //  double negw = (-1.*b_ - sqrt( pow(b_, 2) - (4*c_) ) ) *.5 ;
   double posw = (-b + sqDet) *.5;
   double negw = (-b - sqDet) *.5;
+
+  bool hit = false;
    
   // If one is neg
 	if ( posw < 0.0 ) { 
@@ -86,12 +88,14 @@ double Sphere::intersect(const Ray& ray) const{ // intersect method
 		}
     // if the other is pos - Hit
 		else{
+      hit = true;
       //std::cout << "1 Hit\n";
 			w = negw;
 		}
 	}
   // If first is pos
 	else{
+    hit = true;
     // If second is also pos
 		if( negw > 0.0){
       //std::cout << "2 hits\n";
@@ -109,7 +113,13 @@ double Sphere::intersect(const Ray& ray) const{ // intersect method
 			w = posw;
 		}
 	}
-
+  
+  if (hit) {
+    Point p(x0+dx*w, y0+dy*w, z0+dz*w);
+    Vector n = c_ - p;
+    setNormal(n.normalize());
+  }
+  
 	return w;
 } // intersect
 

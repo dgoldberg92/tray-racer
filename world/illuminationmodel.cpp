@@ -12,7 +12,7 @@ IlluminationModel::~IlluminationModel(){}// deconstrucor
 
 //abstract illuminate method
 Colour IlluminationModel::illuminate()const{
-	return Colour();
+	return Colour(1,1,1);
 }
 
 Colour IlluminationModel::illuminate(const IntersectData& intersect){

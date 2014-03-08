@@ -21,22 +21,27 @@ public:
 	Object(); // initial constructor
   virtual ~Object();
 
-	virtual double intersect(const Ray& b) const = 0; // initial intersect method
+	virtual double intersect(const Ray& b) = 0; // initial intersect method
 	virtual void transform(const Eigen::Matrix4d& mat) = 0; // transform method
-  virtual void computeColour(const IntersectData& data);
+  virtual void computeIllumination(const IntersectData& data);
 
   virtual std::string toString() const = 0;
 
   virtual void setNormal(const Vector& v){normal_=v;};
   virtual void setModel(const IlluminationModel& m) {iModel_=m;};
 	virtual void setColour(const Colour& c){colour_=c;};
+  virtual void addIllumination(const Colour& c){illumination_=illumination_+c;};
 
-  virtual Colour getColour(){return colour_;};
+  virtual Vector getNormal()const{return normal_;};
+  virtual IlluminationModel()const{return iModel_;};
+  virtual Colour getColour()const{return colour_;};
+  virtual Colour getIllumination()const{return illumination_;};
 
 private:
   IlluminationModel iModel_;
   Vector normal_;
   Colour colour_;
+  Colour illumination_;
 };
 
 #endif
