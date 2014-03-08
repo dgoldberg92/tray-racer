@@ -10,7 +10,8 @@
 int main() {
    // Colour bgColour(0,0.7,0.7);
   Colour bgColour(0,0,0);
-  World w(bgColour);
+  World w;
+  w.setBgColour(bgColour);
   
   // larger sphere
   Object* o1 = new Sphere(2, Point(-0.75, 1, 11));

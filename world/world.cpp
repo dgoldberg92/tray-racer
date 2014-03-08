@@ -4,18 +4,23 @@
 #include "world.h"
 
 World::World()
-  : objects_(std::list<Object*>()), bgcolour_(Colour()) {}
-
+  : objects_(std::list<Object*>()),lights_(std::list<Light*>()), bgcolour_(Colour()), model_(new IlluminationModel()) {}
+/*
 World::World(Colour& c)
   : objects_(std::list<Object*>()), bgcolour_(c) {}
 
 World::World(Colour& c, std::list<Object*>& olist)
   : objects_(olist), bgcolour_(c) {}
-
+*/
 World::~World(){
   std::list<Object*>::iterator it; 
   for(it = objects_.begin(); it != objects_.end(); it++)
     delete *it;
+  std::list<Light*>::iterator it2;
+  for(it2 = lights_.begin(); it2 != lights_.end();it2++)
+    delete *it2;
+  
+  delete model_;
 
 }
 
@@ -46,8 +51,9 @@ Colour World::spawn(const Ray& r) {
   IntersectData data;
   Light light;
 
-  Colour outColour = getBgColour();
-  Colour lightColour;
+  Colour c;
+
+  Colour illumination = getBgColour();
   // Can't have null reference
   Object* close_o = NULL;
   
@@ -63,6 +69,7 @@ Colour World::spawn(const Ray& r) {
   }
   
   if (close_o){
+    illumination = Colour();
     Vector origin = (r.getOrigin()).getVec();
     Vector dir = r.getDirection();
     p = Point(origin+(dir*least_w));
@@ -77,12 +84,15 @@ Colour World::spawn(const Ray& r) {
       light.setColour((*it)->getColour());
       light.setPosition((*it)->getPosition());
       data.setLight(light);
+      data.setLight(*(*it));
       data.setIncoming(incoming);
       data.setReflective(reflect);
-      close_o->computeIllumination(data);
+      
+      c = model_->illuminate(close_o,data);
+
+      illumination = illumination + c;
     }
-    outColour = close_o->getIllumination() * close_o->getColour();
-    close_o->resetIllumination();
-  } 
-  return outColour;
+    //close_o->resetIllumination();
+  }
+  return illumination;
 }
