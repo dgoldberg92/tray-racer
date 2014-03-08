@@ -14,18 +14,10 @@ Ray::Ray(const Ray& other)
 
 Ray::~Ray(){} // deconstructor
 
-std::ostream& operator<< (std::ostream &out, Ray &r)
-{
-  // Since operator<< is a friend of the Point class, we can access
-  // Point's members directly.
-  out << "Origin: " << r.origin_ << " Dir: " <<r.direction_;
-  return out;
+std::string Ray::toString() const{
+  std::string strOut("Ray: ");
+  strOut = strOut + origin_.toString();
+  strOut = strOut + ", ";
+  strOut = strOut + direction_.toString();
+  return strOut;
 }
-
-std::istream& operator>> (std::istream &in, Ray &r)
-{
-    in >> r.origin_;
-    in >> r.direction_;
-    return in;
-}
-

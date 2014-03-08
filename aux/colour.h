@@ -32,6 +32,7 @@ public:
 	void setRGB(double r, double g, double b);
 
 	Colour operator* (const Colour& b) const;
+	Colour operator* (const double& a) const;
   Colour operator+ (const Colour& b) const;
 
 private:

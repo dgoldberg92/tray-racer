@@ -36,6 +36,8 @@ public:
   virtual IlluminationModel getModel()const{return iModel_;};
   virtual Colour getColour()const{return colour_;};
   virtual Colour getIllumination()const{return illumination_;};
+  
+  virtual void resetIllumination(){illumination_=Colour();};
 
 private:
   IlluminationModel iModel_;

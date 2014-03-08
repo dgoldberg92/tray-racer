@@ -5,6 +5,7 @@
 #define RAY_H_
 
 // Included Dependencies
+#include <string>
 #include "../aux/vector.h"
 #include "../aux/point.h"
 
@@ -21,10 +22,8 @@ class Ray {
     
     void setOrigin(Point& p) {origin_=p;};
     void setDirection(Vector& v) {direction_=v;};
-
-    friend std::ostream& operator<< (std::ostream &out, Ray& r);
-    friend std::istream& operator>> (std::istream &in, Ray& r);
   
+    std::string toString() const;
 
   private:
     Point origin_;

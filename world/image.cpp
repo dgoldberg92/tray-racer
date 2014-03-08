@@ -35,6 +35,25 @@ Image::~Image(){
   delete[] im_;
 }
 
+void Image::toneReproduction() {
+  double max = 1;
+  double scale = 1;
+  for (unsigned int i = 0; i<height_*width_;++i){
+    if (im_[i].getR()>max)
+      max = im_[i].getR();
+    if (im_[i].getG()>max)
+      max = im_[i].getG();
+    if (im_[i].getB()>max)
+      max = im_[i].getB();
+  }
+  if (max>1)
+    scale = 1/max;
+  for (unsigned int i = 0; i<height_*width_;++i){
+    im_[i] = im_[i]*scale;
+  }
+ 
+}
+
 void Image::toPPM(const std::string fname) const{
   std::ofstream file;
 //  std::string::size_type sz;
@@ -62,15 +81,15 @@ void Image::toPPM(const std::string fname) const{
     for (unsigned int i = 0; i<width_;++i){
       c = this->getPixel(i,j);
       
-      ss << (int)(c.getR());//*255);
+      ss << (c.getR());
       file << ss.str() << " ";
       ss.str(std::string());
 
-      ss << (int)(c.getG());//*255);
+      ss << (c.getG());
       file << ss.str() << " ";
       ss.str(std::string());
 
-      ss << (int)(c.getB());//*255);
+      ss << (c.getB());
       file << ss.str() << " ";
       ss.str(std::string());
 

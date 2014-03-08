@@ -51,6 +51,7 @@ int main() {
 
   Image im = cam.render(w);
 
+  im.toneReproduction();
   
   im.toPPM("test.ppm");
    

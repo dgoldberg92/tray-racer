@@ -48,6 +48,15 @@ Colour Colour::operator*( const Colour& other ) const{
 	return result;
 }// operator*
 
+Colour Colour::operator*( const double& a ) const{
+	Colour result;
+	result.r_ = a * r_;
+	result.g_ = a * g_;
+	result.b_ = a * b_;
+	return result;
+}// operator*
+
+
 Colour Colour::operator+( const Colour& o ) const{
   return Colour(o.r_+r_,o.g_+g_,o.b_+b_);
 }

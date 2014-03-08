@@ -20,6 +20,8 @@ class Image {
     void setPixel(const unsigned int& x,const unsigned int& y,const Colour& c){im_[x+width_*y]=c;};
     Colour getPixel(const unsigned int& x, const unsigned int& y) const {return im_[x+width_*y];};
 
+    void toneReproduction();
+
     void toPPM(const std::string fname) const;
 
   private:

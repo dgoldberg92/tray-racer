@@ -79,6 +79,7 @@ Colour World::spawn(const Ray& r) {
       close_o->computeIllumination(data);
     }
     outColour = close_o->getIllumination() * close_o->getColour();
+    close_o->resetIllumination();
   } 
   return outColour;
 }
