@@ -15,8 +15,8 @@ int main() {
   Colour bgColour(0);
   World w;
   w.setBgColour(bgColour);
-  //Phong* p(new Phong);
-  PhongBlinn* p(new PhongBlinn);
+  Phong* p(new Phong);
+  //PhongBlinn* p(new PhongBlinn);
   p->setKd(.7);
   p->setKs(.3);
   p->setKe(10);
@@ -28,23 +28,29 @@ int main() {
   // White Light2
   Light* l2 = new Light(Point(100,0,0),Colour(1000));
   w.add(l);
-  w.add(l2);
+//  w.add(l2);
 
 
   // larger sphere
   Object* o1 = new Sphere(2, Point(-0.75, 1, 11));
   o1->setColour(Colour(1.,0.,0.));
-  o1->setSpecular(Colour(1,0,0));
+  o1->setSpecular(Colour(1,1,1));
   // smaller sphere
   Object* o2 = new Sphere(2, Point(2.75, 0, 17));
   o2->setColour(Colour(0.,1.,0.));
-  o2->setSpecular(Colour(0,1,0));
+  o2->setSpecular(Colour(1,1,1));
   
   // plane coordinates
-   Point topLeft(-5, 2, 30);//6., -2., 0.);
-   Point topRight(7,2, 30);//6., 2., 0.);
-   Point botLeft(-15,-20, 1);//,4., 2., 0.);
-   Point botRight(25,-20, -10);//,4., 2., 0.);
+//   Point topLeft(-5, 2, 30);//6., -2., 0.);
+//   Point topRight(7,2, 30);//6., 2., 0.);
+//   Point botLeft(-15,-20, 1);//,4., 2., 0.);
+//   Point botRight(25,-20, 1);// -10);//,4., 2., 0.);
+
+   Point topLeft(-5, 5, 30);//6., -2., 0.);
+   Point topRight(7,5, 30);//6., 2., 0.);
+   Point botLeft(-15,-15, 1);//,4., 2., 0.);
+   Point botRight(25,-15, 1);// -10);//,4., 2., 0.);
+
 
   // triangle objects to make plane
   Object* t1 = new Triangle(topLeft, topRight, botLeft);
@@ -52,8 +58,8 @@ int main() {
     
   t1->setColour(Colour(0.,0.,1.));
   t2->setColour(Colour(0.,0.,1.));
-  t1->setSpecular(Colour(0,0,1));
-  t2->setSpecular(Colour(0,0,1));
+  t1->setSpecular(Colour(1,1,1));
+  t2->setSpecular(Colour(1,1,1));
 
   w.add(t1);
   w.add(t2);
@@ -66,11 +72,11 @@ int main() {
   Vector up(0,1,0);
   Camera cam(camPos,look,up, 5);
   cam.setPixDim(720,540);
-//  cam.setPixDim(16,12);
+//  cam.setPixDim(1600,1200);
   cam.setDim(4,3);
 
   Image im = cam.render(w);
-
+  im.setFactor(10000);
   im.toneReproduction();
   
   im.toPPM("test.ppm");

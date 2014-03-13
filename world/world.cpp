@@ -39,10 +39,26 @@ void World::transformAll(const Eigen::Matrix4d& mat){
     (*it)->transform(mat);
 }
 
+Object* World::intersectWithObjects(const Ray& r, double& least_w){
+  double w;
+  //double least_w = std::numeric_limits<double>::max();
+  Object *close_o = NULL;
+  std::list<Object*>::iterator it;
+  
+  for(it = objects_.begin(); it != objects_.end(); it++){
+    w = (*it)->intersect(r);
+    //std::cout<<w<<"\n";
+    if (std::isfinite(w) && (w < least_w) && (w>0)){
+      //std::cout<<w;
+      least_w = w;
+      close_o = (*it);
+   }
+  }
+  return close_o;
+} 
+
 Colour World::spawn(const Ray& r) {
   // Static functions are ::
-  double least_w = std::numeric_limits<double>::max();
-  double w;
   Point p;
   Vector normal;
   Vector incoming;
@@ -52,32 +68,32 @@ Colour World::spawn(const Ray& r) {
   double lightW;
 
   Colour illumination = getBgColour();
+  
   // Can't have null reference
-  Object* close_o = NULL;
-  
-  std::list<Object*>::iterator it;
-  
-  for(it = objects_.begin(); it != objects_.end(); it++){
-    w = (*it)->intersect(r);
-    //std::cout<<w<<"\n";
-    if (std::isfinite(w) && (w < least_w) && (w>0)){
-      least_w = w;
-      close_o = (*it);
-   }
-  }
-  
+  //Object** temp_o = NULL;
+//  double least_w=intersectWithObjects(r,temp_o);
+//  double* temp_w;
+  double least_w = std::numeric_limits<double>::max();
+//  temp_w = &max_w;
+  Object* close_o = intersectWithObjects(r,least_w);
+//  std::cout<<least_w;
+  //if (*temp_o){
+  //  Object* close_o = *temp_o;
+ 
   if (close_o){
+    //std::cout<<close_o->toString();
     illumination = Colour();
     Vector origin = (r.getOrigin()).getVec();
     Vector dir = r.getDirection();
     p = Point(origin+(dir*least_w));
     normal = close_o->getNormal();
-//    data.setPoint(p);
+    data.setPoint(p);
     data.setNormal(normal.normalize());
     data.setViewing((p-Point()).normalize());
     std::list<Light*>::iterator it;
     for(it = lights.begin(); it != lights.end(); it++){
-      lightW = close_o->intersect(Ray(p,p-(*it)->getPosition()));
+      //lightW = close_o->intersect(Ray(p,p-(*it)->getPosition()));
+      lightW = close_o->intersect(Ray(p,(((*it)->getPosition())-p).normalize()));
       if (std::isfinite(lightW) || (lightW>0)){
         incoming = p-((*it)->getPosition());
         reflect = ((*it)->getPosition()-p).reflect(normal);
