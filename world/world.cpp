@@ -66,22 +66,14 @@ Colour World::spawn(const Ray& r) {
   std::list<Light*> lights(getLightList());
   IntersectData data;
   double lightW;
+  bool useBG = true;
 
   Colour illumination = getBgColour();
-  
-  // Can't have null reference
-  //Object** temp_o = NULL;
-//  double least_w=intersectWithObjects(r,temp_o);
-//  double* temp_w;
-  double least_w = std::numeric_limits<double>::max();
-//  temp_w = &max_w;
+  double max_w = std::numeric_limits<double>::max();
+  double least_w = max_w;
   Object* close_o = intersectWithObjects(r,least_w);
-//  std::cout<<least_w;
-  //if (*temp_o){
-  //  Object* close_o = *temp_o;
  
   if (close_o){
-    //std::cout<<close_o->toString();
     illumination = Colour();
     Vector origin = (r.getOrigin()).getVec();
     Vector dir = r.getDirection();
@@ -90,21 +82,33 @@ Colour World::spawn(const Ray& r) {
     data.setPoint(p);
     data.setNormal(normal.normalize());
     data.setViewing((p-Point()).normalize());
+ 
+    Ray lightRay;
+    Object* blockingObject;
+    least_w = std::numeric_limits<double>::max();
     std::list<Light*>::iterator it;
     for(it = lights.begin(); it != lights.end(); it++){
-      //lightW = close_o->intersect(Ray(p,p-(*it)->getPosition()));
-      lightW = close_o->intersect(Ray(p,(((*it)->getPosition())-p).normalize()));
-      if (std::isfinite(lightW) || (lightW>0)){
-        incoming = p-((*it)->getPosition());
-        reflect = ((*it)->getPosition()-p).reflect(normal);
-        data.setLight(*(*it));
-        data.setIncoming(incoming.normalize());
-        data.setReflective(reflect.normalize());
-        illumination = illumination + model_->illuminate(close_o,data);
+      lightRay = Ray(p,(p-((*it)->getPosition())).normalize());
+      blockingObject = NULL;
+      blockingObject = intersectWithObjects(lightRay,least_w);
+      if (blockingObject || (blockingObject==close_o)){
+        // First reflection
+      } else {
+        useBG = false;
+        lightW = close_o->intersect(lightRay);
+        if (std::isfinite(lightW) || (lightW>0)){
+          incoming = p-((*it)->getPosition());
+          reflect = ((*it)->getPosition()-p).reflect(normal);
+          data.setLight(*(*it));
+          data.setIncoming(incoming.normalize());
+          data.setReflective(reflect.normalize());
+          illumination = illumination + model_->illuminate(close_o,data);
+        }
       }
     }
-    if (illumination.getR()==0 && illumination.getG()==0  && illumination.getB()==0)
+    if (useBG){
       illumination = getBgColour();
+    }
   }
   return illumination;
 }
