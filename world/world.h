@@ -41,7 +41,7 @@ class World {
     void add(Object* o){objects_.push_front(o);};
     void add(Light* l){lights_.push_front(l);};
     
-    void transform(Object& o,const Eigen::Matrix4d& mat){o.transform(mat);};
+    void transform(Object* o,const Eigen::Matrix4d& mat){o->transform(mat);};
     void transformAll(const Eigen::Matrix4d& mat);
     
     //double intersectWithObjects(const Ray& r, Object** close_o);

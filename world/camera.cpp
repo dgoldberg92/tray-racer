@@ -80,7 +80,7 @@ Image Camera::render(World& world){
   viewMat(1,3) = 0;
   viewMat(2,3) = 0;
   viewMat(3,3) = 1.;
-
+  
   world.transformAll(viewMat);
  
   double pixHeight = height_/(double)pixH_;
