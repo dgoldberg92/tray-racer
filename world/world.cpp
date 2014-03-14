@@ -40,19 +40,25 @@ void World::transformAll(const Eigen::Matrix4d& mat){
 }
 
 Object* World::intersectWithObjects(const Ray& r, double& least_w){
+  return intersectWithObjects(r,least_w,NULL);
+} 
+
+Object* World::intersectWithObjects(const Ray& r, double& least_w, const Object* ignoreO){
   double w;
   //double least_w = std::numeric_limits<double>::max();
   Object *close_o = NULL;
   std::list<Object*>::iterator it;
   
   for(it = objects_.begin(); it != objects_.end(); it++){
-    w = (*it)->intersect(r);
-    //std::cout<<w<<"\n";
-    if (std::isfinite(w) && (w < least_w) && (w>0)){
-      //std::cout<<w;
-      least_w = w;
-      close_o = (*it);
-   }
+    if (*it!=ignoreO){
+      w = (*it)->intersect(r);
+      //std::cout<<w<<"\n";
+      if (std::isfinite(w) && (w < least_w) && (w>0)){
+        //std::cout<<w;
+        least_w = w;
+        close_o = (*it);
+      }
+    }
   }
   return close_o;
 } 
@@ -90,11 +96,12 @@ Colour World::spawn(const Ray& r) {
     for(it = lights.begin(); it != lights.end(); it++){
       lightRay = Ray(p,(p-((*it)->getPosition())).normalize());
       blockingObject = NULL;
-      blockingObject = intersectWithObjects(lightRay,least_w);
-      if (blockingObject || (blockingObject==close_o)){
+      blockingObject = intersectWithObjects(lightRay,least_w,close_o);
+      if (blockingObject){
         // First reflection
       } else {
         useBG = false;
+        //std::cout<<(blockingObject->toString())<<"\n";
         lightW = close_o->intersect(lightRay);
         if (std::isfinite(lightW) || (lightW>0)){
           incoming = p-((*it)->getPosition());

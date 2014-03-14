@@ -46,6 +46,7 @@ class World {
     
     //double intersectWithObjects(const Ray& r, Object** close_o);
     Object* intersectWithObjects(const Ray& r, double& least_w);
+    Object* intersectWithObjects(const Ray& r, double& least_w, const Object* ignoreO);
     // Not const beucause it may change colour of each object that the ray hits
     Colour spawn(const Ray& r);
 
