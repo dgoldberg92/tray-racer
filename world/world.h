@@ -33,6 +33,7 @@ class World {
     void popFrontLight() {lights_.pop_front();};
     int getNumObjects() const {return objects_.size();};
     void printObjects() const;
+    void printLights() const;
     
     void setModel(IlluminationModel* m){model_=m;};
     void setBgColour(const Colour& c) {bgcolour_=c;};

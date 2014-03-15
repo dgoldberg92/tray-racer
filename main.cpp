@@ -30,9 +30,9 @@ int main() {
   Light* l3 = new Light(Point(0,100,-100),Colour(1000));
   Light* l4 = new Light(Point(-100,100,0),Colour(1000));
   w.add(l);
-  w.add(l2);
-  w.add(l3);
-  w.add(l4);
+//  w.add(l2);
+//  w.add(l3);
+//  w.add(l4);
 
   // larger sphere
   Object* o1 = new Sphere(2, Point(-0.75, 1, 11));
@@ -70,15 +70,21 @@ int main() {
   w.add(o2);
 
   // Front view camera
-  Point camPos(0, 0, -100);
-  Point look(0, 0, 0);
-  Vector up(0,1,0);
+  Point camPos(0, 0, 0);
+  Point look(0, 0, 5);
+  Vector up(1,0,0);
   Camera cam(camPos,look,up, 5);
   cam.setPixDim(720,540);
 //  cam.setPixDim(1600,1200);
   cam.setDim(4,3);
-
+  
+//  w.printObjects();
+//  w.printLights();
+//  std::cout<<"\n";
   Image im = cam.render(w);
+//  w.printObjects();
+//  w.printLights();
+  
 //  im.setFactor(10000);
   im.toneReproduction();
   

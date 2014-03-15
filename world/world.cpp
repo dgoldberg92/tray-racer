@@ -30,6 +30,12 @@ void World::printObjects()const{
     std::cout<<(*it)->toString()<<"\n";
 }
 
+void World::printLights()const{
+  std::list<Light*>::const_iterator it;
+  for(it = lights_.begin(); it != lights_.end(); it++)
+    std::cout<<(*it)->toString()<<"\n";
+}
+
 void World::transformAll(const Eigen::Matrix4d& mat){
   std::list<Object*>::iterator it;
   for(it = objects_.begin(); it != objects_.end(); it++){
