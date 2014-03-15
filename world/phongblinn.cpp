@@ -10,11 +10,13 @@ PhongBlinn::~PhongBlinn(){}
 
 Colour PhongBlinn::illuminate(const Object* o, const IntersectData& data){
   Colour outColour;
-//  Point p = data.getPoint();
+  Point p = data.getPoint();
   Vector N = data.getNormal();
   Vector S = data.getIncoming();
   Vector V = data.getViewing();
   Light l = data.getLight();
+
+  double d = p.distance(l.getPosition());
 
   // Calculate H
   Vector H = (S + V).normalize();
@@ -34,6 +36,7 @@ Colour PhongBlinn::illuminate(const Object* o, const IntersectData& data){
     spec = 0;
 
   outColour = L*Co*diff*kd_ + L*Cs*std::pow(spec, ke_)*ks_;
+  outColour = outColour * (1/(d*d));
   
 /*  if (outColour.getR()<0||outColour.getG()<0||outColour.getB()<0){
     std::cout<<diff<<"\n"<<spec<<"\n";

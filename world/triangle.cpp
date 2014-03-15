@@ -23,9 +23,7 @@ void Triangle::transform(const Eigen::Matrix4d& mat){
 	v0_.transform(mat);
 	v1_.transform(mat);
 	v2_.transform(mat);
-  Vector norm = getNormal();
-  norm.transform(mat);
-  setNormal(norm.normalize());
+  setNormal(((v1_-v0_).cross(v2_-v0_)).normalize());
 } // transform
 
 double Triangle::intersect(const Ray& b) { // intersection between triangle and ray b
