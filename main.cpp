@@ -19,7 +19,7 @@ int main() {
   PhongBlinn* p(new PhongBlinn);
   p->setKd(.7);
   p->setKs(.3);
-  p->setKe(10);
+  p->setKe(100);
 //  p->setKs(0);
   w.setModel(p);
   
