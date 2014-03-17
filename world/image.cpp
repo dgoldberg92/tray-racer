@@ -7,7 +7,7 @@ Image::Image(){
   height_ = 1024;
   width_ = 768;
   im_ = new Colour[width_*height_];
-  factor_ = 1000;
+  factor_ = 256;
   //for(unsigned int i = 0; i < width_; ++i)
   //  im_[i] = new double[height_];
   // im_(new double(768,1024))
@@ -17,7 +17,7 @@ Image::Image(unsigned int w, unsigned int h){
   height_=h;
   width_=w;
   im_ = new Colour[width_*height_];
-  factor_ = 1000;
+  factor_ = 256;
   //for(unsigned int i = 0; i < width_; ++i)
   //  im_[i] = new double[height_];
 }
@@ -38,7 +38,7 @@ Image::~Image(){
 }
 
 void Image::toneReproduction() {
-  double max = 1;
+  double max = .01;
   double scale = 1;
   for (unsigned int i = 0; i<height_*width_;++i){
     if (im_[i].getR()>max)
@@ -49,11 +49,13 @@ void Image::toneReproduction() {
       max = im_[i].getB();
   }
 
-  if (max>1)
+  if (max>.01){
     scale = 1/max;
+  }
   for (unsigned int i = 0; i<height_*width_;++i){
     im_[i] = im_[i]*scale;
   }
+//  std::cout<<max<<"\n";
 
 }
 

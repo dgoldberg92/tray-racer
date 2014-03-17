@@ -26,7 +26,7 @@ class Vector {
 
     Vector reflect(const Vector& normal)const;
     Vector normalize()const {return Vector(vector_.normalized());};
-    void transform(const Eigen::Matrix4d mat);
+    void transform(const Eigen::Matrix4d& mat);
     Vector cross(const Vector& other) const;
 
     Vector operator+(const Vector& v2) const;

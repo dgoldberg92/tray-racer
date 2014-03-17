@@ -4,7 +4,8 @@
 #define COLOUR_H_
 
 // Included Dependencies
-#include <iostream>
+#include <string>
+#include "../aux/vector.h"
 
 class Colour{
 
@@ -30,6 +31,9 @@ public:
 	void setB(double b);
   void setRGB(double a);
 	void setRGB(double r, double g, double b);
+
+  Vector getVec()const{return Vector(r_,g_,b_);};
+  std::string toString()const{return getVec().toString();};
 
 	Colour operator* (const Colour& b) const;
 	Colour operator* (const double& a) const;

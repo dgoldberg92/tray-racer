@@ -14,3 +14,8 @@ Light::Light(const Light& l)
 
 Light::~Light(){}
 
+std::string Light::toString()const{
+  std::string out("Light: ");
+  out = out + pos_.toString() + ", " + col_.toString();
+  return out;
+}

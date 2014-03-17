@@ -4,7 +4,8 @@
 #ifndef LIGHT_H_
 #define LIGHT_H_
 
-#include <iostream>
+#include <string>
+#include <Eigen/Dense>
 #include "../aux/point.h"
 #include "../aux/colour.h"
 
@@ -21,6 +22,10 @@ public:
   
   Colour getColour() const {return col_;};
   Point getPosition() const {return pos_;};
+
+  std::string toString()const;
+
+  void transform(const Eigen::Matrix4d& mat){pos_.transform(mat);};
 
 private:
   Point pos_;

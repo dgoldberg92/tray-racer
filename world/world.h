@@ -33,6 +33,7 @@ class World {
     void popFrontLight() {lights_.pop_front();};
     int getNumObjects() const {return objects_.size();};
     void printObjects() const;
+    void printLights() const;
     
     void setModel(IlluminationModel* m){model_=m;};
     void setBgColour(const Colour& c) {bgcolour_=c;};
@@ -41,9 +42,12 @@ class World {
     void add(Object* o){objects_.push_front(o);};
     void add(Light* l){lights_.push_front(l);};
     
-    void transform(Object& o,const Eigen::Matrix4d& mat){o.transform(mat);};
+    void transform(Object* o,const Eigen::Matrix4d& mat){o->transform(mat);};
     void transformAll(const Eigen::Matrix4d& mat);
-
+    
+    //double intersectWithObjects(const Ray& r, Object** close_o);
+    Object* intersectWithObjects(const Ray& r, double& least_w);
+    Object* intersectWithObjects(const Ray& r, double& least_w, const Object* ignoreO);
     // Not const beucause it may change colour of each object that the ray hits
     Colour spawn(const Ray& r);
 

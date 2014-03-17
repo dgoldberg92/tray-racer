@@ -41,7 +41,7 @@ Vector Vector::reflect(const Vector& n)const{
     3) puts result back into the same 3D Vector
 
 */
-void Vector::transform(const Eigen::Matrix4d mat){
+void Vector::transform(const Eigen::Matrix4d& mat){
   Eigen::Vector4d v(vector_(0),vector_(1),vector_(2),1.0);
   Eigen::Vector4d newV = mat*v;
   vector_(0) = newV(0);
