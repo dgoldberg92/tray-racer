@@ -6,10 +6,11 @@
 
 #include <iostream>
 #include <cmath>
-#include "../lighting/illuminationmodel.h"
-#include "../aux/intersectdata.h"
+#include "../world/illuminationmodel.h"
+#include "../world/intersectdata.h"
 #include "../aux/colour.h"
 #include "../world/camera.h"
+#include "../world/world.h"
 
 class Checkerboard: public IlluminationModel{
 
