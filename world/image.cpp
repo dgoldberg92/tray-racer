@@ -22,7 +22,13 @@ Image::Image(unsigned int w, unsigned int h){
   //  im_[i] = new double[height_];
 }
 
-// PROBLEM IS HERE
+Image::Image(const Image& im){
+  height_ = im.getHeight();
+  width_ = im.getWidth();
+  im_ = im.getData();
+  factor_ = im.getFactor();
+}
+
 Image::~Image(){
  /* Old code: 
     for (unsigned int i = 0; i < width_; ++i){
@@ -51,7 +57,6 @@ void Image::toneReproduction() {
   for (unsigned int i = 0; i<height_*width_;++i){
     im_[i] = im_[i]*scale;
   }
-//  std::cout<<max<<"\n";
 
 }
 
@@ -101,6 +106,16 @@ void Image::toPPM(const std::string fname) const{
 
   file.close();
 }
+
+Image& Image::operator=(const Image &im){
+  height_ = im.getHeight();
+  width_ = im.getWidth();
+  im_ = im.getData();
+  factor_ = im.getFactor();
+
+  return *this;
+}
+
 /*
  50 
  51   unsigned int pixW_ = 3;

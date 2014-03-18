@@ -20,13 +20,8 @@ int main() {
   //PhongBlinn* p(new PhongBlinn);
   p->setKd(.7);
   p->setKs(.3);
-<<<<<<< HEAD
   p->setKe(100);
-//  p->setKs(0);
-  //p->setKe(10);
-=======
   p->setKe(10);
->>>>>>> 15ef8fcf7505b19f6df7aed7a4a346cbc90a2122
   w.setModel(p);
   
   // White Light
@@ -47,7 +42,8 @@ int main() {
   // smaller sphere
   Object* o2 = new Sphere(2, Point(2.75, 0, 17));
   o2->setColour(Colour(0.,1.,0.));
-  o2->setSpecular(Colour(1,1,1));
+  
+o2->setSpecular(Colour(1,1,1));
   
   // plane coordinates
 //   Point topLeft(-5, 2, 30);//6., -2., 0.);
@@ -88,15 +84,25 @@ int main() {
 //  w.printLights();
 //  std::cout<<"\n";
   Eigen::Matrix4d viewMatrix(cam.getViewMatrix());
-  Image im = cam.render(w,viewMatrix);
+  Image im(cam.render(w,viewMatrix));
+  im.toneReproduction();
+  im.toPPM("test.ppm");
+  //Image im;
+  //im = cam.render(w,viewMatrix);
+
+/*  int N=1;
+  for (int i=0;i<N;i++){
+    viewMatrix = cam.getViewMatrix();
+    im = cam.render(w,viewMatrix);
+    im.toneReproduction();
+    im.toPPM("test.ppm");
+ 
+  }*/
 //  w.printObjects();
 //  w.printLights();
   
 //  im.setFactor(10000);
-  im.toneReproduction();
   
-  im.toPPM("test.ppm");
-   
   return 0;
 }
 
