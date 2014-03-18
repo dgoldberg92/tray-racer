@@ -1,15 +1,15 @@
 #include <iostream>
 #include <Eigen/Dense>
-#include "world/world.h"
+#include "aux/light.h"
 #include "aux/colour.h"
+#include "world/world.h"
 #include "world/object.h"
 #include "world/sphere.h"
 #include "world/triangle.h"
 #include "world/camera.h"
-#include "aux/light.h"
-#include "world/illuminationmodel.h"
-#include "world/phong.h"
-#include "world/phongblinn.h"
+#include "lighting/illuminationmodel.h"
+#include "lighting/phong.h"
+#include "lighting/phongblinn.h"
 
 int main() {
    // Colour bgColour(0,0.7,0.7);
