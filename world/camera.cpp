@@ -38,6 +38,21 @@ Camera::Camera(Point pos, Point look, Vector up, double f,
   width_ = width;
 }
 
+void Camera::roll(const double& theta){
+  /*Eigen::Matrix4d mat;
+  pos_.transform(mat);
+  look_.transform(mat);
+  up_.transform(mat);*/
+}
+  
+void Camera::pitch(const double& theta){
+}
+  
+void Camera::yaw(const double& theta){
+}
+
+
+
 void Camera::setPixDim(const unsigned int pixW, const unsigned int pixH){
   pixH_ = pixH;
   pixW_ = pixW;

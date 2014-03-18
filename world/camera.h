@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cmath>
 #include <Eigen/Dense>
+#include <Eigen/Geometry>
 #include "../aux/vector.h"
 #include "../aux/ray.h"
 #include "../aux/point.h"
@@ -24,6 +25,12 @@ public:
               unsigned int pixW, unsigned int pixH, double height, double width);
 	virtual ~Camera();
   
+  void roll(const double& theta);
+  void pitch(const double& theta);
+  void yaw(const double& theta);
+  void setPos(const Point& p){pos_=p;};
+  void setLook(const Point& p){look_=p;};
+  void setUp(const Vector& v){up_=v;};
   void setPixDim(unsigned int pixW, unsigned int pixH);
   void setDim(double wid, double hei);
  
