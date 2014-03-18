@@ -7,7 +7,7 @@
 // Included Dependencies
 #include <iostream>
 #include "../aux/colour.h"
-#include "../world/intersectdata.h"
+#include "../aux/intersectdata.h"
 #include "../world/object.h"
 
 //Abstract IlluminationModel Class

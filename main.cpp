@@ -1,14 +1,15 @@
 #include <iostream>
-#include "world/world.h"
+#include <Eigen/Dense>
+#include "aux/light.h"
 #include "aux/colour.h"
+#include "world/world.h"
 #include "world/object.h"
 #include "world/sphere.h"
 #include "world/triangle.h"
 #include "world/camera.h"
-#include "aux/light.h"
-#include "world/illuminationmodel.h"
-#include "world/phong.h"
-#include "world/phongblinn.h"
+#include "lighting/illuminationmodel.h"
+#include "lighting/phong.h"
+#include "lighting/phongblinn.h"
 
 int main() {
    // Colour bgColour(0,0.7,0.7);
@@ -19,9 +20,13 @@ int main() {
   //PhongBlinn* p(new PhongBlinn);
   p->setKd(.7);
   p->setKs(.3);
+<<<<<<< HEAD
   p->setKe(100);
 //  p->setKs(0);
   //p->setKe(10);
+=======
+  p->setKe(10);
+>>>>>>> 15ef8fcf7505b19f6df7aed7a4a346cbc90a2122
   w.setModel(p);
   
   // White Light
@@ -71,7 +76,7 @@ int main() {
   w.add(o2);
 
   // Front view camera
-  Point camPos(0, 0, -100);
+  Point camPos(0, 0, -1);
   Point look(0, 0, 5);
   Vector up(0,1,0);
   Camera cam(camPos,look,up, 5);
@@ -82,7 +87,8 @@ int main() {
 //  w.printObjects();
 //  w.printLights();
 //  std::cout<<"\n";
-  Image im = cam.render(w);
+  Eigen::Matrix4d viewMatrix(cam.getViewMatrix());
+  Image im = cam.render(w,viewMatrix);
 //  w.printObjects();
 //  w.printLights();
   

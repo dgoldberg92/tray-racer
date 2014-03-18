@@ -6,8 +6,8 @@
 
 #include <iostream>
 #include <cmath>
-#include "../world/illuminationmodel.h"
-#include "../world/intersectdata.h"
+#include "../lighting/illuminationmodel.h"
+#include "../aux/intersectdata.h"
 #include "../aux/colour.h"
 
 class PhongBlinn: public IlluminationModel{

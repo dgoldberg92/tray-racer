@@ -48,8 +48,7 @@ void Camera::setDim(const double wid, const double hei){
   width_ = wid;
 }
 
-Image Camera::render(World& world){
-  
+Eigen::Matrix4d Camera::getViewMatrix()const{
   Vector n = (pos_-look_).normalize();
   //std::cout<<n<<"\n";
   Vector u = (up_.cross(n)).normalize();
@@ -101,7 +100,11 @@ Image Camera::render(World& world){
   viewMat(3,1) = 0;
   viewMat(3,2) = 0;
   viewMat(3,3) = 1.;
- 
+  return viewMat;
+}
+
+Image Camera::render(World& world,const Eigen::Matrix4d& viewMat){
+  
   world.transformAll(viewMat);
 
   double pixHeight = height_/(double)pixH_;
@@ -111,9 +114,6 @@ Image Camera::render(World& world){
   double y = height_/2. - .5*pixHeight;
   double topY = y;
   double z = focal_;
-  //std::cout << z << "\n";
-  //std::cout << x << "\n";
-  //std::cout<<y<<"\n";
   
   Ray r;
   Colour c;
@@ -138,4 +138,11 @@ Image Camera::render(World& world){
 
   return im;
   
-} 
+}
+
+Image Camera::render(World& world){
+  Eigen::Matrix4d viewMat=getViewMatrix();
+  return render(world,viewMat);
+}
+
+
