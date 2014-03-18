@@ -17,7 +17,7 @@ public:
 
 	IntersectData(); // empty constructor
 	IntersectData(const Point& point,const Vector& normal,const Vector& incoming,const Vector& reflective,const Vector& viewing, const Light& light);//,const std::list<Light*>& lights);
-  IntersectData(const IntersectData& o);
+ 	IntersectData(const IntersectData& o);
 	virtual ~IntersectData(); // deconstructor
 
 	// getters
@@ -25,8 +25,8 @@ public:
 	Vector getNormal()const {return normal_;};
 	Vector getIncoming()const {return incoming_;};
 	Vector getReflective()const {return reflective_;};
-  Vector getViewing()const{return viewing_;};
-  Light getLight()const {return light_;};
+	Vector getViewing()const{return viewing_;};
+	Light getLight()const {return light_;};
 //	std::list<Light*> getLightList() const {return lights_;};
 
 	// setters

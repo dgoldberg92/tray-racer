@@ -9,6 +9,7 @@
 #include "../world/illuminationmodel.h"
 #include "../world/intersectdata.h"
 #include "../aux/colour.h"
+#include "../world/camera.h"
 
 class Checkerboard: public IlluminationModel{
 

@@ -19,12 +19,9 @@ int main() {
   //PhongBlinn* p(new PhongBlinn);
   p->setKd(.7);
   p->setKs(.3);
-<<<<<<< HEAD
   p->setKe(100);
 //  p->setKs(0);
-=======
-  p->setKe(10);
->>>>>>> 9ec616b1e3835e0f796eed938c4a74a3d5abf7d7
+  //p->setKe(10);
   w.setModel(p);
   
   // White Light

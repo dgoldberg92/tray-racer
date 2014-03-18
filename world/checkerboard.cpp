@@ -13,5 +13,21 @@ Checkerboard::~Checkerboard(){}
 
 Colour Checkerboard::illuminate(const Object* o,const IntersectData& intersect){
 	Colour outcolour;
+
+	// get point of intersection in object space
+	Point p = intersect.getPoint();
+
+	// convert to (u, v) based on floor specs
+	
+
+
+
+	// apply value transform function
+
+
+	// modify equation or fragment value 
+	// supply as diffuse in Phong or use BRDF
+
+
 	return outcolour;
 }
