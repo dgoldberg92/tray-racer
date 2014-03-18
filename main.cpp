@@ -1,4 +1,5 @@
 #include <iostream>
+#include <Eigen/Dense>
 #include "world/world.h"
 #include "aux/colour.h"
 #include "world/object.h"
@@ -19,12 +20,7 @@ int main() {
   //PhongBlinn* p(new PhongBlinn);
   p->setKd(.7);
   p->setKs(.3);
-<<<<<<< HEAD
-  p->setKe(100);
-//  p->setKs(0);
-=======
   p->setKe(10);
->>>>>>> 9ec616b1e3835e0f796eed938c4a74a3d5abf7d7
   w.setModel(p);
   
   // White Light
@@ -74,7 +70,7 @@ int main() {
   w.add(o2);
 
   // Front view camera
-  Point camPos(0, 0, -100);
+  Point camPos(0, 0, -1);
   Point look(0, 0, 5);
   Vector up(0,1,0);
   Camera cam(camPos,look,up, 5);
@@ -85,7 +81,8 @@ int main() {
 //  w.printObjects();
 //  w.printLights();
 //  std::cout<<"\n";
-  Image im = cam.render(w);
+  Eigen::Matrix4d viewMatrix(cam.getViewMatrix());
+  Image im = cam.render(w,viewMatrix);
 //  w.printObjects();
 //  w.printLights();
   

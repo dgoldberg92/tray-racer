@@ -30,10 +30,6 @@ Image::~Image(){
   }
   delete[] im_;*/
 
-  // break point to test?
-  // with Phil's help:
-  // im_ = new Colour[width_*height_];
-  // im_ = new Colour[y*width_+x];
   delete[] im_;
 }
 

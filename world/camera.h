@@ -26,7 +26,9 @@ public:
   
   void setPixDim(unsigned int pixW, unsigned int pixH);
   void setDim(double wid, double hei);
-  
+ 
+  Eigen::Matrix4d getViewMatrix()const; 
+  Image render(World& world, const Eigen::Matrix4d& viewMat);
 	Image render(World& world);
   
 
