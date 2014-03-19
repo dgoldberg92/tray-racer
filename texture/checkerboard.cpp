@@ -11,15 +11,14 @@ Checkerboard::Checkerboard(Colour colour1, Colour colour2)
 
 Checkerboard::~Checkerboard(){}
 
-Colour Checkerboard::illuminate(const Object* o,const IntersectData& intersect, 
-							const Eigen::Matrix4d inverse){
+Colour Checkerboard::illuminate(const Object* o,const IntersectData& intersect){
 	Colour outcolour; // output colour
 
 	// get point of intersection in camera space
 	Point p = intersect.getPoint();
 
 	// convert point in camera space to world space
-	p.transform(inverse);
+	//p.transform(inverse);
 
 	// scale xyz!
 
