@@ -10,6 +10,7 @@
 #include "../aux/ray.h"
 #include "../aux/vector.h"
 #include "../aux/colour.h"
+#include "../texture/texture.h"
 //#include "../world/illuminationmodel.h"
 //#include "../world/intersectdata.h"
 
@@ -29,10 +30,13 @@ public:
   virtual void setNormal(const Vector& v){normal_=v;};
 	virtual void setColour(const Colour& c){colour_=c;};
   virtual void setSpecular(const Colour& c){specular_=c;};
+  // Takes ownership of t
+  virtual void setTexture(const Texture* t){texture_=t;};
 
   virtual Vector getNormal()const{return normal_;};
   virtual Colour getColour()const{return colour_;};
   virtual Colour getSpecular()const{return specular_;};
+  virtual const Texture* getTexture()const{return texture_;};
   
 
 private:
@@ -40,6 +44,7 @@ private:
   Vector normal_;
   Colour colour_;
   Colour specular_;
+  const Texture* texture_;
 //  Colour illumination_;
 };
 

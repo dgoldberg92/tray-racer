@@ -75,7 +75,6 @@ Object* World::intersectWithObjects(const Ray& r, double& least_w, const Object*
 } 
 
 Colour World::spawn(const Ray& r) {
-  // Static functions are ::
   Point p;
   Vector normal;
   Vector incoming;

@@ -39,6 +39,7 @@ class World {
     void setBgColour(const Colour& c) {bgcolour_=c;};
     Colour getBgColour() const {return bgcolour_;};
     
+    // Takes ownership
     void add(Object* o){objects_.push_front(o);};
     void add(Light* l){lights_.push_front(l);};
     

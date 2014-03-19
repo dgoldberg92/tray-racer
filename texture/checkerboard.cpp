@@ -11,7 +11,7 @@ Checkerboard::Checkerboard(Colour colour1, Colour colour2)
 
 Checkerboard::~Checkerboard(){}
 
-Colour Checkerboard::illuminate(const Object* o,const IntersectData& intersect){
+Colour Checkerboard::getTexture(const IntersectData& intersect){
 	Colour outcolour; // output colour
 
 	// get point of intersection in camera space

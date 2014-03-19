@@ -6,13 +6,13 @@
 
 #include <iostream>
 #include <cmath>
-#include "../lighting/illuminationmodel.h"
+#include "../texture/texture.h"
 #include "../aux/intersectdata.h"
 #include "../aux/colour.h"
 #include "../world/camera.h"
 #include "../world/world.h"
 
-class Checkerboard: public IlluminationModel{
+class Checkerboard: public Texture{
 
 public:
 
@@ -20,8 +20,8 @@ public:
 	Checkerboard(Colour colour1, Colour colour2); // constructor defining class's colours
 	virtual ~Checkerboard(); // destructor
 
-	// @override illuminate function
-	Colour illuminate(const Object* o,const IntersectData& intersect);
+	// @override Texture function
+	Colour getTexture(const IntersectData& intersect);
 
 private:
 	Colour colour1_;
