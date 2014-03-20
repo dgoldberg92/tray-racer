@@ -72,7 +72,7 @@ o2->setSpecular(Colour(1,1,1));
   w.add(o2);
 
   // Front view camera
-  Point camPos(0, 0, -1);
+  Point camPos(0, 0, -100);
   Point look(0, 0, 5);
   Vector up(0,1,0);
   Camera cam(camPos,look,up, 5);

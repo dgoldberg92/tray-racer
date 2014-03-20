@@ -21,7 +21,8 @@ public:
 	virtual ~Checkerboard(); // destructor
 
 	// @override Texture function
-	Colour getTexture(const IntersectData& intersect);
+	Colour getTexture(const IntersectData& intersect,
+                    const Eigen::Matrix4d& view));
 
 private:
 	Colour colour1_;

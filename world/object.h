@@ -7,6 +7,7 @@
 // Included Dependencies
 #include <iostream>
 #include <string>
+#include <Eigen/Dense>
 #include "../aux/ray.h"
 #include "../aux/vector.h"
 #include "../aux/colour.h"
@@ -27,11 +28,13 @@ public:
   virtual void setSpecular(const Colour& c){specular_=c;};
   // Takes ownership of t
   virtual void setTexture(const Texture* t){texture_=t;};
+  virtual void setView(const Eigen::Matrix4d& view){viewMatrix_=view;};
 
   virtual Vector getNormal()const{return normal_;};
   virtual Colour getColour()const{return colour_;};
   virtual Colour getSpecular()const{return specular_;};
   virtual const Texture* getTexture()const{return texture_;};
+  virtual Eigen::Matrix4d getView()const{return viewMatrix_;};
   
   virtual bool hasTexture()const{return (getTexture());}
 	virtual double intersect(const Ray& ray) = 0; // initial intersect method
@@ -46,6 +49,7 @@ private:
   Colour colour_;
   Colour specular_;
   const Texture* texture_;
+  Eigen::Matrix4d viewMatrix_;
 //  Colour illumination_;
 };
 

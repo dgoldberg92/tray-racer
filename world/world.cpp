@@ -43,6 +43,7 @@ void World::transformAll(const Eigen::Matrix4d& mat){
     //(*it).transform(mat);
     // need extra * in addition to -> since its a list of pointers
     (*it)->transform(mat);
+    (*it)->setView(mat);
   }
   std::list<Light*>::iterator it2;
   for(it2 = lights_.begin(); it2 != lights_.end(); it2++){

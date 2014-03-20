@@ -16,7 +16,7 @@ Colour IlluminationModel::illuminate(const Object* o,const IntersectData& inters
   Light l(intersect.getLight());
   Colour c;
   if (o->hasTexture()){
-    c = (o->getTexture())->getTexture(intersect);
+    c = (o->getTexture())->getTexture(intersect, o->getView());
   } else{
     c = o->getColour();
   }
