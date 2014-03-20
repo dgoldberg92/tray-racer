@@ -22,7 +22,14 @@ Colour PhongBlinn::illuminate(const Object* o, const IntersectData& data){
   Vector H = (S + V).normalize();
 
   Colour L = l.getColour();
-  Colour Co = o->getColour();
+  Colour Co;
+//  Colour Co = o->getColour();
+  if (o->hasTexture()){
+    Co = (o->getTexture())->getTexture(data,o->getView());
+  } else {
+    Co = o->getColour();
+  }
+ 
   double diff = S*N;
   if (diff<0)
     diff = 0;

@@ -22,7 +22,7 @@ public:
 
 	// @override Texture function
 	Colour getTexture(const IntersectData& intersect,
-                    const Eigen::Matrix4d& view));
+                    const Eigen::Matrix4d& view);
 
 private:
 	Colour colour1_;

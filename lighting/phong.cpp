@@ -22,7 +22,7 @@ Colour Phong::illuminate(const Object* o, const IntersectData& data){
   Colour L = l.getColour();
   Colour Co;
   if (o->hasTexture()){
-    Co = (o->getTexture())->getTexture(data);
+    Co = (o->getTexture())->getTexture(data,o->getView());
   } else {
     Co = o->getColour();
   }
