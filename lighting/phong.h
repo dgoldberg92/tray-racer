@@ -7,6 +7,7 @@
 #include <iostream>
 #include <cmath>
 #include "../lighting/illuminationmodel.h"
+#include "../texture/texture.h"
 #include "../aux/intersectdata.h"
 #include "../aux/colour.h"
 

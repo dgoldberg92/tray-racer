@@ -14,6 +14,11 @@ IlluminationModel::~IlluminationModel(){}// deconstrucor
 
 Colour IlluminationModel::illuminate(const Object* o,const IntersectData& intersect){
   Light l(intersect.getLight());
-  Colour c(o->getColour());
+  Colour c;
+  if (o->hasTexture()){
+    c = (o->getTexture())->getTexture(intersect);
+  } else{
+    c = o->getColour();
+  }
   return l.getColour()*c;
 }

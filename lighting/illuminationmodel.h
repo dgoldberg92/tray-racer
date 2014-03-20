@@ -9,6 +9,7 @@
 #include "../aux/colour.h"
 #include "../aux/intersectdata.h"
 #include "../world/object.h"
+#include "../texture/texture.h"
 
 //Abstract IlluminationModel Class
 class IlluminationModel{

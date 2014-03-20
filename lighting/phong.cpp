@@ -20,7 +20,12 @@ Colour Phong::illuminate(const Object* o, const IntersectData& data){
   double d = p.distance(l.getPosition());
 
   Colour L = l.getColour();
-  Colour Co = o->getColour();
+  Colour Co;
+  if (o->hasTexture()){
+    Co = (o->getTexture())->getTexture(data);
+  } else {
+    Co = o->getColour();
+  }
   double diff = S*N;
   if (diff<0)
     diff = 0;

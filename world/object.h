@@ -22,11 +22,6 @@ public:
 	Object(); // initial constructor
   virtual ~Object();
 
-	virtual double intersect(const Ray& ray) = 0; // initial intersect method
-	virtual void transform(const Eigen::Matrix4d& mat) = 0; // transform method
-
-  virtual std::string toString() const = 0;
-
   virtual void setNormal(const Vector& v){normal_=v;};
 	virtual void setColour(const Colour& c){colour_=c;};
   virtual void setSpecular(const Colour& c){specular_=c;};
@@ -38,6 +33,12 @@ public:
   virtual Colour getSpecular()const{return specular_;};
   virtual const Texture* getTexture()const{return texture_;};
   
+  virtual bool hasTexture()const{return (getTexture());}
+	virtual double intersect(const Ray& ray) = 0; // initial intersect method
+	virtual void transform(const Eigen::Matrix4d& mat) = 0; // transform method
+
+  virtual std::string toString() const = 0;
+
 
 private:
 //  IlluminationModel iModel_;
