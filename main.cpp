@@ -20,7 +20,6 @@ int main() {
   //PhongBlinn* p(new PhongBlinn);
   p->setKd(.7);
   p->setKs(.3);
-  p->setKe(100);
   p->setKe(10);
   w.setModel(p);
   
@@ -72,7 +71,7 @@ o2->setSpecular(Colour(1,1,1));
   w.add(o2);
 
   // Front view camera
-  Point camPos(0, 0, -100);
+  Point camPos(0, 0, -10);
   Point look(0, 0, 5);
   Vector up(0,1,0);
   Camera cam(camPos,look,up, 5);
