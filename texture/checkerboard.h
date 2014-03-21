@@ -21,8 +21,9 @@ public:
 	Checkerboard(Colour colour1, Colour colour2); // constructor defining class's colours
 	virtual ~Checkerboard(); // destructor
 
-  void setCorner1(const Point& p){corner1_;};
-  void setCorner2(const Point& p){corner2_;};
+  void setV0(const Point& p[2]){v0_=p;};
+  void setV1(const Point& p[2]){v1_=p;};
+  void setV2(const Point& p[2]){v2_=p;};
 
 	// @override Texture function
 	Colour getTexture(const IntersectData& intersect,
@@ -31,8 +32,10 @@ public:
 private:
 	Colour colour1_;
 	Colour colour2_;
-  Point corner1_;
-  Point corner2_;
+  // UV point then XYZ point
+  Point v0_[2];
+  Point v1_[2];
+  Point v2_[2];
 };
 
 

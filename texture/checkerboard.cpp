@@ -16,10 +16,6 @@ Checkerboard::~Checkerboard(){}
 Colour Checkerboard::getTexture(const IntersectData& intersect,
                                 const Eigen::Matrix4d& view){
 	Colour outcolour; // output colour
-  double x0 = corner1_.getX();
-  double x1 = corner2_.getX();
-  double z0 = corner1_.getZ();
-  double z1 = corner1_.getZ();
 
 	// get point of intersection in camera space
 	Point p = intersect.getPoint();
