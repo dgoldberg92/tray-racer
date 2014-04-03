@@ -27,9 +27,11 @@ public:
   void setV1(const Point& uv,const Point& xyz){uv1_=uv;xyz1_=xyz;};
   void setV2(const Point& uv,const Point& xyz){uv2_=uv;xyz2_=xyz;};
 
-	// @override Texture function
-	Colour getTexture(const IntersectData& intersect,
-                    const Eigen::Matrix4d& view);
+	// @override Texture functions
+	double* getUV(const IntersectData& intersect,const Eigen::Matrix4d& view)const;
+  Colour getTexture(const double* uv)const;
+  Colour getTexture(const IntersectData& intersect,
+                    const Eigen::Matrix4d& view)const;
 
 private:
 	Colour colour1_;

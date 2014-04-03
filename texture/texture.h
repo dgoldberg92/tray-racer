@@ -12,10 +12,13 @@ class Texture{
   public:
     Texture();
     virtual ~Texture();
-
-    virtual Colour getTexture(const IntersectData& intersect,
+    
+    virtual double* getUV(const IntersectData& intersect,
                               const Eigen::Matrix4d& view) const;
 
+    virtual Colour getTexture(const double* uv)const;
+    virtual Colour getTexture(const IntersectData& intersect,
+                              const Eigen::Matrix4d& view)const;
 };
 
 #endif

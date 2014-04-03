@@ -11,17 +11,14 @@ Checkerboard::Checkerboard(Colour colour1, Colour colour2)
 
 Checkerboard::~Checkerboard(){}
 
-Colour Checkerboard::getTexture(const IntersectData& intersect,
-                                const Eigen::Matrix4d& view){
-	Colour outcolour; // output colour
-  
-  Eigen::Matrix4d inv = view.inverse();
-	
+double* Checkerboard::getUV(const IntersectData& intersect,
+                                const Eigen::Matrix4d& view)const{
+  double* outUV = new double[2];
   // get point of intersection in camera space
 	Point p = intersect.getPoint();
 
 	// convert point in camera space to world space
-	p.transform(inv);
+	p.transform(view.inverse());
 
 	/*notes say this ranges from [-1,1] for plane example*/
 	double x = p.getX(); // point x value in world space
@@ -32,20 +29,27 @@ Colour Checkerboard::getTexture(const IntersectData& intersect,
 	double u = (z+1)/2;
 	double v = (x+1)/2;
 
-	// need to pass in object vertices!
-	double planew;
-	double planel;
-
-	double width = u/planew; // plane width
-	double length = v/planel; // place length
-
-	// apply value transform function
-
-
-
 	// modify equation or fragment value 
 	// supply as diffuse in Phong or use BRDF
 
+  
 
-	return outcolour;
+	return outUV;
 }
+
+Colour Checkerboard::getTexture(const double* uv)const{
+  Colour outcolour; // output colour
+  
+  return outcolour;
+}
+
+Colour Checkerboard::getTexture(const IntersectData& intersect,
+                                const Eigen::Matrix4d& view)const{
+  Colour outcolour;
+  
+  double* uv = getUV(intersect,view);
+  outcolour = getTexture(uv);
+  delete[] uv;
+  return outcolour;
+}
+
