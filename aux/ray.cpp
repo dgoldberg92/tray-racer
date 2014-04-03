@@ -14,6 +14,11 @@ Ray::Ray(const Ray& other)
 
 Ray::~Ray(){} // deconstructor
 
+Ray Ray::reflect(const Ray& normal)const{
+  Vector newDir((normal.getDirection()).reflect(normal.getDirection()));
+  return Ray(normal.getOrigin(),newDir);
+}
+
 std::string Ray::toString() const{
   std::string strOut("Ray: ");
   strOut = strOut + origin_.toString();
