@@ -20,25 +20,38 @@ double* Checkerboard::getUV(const IntersectData& intersect,
 	// convert point in camera space to world space
 	p.transform(view.inverse());
 
-	/*notes say this ranges from [-1,1] for plane example*/
-	double x = p.getX(); // point x value in world space
-	double z = p.getZ(); // point z value in world space
-
-	// convert to (u, v) based on floor specs -- projector function
-	// used Planar mapping function
-	double u = (z+1)/2;
-	double v = (x+1)/2;
-
-	// modify equation or fragment value 
-	// supply as diffuse in Phong or use BRDF
-
   
 
+	/*notes say this ranges from [-1,1] for plane example*/
+	double u = p.getX(); // point x value in world space
+	double v = p.getZ(); // point z value in world space
+	// convert to (u, v) based on floor specs -- projector function
+	// used Planar mapping function
+	//double u = (z+1)/2;
+	//double v = (x+1)/2;
+  
+  
+  
 	return outUV;
 }
 
 Colour Checkerboard::getTexture(const double* uv)const{
   Colour outcolour; // output colour
+  
+  double u = uv[0];
+  double v = uv[1];
+  delete[] uv;
+  
+  int col = (int) u*2;
+  int row = (int) v*2;
+  bool oddRow = (row % 2 == 1);
+  bool oddCol = (col % 2 == 1);
+  
+  if (oddRow && oddCol) {
+    outcolour = colour1_;
+  } else {
+    outcolour = colour2_;
+  }
   
   return outcolour;
 }
@@ -49,7 +62,6 @@ Colour Checkerboard::getTexture(const IntersectData& intersect,
   
   double* uv = getUV(intersect,view);
   outcolour = getTexture(uv);
-  delete[] uv;
   return outcolour;
 }
 

@@ -10,6 +10,8 @@
 #include "lighting/illuminationmodel.h"
 #include "lighting/phong.h"
 #include "lighting/phongblinn.h"
+#include "texture/checkerboard.h"
+#include "texture/texture.h"
 
 int main() {
    // Colour bgColour(0,0.7,0.7);
@@ -42,7 +44,7 @@ int main() {
   Object* o2 = new Sphere(2, Point(2.75, 0, 17));
   o2->setColour(Colour(0.,1.,0.));
   
-o2->setSpecular(Colour(1,1,1));
+  o2->setSpecular(Colour(1,1,1));
   
   // plane coordinates
 //   Point topLeft(-5, 2, 30);//6., -2., 0.);
@@ -59,7 +61,12 @@ o2->setSpecular(Colour(1,1,1));
   // triangle objects to make plane
   Object* t1 = new Triangle(topLeft, topRight, botLeft);
   Object* t2 = new Triangle(topRight, botRight, botLeft);
-    
+  Texture* tex1 = new Checkerboard();
+  Texture* tex2 = new Checkerboard();
+  
+  t1->setTexture(tex1);
+  t2->setTexture(tex2);
+  
   t1->setColour(Colour(0.,0.,1.));
   t2->setColour(Colour(0.,0.,1.));
   t1->setSpecular(Colour(1,1,1));

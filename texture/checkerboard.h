@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <string>
 #include <Eigen/LU> 
 #include <Eigen/Dense> 
 #include "../texture/texture.h"
@@ -32,6 +33,8 @@ public:
   Colour getTexture(const double* uv)const;
   Colour getTexture(const IntersectData& intersect,
                     const Eigen::Matrix4d& view)const;
+
+  std::string toString() const{return "Checkerboard";};
 
 private:
 	Colour colour1_;
