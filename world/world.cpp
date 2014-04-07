@@ -21,7 +21,6 @@ World::~World(){
     delete *it2;
   
   delete model_;
-
 }
 
 void World::printObjects()const{

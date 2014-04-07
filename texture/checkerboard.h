@@ -6,7 +6,11 @@
 
 #include <iostream>
 #include <cmath>
+#include <string>
+#include <Eigen/LU> 
+#include <Eigen/Dense> 
 #include "../texture/texture.h"
+#include "../aux/point.h"
 #include "../aux/intersectdata.h"
 #include "../aux/colour.h"
 #include "../world/camera.h"
@@ -20,14 +24,28 @@ public:
 	Checkerboard(Colour colour1, Colour colour2); // constructor defining class's colours
 	virtual ~Checkerboard(); // destructor
 
-	// @override Texture function
-	Colour getTexture(const IntersectData& intersect,
-                    const Eigen::Matrix4d& view);
+  void setV0(const Point& uv,const Point& xyz){uv0_=uv;xyz0_=xyz;};
+  void setV1(const Point& uv,const Point& xyz){uv1_=uv;xyz1_=xyz;};
+  void setV2(const Point& uv,const Point& xyz){uv2_=uv;xyz2_=xyz;};
+
+	// @override Texture functions
+	double* getUV(const IntersectData& intersect,const Eigen::Matrix4d& view)const;
+  Colour getTexture(const double* uv)const;
+  Colour getTexture(const IntersectData& intersect,
+                    const Eigen::Matrix4d& view)const;
+
+  std::string toString() const{return "Checkerboard";};
 
 private:
 	Colour colour1_;
 	Colour colour2_;
-
+  // UV point then XYZ point
+  Point uv0_;
+  Point xyz0_;
+  Point uv1_;
+  Point xyz1_;
+  Point uv2_;
+  Point xyz2_;
 };
 
 

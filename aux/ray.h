@@ -19,10 +19,10 @@ class Ray {
     
     Point getOrigin() const {return origin_;};
     Vector getDirection() const {return direction_; };
-    
     void setOrigin(Point& p) {origin_=p;};
     void setDirection(Vector& v) {direction_=v;};
-  
+    Ray reflect(const Ray& normal)const;
+
     std::string toString() const;
 
   private:

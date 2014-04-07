@@ -27,7 +27,7 @@ public:
 	virtual void setColour(const Colour& c){colour_=c;};
   virtual void setSpecular(const Colour& c){specular_=c;};
   // Takes ownership of t
-  virtual void setTexture(const Texture* t){texture_=t;};
+  virtual void setTexture(Texture* t){texture_=t;};
   virtual void setView(const Eigen::Matrix4d& view){viewMatrix_=view;};
 
   virtual Vector getNormal()const{return normal_;};

@@ -6,8 +6,9 @@ Object::Object(){}
  // constructor
 
 Object::~Object(){
-  delete texture_;
-} // deconstructor
+//  if(texture_)std::cout<<texture_->toString()<<"\n";
+  if (texture_) delete texture_;
+} // destructor
 
 // virtual, abstract methods
 //double Object::intersect(const Ray& ray) {return 0.0;}
