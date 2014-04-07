@@ -19,7 +19,8 @@ Colour Checkerboard::getTexture(const IntersectData& intersect,
 	Point p = intersect.getPoint();
 
 	// convert point in camera space to world space
-	//p.transform(inverse);
+	Eigen::Matrix4d& inverse = view.inverse();
+	p.transform(inverse);
 
 	// scale xyz!
 
