@@ -18,14 +18,9 @@ double* Checkerboard::getUV(const IntersectData& intersect,
 	Point p = intersect.getPoint();
 
 	// convert point in camera space to world space
-<<<<<<< HEAD
-	Eigen::Matrix4d& inverse = view.inverse();
-	p.transform(inverse);
-=======
+//	Eigen::Matrix4d& inverse = view.inverse();
+//	p.transform(inverse);
 	p.transform(view.inverse());
->>>>>>> 53597365967fb7f7ffbc08bfeb019f36758c3b71
-
-  
 
 	/*notes say this ranges from [-1,1] for plane example*/
 	double u = p.getX(); // point x value in world space
