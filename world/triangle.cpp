@@ -63,7 +63,7 @@ double Triangle::intersect(const Ray& b) { // intersection between triangle and 
 		distance = 0;
 	}
 	
-	else if (t < 0.0) { //intersect behind origin
+	else if (t < 0.000001) { //intersect behind origin
 		distance = 0;
 	}
 	

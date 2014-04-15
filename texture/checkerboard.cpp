@@ -23,13 +23,12 @@ double* Checkerboard::getUV(const IntersectData& intersect,
 	p.transform(view.inverse());
 
 	/*notes say this ranges from [-1,1] for plane example*/
-	double u = p.getX(); // point x value in world space
-	double v = p.getZ(); // point z value in world space
+	double x = p.getX(); // point x value in world space
+	double z = p.getZ(); // point z value in world space
 	// convert to (u, v) based on floor specs -- projector function
 	// used Planar mapping function
 	//double u = (z+1)/2;
 	//double v = (x+1)/2;
-  
   
   
 	return outUV;

@@ -94,21 +94,30 @@ double Sphere::intersect(const Ray& ray){ // intersect method
 		}
 	}
   // If first is pos
-	else{
+	else if(posw>0.000001){
     hit = true;
     // If second is also pos
-		if( negw > 0.0){
-      //std::cout << "2 hits\n";
+		if( negw > 0.000001){
+//      std::cout<< negw <<"\n";
+//      std::cout<< posw <<"\n";
       // If second is greater
-			if( negw > posw){
-				w = posw;
+			if(negw > posw){
+        if (posw > 0.000001){
+				  w = posw;
+        }else{
+          w = negw;
+        }
+			}else{
+        if (negw > 0.000001){
+  				w = negw;
+        }else{
+          w = posw;
+        }
 			}
-			else{
-				w = negw;
-			}
+//      std::cout<<"Chose: "<<w<<"\n";
 		}
     // Second is neg
-		else{
+		else if(posw>0.000001){
       //std::cout<<"1 hit\n";
 			w = posw;
 		}
