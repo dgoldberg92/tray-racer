@@ -23,6 +23,10 @@ public:
 	Triangle(Point v0, Point v1, Point v2); // clockwise
 	virtual ~Triangle(); // deconstructor 
 
+  Point getv0()const{return v0_;};
+  Point getv1()const{return v1_;};
+  Point getv2()const{return v2_;};
+
   std::string toString() const;
 	double intersect(const Ray& b) ; // intersect method
 	void transform(const Eigen::Matrix4d& mat);

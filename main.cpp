@@ -52,18 +52,31 @@ int main() {
 //   Point botLeft(-15,-20, 1);//,4., 2., 0.);
 //   Point botRight(25,-20, 1);// -10);//,4., 2., 0.);
 
-   Point topLeft(-5, 5, 30);//6., -2., 0.);
-   Point topRight(7,5, 30);//6., 2., 0.);
-   Point botLeft(-15,-15, 1);//,4., 2., 0.);
-   Point botRight(25,-15, 1);// -10);//,4., 2., 0.);
+   Point topLeft(-10,-5, 50);//6., -2., 0.);
+   Point topRight(10,-5, 50);//6., 2., 0.);
+   Point botLeft(-10,-5, -30);//,4., 2., 0.);
+   Point botRight(10,-5, -30);// -10);//,4., 2., 0.);
 
 
   // triangle objects to make plane
-  Object* t1 = new Triangle(topLeft, topRight, botLeft);
-  Object* t2 = new Triangle(topRight, botRight, botLeft);
-  Texture* tex1 = new Checkerboard();
-  Texture* tex2 = new Checkerboard();
-  
+  Triangle* t1 = new Triangle(topLeft, topRight, botLeft);
+  Triangle* t2 = new Triangle(topRight, botRight, botLeft);
+  Checkerboard* ch1 = new Checkerboard();
+  Checkerboard* ch2 = new Checkerboard();
+//  Texture* tex1 = new Checkerboard();
+//  Texture* tex2 = new Checkerboard();
+ 
+  ch1->setV0(Point(0,0,20),t1->getv0());
+  ch1->setV1(Point(5,0,20),t1->getv1());
+  ch1->setV2(Point(0,0,0),t1->getv2());
+
+  ch2->setV0(Point(5,0,20),t2->getv0());
+  ch2->setV1(Point(5,0,0),t2->getv1());
+  ch2->setV2(Point(0,0,0),t2->getv2());
+
+  Texture* tex1 = ch1;
+  Texture* tex2 = ch2;
+
   t1->setTexture(tex1);
   t2->setTexture(tex2);
   
@@ -71,14 +84,16 @@ int main() {
   t2->setColour(Colour(0.,0.,1.));
   t1->setSpecular(Colour(1,1,1));
   t2->setSpecular(Colour(1,1,1));
-
-  w.add(t1);
-  w.add(t2);
+  
+  Object* o3 = t1;
+  Object* o4 = t2;
+  w.add(o3);
+  w.add(o4);
   w.add(o1);
   w.add(o2);
 
   // Front view camera
-  Point camPos(0, 0, -10);
+  Point camPos(0, 5, -10);
   Point look(0, 0, 5);
   Vector up(0,1,0);
   Camera cam(camPos,look,up, 5);

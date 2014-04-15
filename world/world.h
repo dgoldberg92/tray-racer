@@ -51,6 +51,7 @@ class World {
     Object* intersectWithObjects(const Ray& r, double& least_w, const Object* ignoreO);
     // Not const beucause it may change colour of each object that the ray hits
     Colour spawn(const Ray& r);
+    Colour spawnrec(const Ray& r, const int& depth);
 
   private:
     std::list<Object*> objects_;

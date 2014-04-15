@@ -75,6 +75,10 @@ Object* World::intersectWithObjects(const Ray& r, double& least_w, const Object*
 } 
 
 Colour World::spawn(const Ray& r) {
+  return spawnrec(r,0);
+}
+
+Colour World::spawnrec(const Ray& r,const int& depth) {
   Point p;
   Vector normal;
   Vector incoming;
@@ -82,15 +86,17 @@ Colour World::spawn(const Ray& r) {
   std::list<Light*> lights(getLightList());
   IntersectData data;
   double lightW;
-  bool useBG = true;
+//  bool useBG = true;
 
   Colour illumination = getBgColour();
   double max_w = std::numeric_limits<double>::max();
   double least_w = max_w;
   Object* close_o = intersectWithObjects(r,least_w);
- 
+
+  // If intersection 
   if (close_o){
-    useBG = false;
+//    useBG = false;
+    // Initialize things
     illumination = Colour();
     Vector origin = (r.getOrigin()).getVec();
     Vector dir = r.getDirection();
@@ -107,14 +113,17 @@ Colour World::spawn(const Ray& r) {
     for(it = lights.begin(); it != lights.end(); it++){
       lightRay = Ray(p,(p-((*it)->getPosition())).normalize());
       blockingObject = NULL;
-      blockingObject = intersectWithObjects(lightRay,least_w,close_o);
+      blockingObject = intersectWithObjects(lightRay,least_w);
+        
       if (blockingObject){
-        //illumination = Colour();
-        // First reflection
+        if (depth < blockingObject->getDepth()){
+          //illumination = Colour();
+          // First reflection
+        }
       } else {
-        //std::cout<<(blockingObject->toString())<<"\n";
-        lightW = close_o->intersect(lightRay);
-        if (std::isfinite(lightW) || (lightW>0)){
+          //std::cout<<(blockingObject->toString())<<"\n";
+          lightW = close_o->intersect(lightRay);
+          if (std::isfinite(lightW) || (lightW>0)){
           incoming = p-((*it)->getPosition());
           reflect = ((*it)->getPosition()-p).reflect(normal);
           data.setLight(*(*it));
@@ -123,10 +132,11 @@ Colour World::spawn(const Ray& r) {
           illumination = illumination + model_->illuminate(close_o,data);
         }
       }
+      
     }
-    if (useBG){
+/*    if (useBG){
       illumination = getBgColour();
-    }
+    }*/
   }
   return illumination;
 }

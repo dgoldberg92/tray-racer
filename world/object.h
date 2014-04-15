@@ -29,14 +29,21 @@ public:
   // Takes ownership of t
   virtual void setTexture(Texture* t){texture_=t;};
   virtual void setView(const Eigen::Matrix4d& view){viewMatrix_=view;};
+  virtual void setkr(const double& kr){kr_=kr;};
+  virtual void setkt(const double& kt){kt_=kt;};
+  virtual void setDepth(const int& d){depth_=d;};
 
   virtual Vector getNormal()const{return normal_;};
   virtual Colour getColour()const{return colour_;};
   virtual Colour getSpecular()const{return specular_;};
   virtual const Texture* getTexture()const{return texture_;};
   virtual Eigen::Matrix4d getView()const{return viewMatrix_;};
-  
-  virtual bool hasTexture()const{return (getTexture());}
+  virtual double getkr(){return kr_;};
+  virtual double getkt(){return kt_;};
+  virtual int getDepth(){return depth_;};
+
+ 
+  virtual bool hasTexture()const{return getTexture();};
 	virtual double intersect(const Ray& ray) = 0; // initial intersect method
 	virtual void transform(const Eigen::Matrix4d& mat) = 0; // transform method
 
@@ -50,7 +57,9 @@ private:
   Colour specular_;
   const Texture* texture_;
   Eigen::Matrix4d viewMatrix_;
-//  Colour illumination_;
+  double kr_;
+  double kt_;
+  int depth_;
 };
 
 #endif
