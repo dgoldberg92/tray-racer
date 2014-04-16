@@ -15,6 +15,7 @@
 #include "../aux/colour.h"
 #include "../world/camera.h"
 #include "../world/world.h"
+#include "../aux/tools.h"
 
 class Checkerboard: public Texture{
 

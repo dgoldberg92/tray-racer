@@ -65,10 +65,13 @@ Colour Checkerboard::getTexture(const double* uv)const{
   bool oddRow = (row % 2 == 1);
   bool oddCol = (col % 2 == 1);
   
+  double n(0);
+  //n = Tools::noise(u-((int) u),v-((int)v),(1-u-v)-((int)(1-u-v)));
+  
   if ((oddRow && oddCol) || (!oddRow && !oddCol)) {
-    outcolour = colour1_;
+    outcolour = colour1_+n;
   } else {
-    outcolour = colour2_;
+    outcolour = colour2_+n;
   }
   
 /*  if (u>.5||v>.5){

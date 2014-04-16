@@ -2,7 +2,9 @@
 
 #include "object.h"
 
-Object::Object(){}
+Object::Object(){
+  depth_=10;
+}
  // constructor
 
 Object::~Object(){

@@ -82,7 +82,7 @@ Colour World::spawnrec(const Ray& r,const int& depth) {
   Point p;
   Vector normal;
   Vector incoming;
-  Vector reflect;
+  Vector reflective;
   std::list<Light*> lights(getLightList());
   IntersectData data;
   double lightW;
@@ -107,29 +107,38 @@ Colour World::spawnrec(const Ray& r,const int& depth) {
     data.setViewing((p-Point()).normalize());
  
     Ray lightRay;
+    Ray refRay(p,(Point()-p).reflect(normal).normalize());
     Object* blockingObject;
     least_w = std::numeric_limits<double>::max();
     std::list<Light*>::iterator it;
     for(it = lights.begin(); it != lights.end(); it++){
       lightRay = Ray(p,(p-((*it)->getPosition())).normalize());
-      blockingObject = NULL;
       blockingObject = intersectWithObjects(lightRay,least_w);
         
       if (blockingObject){
-        if (depth < blockingObject->getDepth()){
-          //illumination = Colour();
-          // First reflection
-        }
+        // In shadow
       } else {
-          //std::cout<<(blockingObject->toString())<<"\n";
-          lightW = close_o->intersect(lightRay);
-          if (std::isfinite(lightW) || (lightW>0)){
+        //std::cout<<(blockingObject->toString())<<"\n";
+        lightW = close_o->intersect(lightRay);
+        if (std::isfinite(lightW) || (lightW>0)){
           incoming = p-((*it)->getPosition());
-          reflect = ((*it)->getPosition()-p).reflect(normal);
+          reflective = ((*it)->getPosition()-p).reflect(normal).normalize();
           data.setLight(*(*it));
           data.setIncoming(incoming.normalize());
-          data.setReflective(reflect.normalize());
+          data.setReflective(reflective.normalize());
           illumination = illumination + model_->illuminate(close_o,data);
+          if (depth < close_o->getDepth()){
+            // Reflected Ray
+            if (close_o->getkr()>0){
+              illumination = illumination +
+                              (spawnrec(refRay,depth+1)
+                              * close_o->getkr());
+            }
+            // Transmission ray
+            if (close_o->getkt()>0){
+//              illumination += 
+            }
+          }
         }
       }
       
