@@ -26,9 +26,9 @@ int main() {
   w.setModel(p);
   
   // White Light
-  Light* l = new Light(Point(0,1000,0),Colour(100000));
+  Light* l = new Light(Point(0,10,0),Colour(1000));
   // White Light2
-  Light* l2 = new Light(Point(100,0,0),Colour(1000));
+  Light* l2 = new Light(Point(10,0,0),Colour(1000));
   Light* l3 = new Light(Point(0,100,-100),Colour(1000));
   Light* l4 = new Light(Point(-100,100,0),Colour(1000));
   w.add(l);
@@ -40,7 +40,7 @@ int main() {
   Object* o1 = new Sphere(2, Point(-0.75, 1, 11));
   o1->setColour(Colour(1.,0.,0.));
   o1->setSpecular(Colour(1,1,1));
-//  o1->setkr(.5);
+  o1->setkr(.7);
   // smaller sphere
   Object* o2 = new Sphere(2, Point(2.75, 0, 17));
   o2->setColour(Colour(0.,1.,0.));
