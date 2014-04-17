@@ -107,7 +107,6 @@ Colour World::spawnrec(const Ray& r,const int& depth) {
     data.setViewing((p-Point()).normalize());
  
     Ray lightRay;
-    Ray refRay(p,(Point()-p).reflect(normal).normalize());
     Object* blockingObject;
     least_w = std::numeric_limits<double>::max();
     std::list<Light*>::iterator it;
@@ -127,22 +126,24 @@ Colour World::spawnrec(const Ray& r,const int& depth) {
           data.setIncoming(incoming.normalize());
           data.setReflective(reflective.normalize());
           illumination = illumination + model_->illuminate(close_o,data);
-          if (depth < close_o->getDepth()){
-            // Reflected Ray
-            if (close_o->getkr()>0){
-              illumination = illumination +
-                              (spawnrec(refRay,depth+1)
-                              * close_o->getkr());
-            }
-            // Transmission ray
-            if (close_o->getkt()>0){
-//              illumination += 
-            }
-          }
         }
       }
       
     }
+    Ray refRay(p,(Point()-p).reflect(normal).normalize());
+    if (depth < close_o->getDepth()){
+      // Reflected Ray
+      if (close_o->getkr()>0){
+        illumination = illumination +
+                        (spawnrec(refRay,depth+1)
+                        * close_o->getkr());
+      }
+      // Transmission ray
+      if (close_o->getkt()>0){
+//              illumination += 
+      }
+    }
+
 /*    if (useBG){
       illumination = getBgColour();
     }*/

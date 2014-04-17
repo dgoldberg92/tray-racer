@@ -26,21 +26,21 @@ int main() {
   w.setModel(p);
   
   // White Light
-  Light* l = new Light(Point(0,10,0),Colour(1000));
+  Light* l = new Light(Point(0,100,0),Colour(1000));
   // White Light2
-  Light* l2 = new Light(Point(10,0,0),Colour(1000));
+  Light* l2 = new Light(Point(100,0,0),Colour(1000));
   Light* l3 = new Light(Point(0,100,-100),Colour(1000));
-  Light* l4 = new Light(Point(-100,100,0),Colour(1000));
+  Light* l4 = new Light(Point(-100,100,0),Colour(1000*1.21));
   w.add(l);
   //w.add(l2);
   //w.add(l3);
-  //w.add(l4);
+  w.add(l4);
 
   // larger sphere
   Object* o1 = new Sphere(2, Point(-0.75, 1, 11));
   o1->setColour(Colour(1.,0.,0.));
   o1->setSpecular(Colour(1,1,1));
-  o1->setkr(.7);
+  o1->setkr(.5);
   // smaller sphere
   Object* o2 = new Sphere(2, Point(2.75, 0, 17));
   o2->setColour(Colour(0.,1.,0.));
@@ -51,10 +51,10 @@ int main() {
 //   Point botLeft(-15,-20, 1);//,4., 2., 0.);
 //   Point botRight(25,-20, 1);// -10);//,4., 2., 0.);
 
-   Point topLeft(-10,-5, 50);//6., -2., 0.);
-   Point topRight(10,-5, 50);//6., 2., 0.);
-   Point botLeft(-10,-5, -30);//,4., 2., 0.);
-   Point botRight(10,-5, -30);// -10);//,4., 2., 0.);
+   Point topLeft(-10,-5, 80);//6., -2., 0.);
+   Point topRight(10,-5, 80);//6., 2., 0.);
+   Point botLeft(-10,-5, 0);//,4., 2., 0.);
+   Point botRight(10,-5, 0);// -10);//,4., 2., 0.);
 
 
   // triangle objects to make plane
