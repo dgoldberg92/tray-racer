@@ -31,6 +31,7 @@ public:
   virtual void setView(const Eigen::Matrix4d& view){viewMatrix_=view;};
   virtual void setkr(const double& kr){kr_=kr;};
   virtual void setkt(const double& kt){kt_=kt;};
+  virtual void setn(const double& n){n_=n;};
   virtual void setDepth(const int& d){depth_=d;};
 
   virtual Vector getNormal()const{return normal_;};
@@ -40,6 +41,7 @@ public:
   virtual Eigen::Matrix4d getView()const{return viewMatrix_;};
   virtual double getkr(){return kr_;};
   virtual double getkt(){return kt_;};
+  virtual double getn(){return n_;};
   virtual int getDepth(){return depth_;};
 
  
@@ -59,6 +61,7 @@ private:
   Eigen::Matrix4d viewMatrix_;
   double kr_;
   double kt_;
+  double n_;
   int depth_;
 };
 

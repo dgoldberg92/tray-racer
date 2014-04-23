@@ -17,6 +17,7 @@ int main() {
    // Colour bgColour(0,0.7,0.7);
   Colour bgColour(0,0,0);
   World w;
+  w.setn(1);
   w.setBgColour(bgColour);
   Phong* p(new Phong);
   //PhongBlinn* p(new PhongBlinn);
@@ -43,8 +44,10 @@ int main() {
   o1->setkr(.5);
   // smaller sphere
   Object* o2 = new Sphere(2, Point(2.75, 0, 17));
-  o2->setColour(Colour(0.,1.,0.));
+  o2->setColour(Colour(0.,0.,0.));
   o2->setSpecular(Colour(1,1,1));
+  o2->setkt(.5);
+  o2->setn(3);
   // plane coordinates
 //   Point topLeft(-5, 2, 30);//6., -2., 0.);
 //   Point topRight(7,2, 30);//6., 2., 0.);
@@ -65,12 +68,13 @@ int main() {
 //  Texture* tex1 = new Checkerboard();
 //  Texture* tex2 = new Checkerboard();
  
-  ch1->setV0(Point(0,0,20),t1->getv0());
-  ch1->setV1(Point(5,0,20),t1->getv1());
+  int singleSide = 5;
+  ch1->setV0(Point(0,0,singleSide*4),t1->getv0());
+  ch1->setV1(Point(singleSide,0,singleSide*4),t1->getv1());
   ch1->setV2(Point(0,0,0),t1->getv2());
 
-  ch2->setV0(Point(5,0,20),t2->getv0());
-  ch2->setV1(Point(5,0,0),t2->getv1());
+  ch2->setV0(Point(singleSide,0,singleSide*4),t2->getv0());
+  ch2->setV1(Point(singleSide,0,0),t2->getv1());
   ch2->setV2(Point(0,0,0),t2->getv2());
 
   Texture* tex1 = ch1;

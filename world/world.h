@@ -36,6 +36,7 @@ class World {
     void printLights() const;
     
     void setModel(IlluminationModel* m){model_=m;};
+    void setn(double n){worldn_=n;};
     void setBgColour(const Colour& c) {bgcolour_=c;};
     Colour getBgColour() const {return bgcolour_;};
     
@@ -46,6 +47,8 @@ class World {
     void transform(Object* o,const Eigen::Matrix4d& mat){o->transform(mat);};
     void transformAll(const Eigen::Matrix4d& mat);
     
+    Ray calcTrans(const Ray& r,const Vector& inNorm,double n)const;
+
     //double intersectWithObjects(const Ray& r, Object** close_o);
     Object* intersectWithObjects(const Ray& r, double& least_w);
     Object* intersectWithObjects(const Ray& r, double& least_w, const Object* ignoreO);
@@ -58,6 +61,7 @@ class World {
     std::list<Light*> lights_;
     Colour bgcolour_;
     IlluminationModel* model_;
+    double worldn_;
 };
 
 #endif

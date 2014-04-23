@@ -49,6 +49,40 @@ void World::transformAll(const Eigen::Matrix4d& mat){
     (*it2)->transform(mat);
   }
 }
+Ray World::calcTrans(const Ray& r,const Vector& inNorm,double n)const{
+  Ray outR;
+  double n1=worldn_, n2=n;
+  outR.setOrigin(r.getOrigin());
+  Vector d(r.getDirection());
+  Vector t(d);
+
+  Vector norm(inNorm);
+  if ((inNorm*d) < 0){
+    // Inside object
+    norm = norm * (-1);
+    n1 = n;
+    n2 = worldn_;
+  }
+
+  double small = 0.000000001;
+  //if n1~n2 then just return r
+  if ((n1>(n2-small))&&(n1<(n2+small))){
+    // No change in n
+    return r;
+  } else {
+    // Change in n
+    double under = 1 - n1*n1/(n2*n2) * (1 - (d*norm)*(d*norm));
+//    std::cout<<under<<"\n";
+    if (under < 0){
+      // Total Internal ref
+      outR.setDirection(d.reflect(norm));
+    } else {
+      t = n1/n2*(d-norm*(d*norm)) + norm * std::sqrt(under);
+      outR.setDirection(t);
+    }
+  }
+  return outR;
+}
 
 Object* World::intersectWithObjects(const Ray& r, double& least_w){
   return intersectWithObjects(r,least_w,NULL);
@@ -62,7 +96,7 @@ Object* World::intersectWithObjects(const Ray& r, double& least_w, const Object*
   
   for(it = objects_.begin(); it != objects_.end(); it++){
     if (*it!=ignoreO){
-      w = (*it)->intersect(r);
+        w = (*it)->intersect(r);
       //std::cout<<w<<"\n";
       if (std::isfinite(w) && (w < least_w) && (w>0)){
         //std::cout<<w;
@@ -117,6 +151,7 @@ Colour World::spawnrec(const Ray& r,const int& depth) {
       if (blockingObject){
         // In shadow
       } else {
+        // Not in shadow
         //std::cout<<(blockingObject->toString())<<"\n";
         lightW = close_o->intersect(lightRay);
         if (std::isfinite(lightW) || (lightW>0)){
@@ -130,17 +165,23 @@ Colour World::spawnrec(const Ray& r,const int& depth) {
       }
       
     }
-    Ray refRay(p,(Point()-p).reflect(normal).normalize());
     if (depth < close_o->getDepth()){
       // Reflected Ray
-      if (close_o->getkr()>0){
+      if (close_o->getkr()>10){
+        Ray refRay(p,(Point()-p).reflect(normal).normalize());
         illumination = illumination +
                         (spawnrec(refRay,depth+1)
                         * close_o->getkr());
       }
       // Transmission ray
       if (close_o->getkt()>0){
-//              illumination += 
+        Ray inRay(p,r.getDirection());
+//        std::cout<<"In: "<<inRay.toString()<<"\n";
+        Ray transRay = calcTrans(inRay,normal,close_o->getn());
+//        std::cout<<"Out: "<<transRay.toString()<<"\n";
+        illumination = illumination +
+                        (spawnrec(transRay,depth+1)
+                        * close_o->getkt());
       }
     }
 
