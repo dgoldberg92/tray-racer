@@ -55,7 +55,7 @@ Ray World::calcTrans(const Ray& r,const Vector& inNorm,double n)const{
   outR.setOrigin(r.getOrigin());
   Vector d(r.getDirection());
   Vector t(d);
-
+  
   Vector norm(inNorm);
   if ((inNorm*d) < 0){
     // Inside object
@@ -63,7 +63,11 @@ Ray World::calcTrans(const Ray& r,const Vector& inNorm,double n)const{
     n1 = n;
     n2 = worldn_;
   }
-
+  
+//  double TT(n1);
+//  n1 = n2;
+//  n2 = TT;
+  
   double small = 0.000000001;
   //if n1~n2 then just return r
   if ((n1>(n2-small))&&(n1<(n2+small))){
@@ -71,8 +75,7 @@ Ray World::calcTrans(const Ray& r,const Vector& inNorm,double n)const{
     return r;
   } else {
     // Change in n
-    double under = 1 - n1*n1/(n2*n2) * (1 - (d*norm)*(d*norm));
-//    std::cout<<under<<"\n";
+    double under = 1 - (n1*n1/(n2*n2) * (1 - (d*norm)*(d*norm)));
     if (under < 0){
       // Total Internal ref
       outR.setDirection(d.reflect(norm));
@@ -167,7 +170,7 @@ Colour World::spawnrec(const Ray& r,const int& depth) {
     }
     if (depth < close_o->getDepth()){
       // Reflected Ray
-      if (close_o->getkr()>10){
+      if (close_o->getkr()>0){
         Ray refRay(p,(Point()-p).reflect(normal).normalize());
         illumination = illumination +
                         (spawnrec(refRay,depth+1)
