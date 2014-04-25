@@ -64,9 +64,9 @@ Ray World::calcTrans(const Ray& r,const Vector& inNorm,double n)const{
     n2 = worldn_;
   }
   
-//  double TT(n1);
-//  n1 = n2;
-//  n2 = TT;
+  double TT(n1);
+  n1 = n2;
+  n2 = TT;
   
   double small = 0.000000001;
   //if n1~n2 then just return r
@@ -76,11 +76,11 @@ Ray World::calcTrans(const Ray& r,const Vector& inNorm,double n)const{
   } else {
     // Change in n
     double under = 1 - (n1*n1/(n2*n2) * (1 - (d*norm)*(d*norm)));
-    if (under < 0){
+    if ((under < 0)){
       // Total Internal ref
       outR.setDirection(d.reflect(norm));
     } else {
-      t = n1/n2*(d-norm*(d*norm)) + norm * std::sqrt(under);
+      t = (d-norm*(d*norm))*(n1/n2) + norm * std::sqrt(under);
       outR.setDirection(t);
     }
   }
@@ -89,7 +89,7 @@ Ray World::calcTrans(const Ray& r,const Vector& inNorm,double n)const{
 
 Object* World::intersectWithObjects(const Ray& r, double& least_w){
   return intersectWithObjects(r,least_w,NULL);
-} 
+}
 
 Object* World::intersectWithObjects(const Ray& r, double& least_w, const Object* ignoreO){
   double w;

@@ -42,13 +42,14 @@ int main() {
   Object* o1 = new Sphere(2, Point(-0.75, 1, 11));
   o1->setColour(Colour(1.,0.,0.));
   o1->setSpecular(Colour(1,1,1));
+  
   o1->setkr(.2);
   // smaller sphere
   Object* o2 = new Sphere(2, Point(2.75, 0, 17));
   o2->setColour(Colour(0.,0,0));
   o2->setSpecular(Colour(1,1,1));
   o2->setkt(.9);
-  o2->setn(1.1);
+  o2->setn(1.5);
   // plane coordinates
 //   Point topLeft(-5, 2, 30);//6., -2., 0.);
 //   Point topRight(7,2, 30);//6., 2., 0.);
