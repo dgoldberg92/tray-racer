@@ -15,7 +15,7 @@
 
 int main() {
    // Colour bgColour(0,0.7,0.7);
-  double A(.05);
+  double A(.5);
   Colour bgColour(1*A,1*A,2*A);
   World w;
   w.setn(1);
@@ -28,15 +28,15 @@ int main() {
   w.setModel(p);
   
   // White Light
-  Light* l = new Light(Point(0,100,0),Colour(1000));
+  Light* l = new Light(Point(0,100,0),Colour(10000));
   // White Light2
-  Light* l2 = new Light(Point(100,0,0),Colour(1000));
-  Light* l3 = new Light(Point(0,100,-100),Colour(1000));
-  Light* l4 = new Light(Point(-100,100,0),Colour(1000*1.21));
+  Light* l2 = new Light(Point(100,0,0),Colour(10000));
+  Light* l3 = new Light(Point(0,100,-100),Colour(10000));
+  Light* l4 = new Light(Point(-100,100,0),Colour(10000*1.21));
   w.add(l);
   //w.add(l2);
   //w.add(l3);
-  w.add(l4);
+  //w.add(l4);
 
   // larger sphere
   Object* o1 = new Sphere(2, Point(-0.75, 1, 11));
@@ -48,8 +48,8 @@ int main() {
   Object* o2 = new Sphere(2, Point(2.75, 0, 17));
   o2->setColour(Colour(0.,0,0));
   o2->setSpecular(Colour(1,1,1));
-  o2->setkt(.9);
-  o2->setn(1.5);
+  o2->setkt(.7);
+  o2->setn(.9);
   // plane coordinates
 //   Point topLeft(-5, 2, 30);//6., -2., 0.);
 //   Point topRight(7,2, 30);//6., 2., 0.);

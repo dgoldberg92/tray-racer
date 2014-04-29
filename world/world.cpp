@@ -144,26 +144,38 @@ Colour World::spawnrec(const Ray& r,const int& depth) {
     data.setViewing((p-Point()).normalize());
  
     Ray lightRay;
+    Ray shadowRay;
+    Ray outShadowRay;
     Object* blockingObject;
     least_w = std::numeric_limits<double>::max();
     std::list<Light*>::iterator it;
+    Vector lightDir;
     for(it = lights.begin(); it != lights.end(); it++){
-      lightRay = Ray(p,(p-((*it)->getPosition())).normalize());
-      blockingObject = intersectWithObjects(lightRay,least_w);
+      lightDir = (p-((*it)->getPosition())).normalize();
+      lightRay = Ray(p,lightDir);
+      blockingObject = intersectWithObjects(lightRay,least_w,close_o);
+      incoming = p-((*it)->getPosition());
+      reflective = ((*it)->getPosition()-p).reflect(normal).normalize();
+      data.setLight(*(*it));
+      data.setIncoming(incoming.normalize());
+      data.setReflective(reflective.normalize());
         
       if (blockingObject){
         // In shadow
+        if (blockingObject->getkt()>0){
+          //shadowRay.setOrigin(Point(origin+(lightDir*least_w)));
+          //shadowRay.setDirection(lightRay.getDirection());
+          //outShadowRay = calcTrans(shadowRay,(blockingObject->getNormal()).normalize(),blockingObject->getn());
+          illumination = illumination +
+                          model_->illuminate(close_o,data) * blockingObject->getkt();
+        }
+ 
       } else {
         // Not in shadow
         //std::cout<<(blockingObject->toString())<<"\n";
         lightW = close_o->intersect(lightRay);
         if (std::isfinite(lightW) || (lightW>0)){
-          incoming = p-((*it)->getPosition());
-          reflective = ((*it)->getPosition()-p).reflect(normal).normalize();
-          data.setLight(*(*it));
-          data.setIncoming(incoming.normalize());
-          data.setReflective(reflective.normalize());
-          illumination = illumination + model_->illuminate(close_o,data);
+         illumination = illumination + model_->illuminate(close_o,data);
         }
       }
       
