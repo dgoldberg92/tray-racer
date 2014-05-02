@@ -61,8 +61,13 @@ void Box::setColour(const Colour& c){
 */
 
 double Box::intersect(const Ray& ray){ // intersect method
+  // from http://www.siggraph.org/education/materials/HyperGraph/raytrace/rtinter3.htm
+  double MAX=std::numeric_limits<double>::max();
+  double tnear = -MAX;
+  double tfar = MAX;
+  double xd,yd,zd;
+  double xo,yo,zo;
+  
+  if 
+
 } // intersect
-
-
-
-
