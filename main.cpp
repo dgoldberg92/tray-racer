@@ -111,8 +111,11 @@ int main() {
 //  std::cout<<"\n";
   Eigen::Matrix4d viewMatrix(cam.getViewMatrix());
   Image im(cam.render(w,viewMatrix));
-  im.toneReproduction();
-  im.toPPM("test.ppm");
+  Image BW;
+  double maxL = im.getMax();
+  im.toneReproduction(maxL);
+  BW=im.lumImage();
+  BW.toPPM("test.ppm");
   //Image im;
   //im = cam.render(w,viewMatrix);
 

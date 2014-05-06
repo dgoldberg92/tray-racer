@@ -2,12 +2,12 @@
 
 #include "box.h"
 
-Box::Box() // constructor
+Box::Box(){} // constructor
 Box::Box(const Point& min,const Point& max){
   min_ = min;
   max_ = max;
 }
-Box::Box(const Point& p,int nump){
+Box::Box(const Point* p,int nump){
   double smallx=std::numeric_limits<double>::max();
   double smally=std::numeric_limits<double>::max();
   double smallz=std::numeric_limits<double>::max();
@@ -65,9 +65,11 @@ double Box::intersect(const Ray& ray){ // intersect method
   double MAX=std::numeric_limits<double>::max();
   double tnear = -MAX;
   double tfar = MAX;
-  double xd,yd,zd;
-  double xo,yo,zo;
+  Point A(ray.getOrigin());
+  Vector B(ray.getDirection());
+  double xd=B.getX(),yd=B.getY(),zd=B.getZ();
+  double xo=A.getX(),yo=A.getY(),zo=A.getZ();
   
-  if 
+  //if 
 
 } // intersect

@@ -24,10 +24,14 @@ class Image {
     void setFactor(const double f){factor_=f;};
     void setPixel(const unsigned int& x,const unsigned int& y,const Colour& c)
           {im_[x+width_*y]=c;};
-    Colour getPixel(const unsigned int& x, const unsigned int& y) const
+    void setPixel(const unsigned int& i,const Colour& c) {im_[i]=c;};
+    Colour getPixel(const unsigned int& x,const unsigned int& y) const
           {return im_[x+width_*y];};
-
-    void toneReproduction();
+    Colour getPixel(const unsigned int& i) const {return im_[i];};
+    double getMax()const;
+    void toneReproduction(const double& max);
+    void toneReproduction(const double& max,const int& type);
+    Image lumImage()const;
     void toPPM(const std::string fname) const;
 
     Image& operator=(const Image &im);

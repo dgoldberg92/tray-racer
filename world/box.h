@@ -22,7 +22,7 @@ public:
 	Box(); // initial constructor
   //Box(Point a,Point b,Point c, Point d,Point e,Point f,Point g,Point h);
   Box(const Point& min,const Point& max);
-	Box(const Point&[] p,int nump);
+	Box(const Point* p,int nump);
 	virtual ~Box(); // deconstructor 
 
   std::string toString() const;

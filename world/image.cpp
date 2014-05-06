@@ -30,18 +30,11 @@ Image::Image(const Image& im){
 }
 
 Image::~Image(){
- /* Old code: 
-    for (unsigned int i = 0; i < width_; ++i){
-        delete[] im_[i];
-  }
-  delete[] im_;*/
-
   delete[] im_;
 }
 
-void Image::toneReproduction() {
-  double max = .01;
-  double scale = 1;
+double Image::getMax() const {
+  double max = .001;
   for (unsigned int i = 0; i<height_*width_;++i){
     if (im_[i].getR()>max)
       max = im_[i].getR();
@@ -50,14 +43,35 @@ void Image::toneReproduction() {
     if (im_[i].getB()>max)
       max = im_[i].getB();
   }
+  return max;
+}
 
-  if (max>.01){
-    scale = 1/max;
-  }
-  for (unsigned int i = 0; i<height_*width_;++i){
-    im_[i] = im_[i]*scale;
-  }
+void Image::toneReproduction(const double& max) {
+  toneReproduction(max,0);
+}
 
+void Image::toneReproduction(const double& max,const int& type) {
+  if (type==0){
+    double scale = 1;
+    if (max>.001){
+      scale = 1/max;
+    }
+    for (unsigned int i = 0; i<height_*width_;++i){
+      im_[i] = im_[i]*scale;
+    }
+  } else if (type==1){
+    
+  }
+}
+
+Image Image::lumImage()const{
+  Image out(*this);
+  double L;
+  for (unsigned int i=0;i<height_*width_;i++){
+    L = .27*im_[i].getR() + 0.67*im_[i].getG() + 0.06*im_[i].getB();
+    out.setPixel(i,Colour(L));
+  }
+  return out;
 }
 
 void Image::toPPM(const std::string fname) const{
@@ -85,7 +99,7 @@ void Image::toPPM(const std::string fname) const{
   
   for (unsigned int j = 0; j<height_;++j){
     for (unsigned int i = 0; i<width_;++i){
-      c = this->getPixel(i,j);
+      c = getPixel(i,j);
       
       ss << (unsigned int) (c.getR()*factor_);
       file << ss.str() << " ";
