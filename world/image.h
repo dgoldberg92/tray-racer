@@ -25,8 +25,8 @@ class Image {
     void setPixel(const unsigned int& x,const unsigned int& y,const Colour& c)
           {im_[x+width_*y]=c;};
     void setPixel(const unsigned int& i,const Colour& c) {im_[i]=c;};
-    Colour getPixel(const unsigned int& x,const unsigned int& y) const
-          {return im_[x+width_*y];};
+
+    Colour getPixel(const unsigned int& x, const unsigned int& y) const {return im_[x+width_*y];};
     Colour getPixel(const unsigned int& i) const {return im_[i];};
     double getMax()const;
     void toneReproduction(const double& max);

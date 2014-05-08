@@ -99,7 +99,7 @@ void Image::toPPM(const std::string fname) const{
   
   for (unsigned int j = 0; j<height_;++j){
     for (unsigned int i = 0; i<width_;++i){
-      c = getPixel(i,j);
+      c = this->getPixel(i,j);
       
       ss << (unsigned int) (c.getR()*factor_);
       file << ss.str() << " ";

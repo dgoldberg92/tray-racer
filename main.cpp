@@ -113,24 +113,12 @@ int main() {
   Image im(cam.render(w,viewMatrix));
   Image BW;
   double maxL = im.getMax();
-  im.toneReproduction(maxL);
-  BW=im.lumImage();
-  BW.toPPM("test.ppm");
+  im.toneReproduction(maxL);  
+  im.toPPM("test.ppm");
+//  BW=im.lumImage();
+//  BW.toPPM("test.ppm");
   //Image im;
   //im = cam.render(w,viewMatrix);
-
-/*  int N=1;
-  for (int i=0;i<N;i++){
-    viewMatrix = cam.getViewMatrix();
-    im = cam.render(w,viewMatrix);
-    im.toneReproduction();
-    im.toPPM("test.ppm");
- 
-  }*/
-//  w.printObjects();
-//  w.printLights();
-  
-//  im.setFactor(10000);
   
   return 0;
 }
