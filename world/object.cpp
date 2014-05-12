@@ -2,9 +2,8 @@
 
 #include "object.h"
 
-Object::Object(){
-  depth_=10;
-}
+Object::Object()
+  :texture_(NULL),depth_(10){}
  // constructor
 
 Object::~Object(){

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <list>
 #include <Eigen/Dense>
 #include "aux/light.h"
 #include "aux/colour.h"
@@ -6,6 +7,7 @@
 #include "world/object.h"
 #include "world/sphere.h"
 #include "world/triangle.h"
+#include "world/box.h"
 #include "world/camera.h"
 #include "lighting/illuminationmodel.h"
 #include "lighting/phong.h"
@@ -50,16 +52,14 @@ int main() {
   o2->setSpecular(Colour(1,1,1));
   o2->setkt(.7);
   o2->setn(.9);
-  // plane coordinates
-//   Point topLeft(-5, 2, 30);//6., -2., 0.);
-//   Point topRight(7,2, 30);//6., 2., 0.);
-//   Point botLeft(-15,-20, 1);//,4., 2., 0.);
-//   Point botRight(25,-20, 1);// -10);//,4., 2., 0.);
 
-   Point topLeft(-10,-5, 80);//6., -2., 0.);
-   Point topRight(10,-5, 80);//6., 2., 0.);
-   Point botLeft(-10,-5, 0);//,4., 2., 0.);
-   Point botRight(10,-5, 0);// -10);//,4., 2., 0.);
+
+  // plane coordinates
+
+  Point topLeft(-10,-5, 80);//6., -2., 0.);
+  Point topRight(10,-5, 80);//6., 2., 0.);
+  Point botLeft(-10,-5, 0);//,4., 2., 0.);
+  Point botRight(10,-5, 0);// -10);//,4., 2., 0.);
 
 
   // triangle objects to make plane
@@ -92,10 +92,23 @@ int main() {
   
   Object* o3 = t1;
   Object* o4 = t2;
-  w.add(o3);
-  w.add(o4);
+
+  std::list<Point> points;
+  points.push_back(topLeft);
+  points.push_back(topRight);
+  points.push_back(botLeft);
+  points.push_back(topRight);
+  Box* b = new Box(points);
+  std::cout<<b->toString()<<"\n";
+  Object* o5 = b;
+  o5->setColour(Colour(0,1.,1.));
+  o5->setSpecular(Colour(1,1,1));
+
   w.add(o1);
   w.add(o2);
+  w.add(o3);
+  w.add(o4);
+  w.add(o5);
 
   // Front view camera
   Point camPos(0, 5, -10);
@@ -115,6 +128,7 @@ int main() {
   double maxL = im.getMax();
   im.toneReproduction(maxL);  
   im.toPPM("test.ppm");
+//  delete[] points;
 //  BW=im.lumImage();
 //  BW.toPPM("test.ppm");
   //Image im;

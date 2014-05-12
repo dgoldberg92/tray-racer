@@ -7,7 +7,7 @@
 // Included Dependencies
 #include <iostream>
 #include <string>
-#include <vector>
+#include <list>
 #include <cmath>
 #include <Eigen/Dense>
 #include "../aux/ray.h"
@@ -22,8 +22,13 @@ public:
 	Box(); // initial constructor
   //Box(Point a,Point b,Point c, Point d,Point e,Point f,Point g,Point h);
   Box(const Point& min,const Point& max);
-	Box(const Point* p,int nump);
+	Box(const std::list<Point>& p);
 	virtual ~Box(); // deconstructor 
+
+  Point getMin()const{return min_;};
+  Point getMax()const{return max_;};
+  void setMin(const Point& p){min_=p;};
+  void setMax(const Point& p){max_=p;};
 
   std::string toString() const;
 
@@ -33,6 +38,7 @@ public:
 private:
 	Point min_;
   Point max_;
+  std::list<Point> points_;
 };
 
 #endif
