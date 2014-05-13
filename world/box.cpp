@@ -40,7 +40,6 @@ Box::Box(const std::list<Point>& p){
   
   min_ = Point(smallx,smally,smallz);
   max_ = Point(largex,largey,largez);
-  points_ = p;
 }
 
 
@@ -54,6 +53,7 @@ std::string Box::toString() const {
 
 
 void Box::transform(const Eigen::Matrix4d& mat){
+/*
   std::list<Point> ps;
   std::list<Point>::iterator it;
   for ( it=points_.begin();it != points_.end(); it++){
@@ -64,6 +64,9 @@ void Box::transform(const Eigen::Matrix4d& mat){
   Box b(ps);
   min_=b.getMin();
   max_=b.getMax();
+*/
+  min_.transform(mat);
+  max_.transform(mat);
 } // transform
 
 /*
@@ -178,6 +181,7 @@ double Box::intersect(const Ray& ray){ // intersect method
     }
   }
   
+  //std::cout<<norm.toString()<<" "<<tnear<<"\n";
   
   setNormal(norm);
   return tnear;

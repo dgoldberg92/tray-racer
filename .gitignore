@@ -9,3 +9,5 @@ a.out
 
 # output of main compile
 main
+
+#./build/*

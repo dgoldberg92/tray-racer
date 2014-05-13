@@ -108,10 +108,11 @@ int main() {
   w.add(o2);
   w.add(o3);
   w.add(o4);
-  w.add(o5);
+  //w.add(o5);
+  delete o5;
 
   // Front view camera
-  Point camPos(0, 5, -10);
+  Point camPos(0, 50, -100);
   Point look(0, 0, 5);
   Vector up(0,1,0);
   Camera cam(camPos,look,up, 5);
