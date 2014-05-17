@@ -30,11 +30,11 @@ int main() {
   w.setModel(p);
   
   // White Light
-  Light* l = new Light(Point(0,100,0),Colour(10000));
+  Light* l = new Light(Point(0,100,0),Colour(20000));
   // White Light2
-  Light* l2 = new Light(Point(100,0,0),Colour(10000));
-  Light* l3 = new Light(Point(0,100,-100),Colour(10000));
-  Light* l4 = new Light(Point(-100,100,0),Colour(10000*1.21));
+  Light* l2 = new Light(Point(100,0,0),Colour(20000));
+  Light* l3 = new Light(Point(0,100,-100),Colour(20000));
+  Light* l4 = new Light(Point(-100,100,0),Colour(20000*1.21));
   w.add(l);
   //w.add(l2);
   //w.add(l3);
@@ -112,7 +112,7 @@ int main() {
   delete o5;
 
   // Front view camera
-  Point camPos(0, 50, -100);
+  Point camPos(0, 5, -10);
   Point look(0, 0, 5);
   Vector up(0,1,0);
   Camera cam(camPos,look,up, 5);
@@ -125,10 +125,10 @@ int main() {
 //  std::cout<<"\n";
   Eigen::Matrix4d viewMatrix(cam.getViewMatrix());
   Image im(cam.render(w,viewMatrix));
-  Image BW;
+  Image L(im.lumImage());
   double maxL = im.getMax();
-  im.toneReproduction(maxL);  
-  im.toPPM("test.ppm");
+  im.toneReproduction(maxL,2);
+  im.toPPM("test2.ppm");
 //  delete[] points;
 //  BW=im.lumImage();
 //  BW.toPPM("test.ppm");

@@ -25,7 +25,10 @@ Image::Image(unsigned int w, unsigned int h){
 Image::Image(const Image& im){
   height_ = im.getHeight();
   width_ = im.getWidth();
-  im_ = im.getData();
+  im_ = new Colour[width_*height_];
+  for (unsigned int i=0;i<(width_*height_);++i){
+    im_[i]=im.getPixel(i);
+  }
   factor_ = im.getFactor();
 }
 
@@ -59,8 +62,21 @@ void Image::toneReproduction(const double& max,const int& type) {
     for (unsigned int i = 0; i<height_*width_;++i){
       im_[i] = im_[i]*scale;
     }
+    std::cout<<scale<<"\n";
   } else if (type==1){
-    
+    double Lwa(logAvLum());
+    double sf(std::pow( (1.219 + std::pow(max/2,.4)) / (1.219 + std::pow(Lwa,.4)) , 2.5));
+    for (unsigned int i = 0; i<height_*width_;++i){
+      im_[i] = im_[i]*sf;
+    }
+    std::cout<<sf<<"\n";
+  } else if (type==2){
+    Colour ps;
+    double key(logAvLum());
+    for (unsigned int i=0;i<(height_*width_);++i){
+      ps = im_[i] * (.18/key);
+      im_[i] = ps/(ps+1);
+    }
   }
 }
 
@@ -72,6 +88,20 @@ Image Image::lumImage()const{
     out.setPixel(i,Colour(L));
   }
   return out;
+}
+
+double Image::logAvLum()const{
+  double avL(0);
+  double sum(0);
+  double delta(0.000000001);
+  double N(height_*width_);
+  Image L(lumImage());
+  
+  for (unsigned int i=0;i<(N);++i){
+    sum += std::log(delta + L.getPixel(i).getR());
+  }
+  avL = sum/N;
+  return std::exp(avL);
 }
 
 void Image::toPPM(const std::string fname) const{

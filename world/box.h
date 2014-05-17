@@ -15,7 +15,7 @@
 #include "../aux/colour.h"
 #include "../world/object.h"
 #include "../world/triangle.h"
-#include "../world/circle.h"
+#include "../world/sphere.h"
 
 class Box: public Object{
 
@@ -25,7 +25,7 @@ public:
   //Box(Point a,Point b,Point c, Point d,Point e,Point f,Point g,Point h);
   Box(const Point& min,const Point& max);
 	Box(const std::list<Point>& p);
-  Box(const Circle& c);
+  Box(const Sphere& s);
   Box(const Triangle& t);
 	virtual ~Box(); // deconstructor 
 

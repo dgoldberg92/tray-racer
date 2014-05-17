@@ -36,7 +36,9 @@ public:
   std::string toString()const{return getVec().toString();};
 
 	Colour operator* (const Colour& b) const;
+	Colour operator/ (const Colour& b) const;
 	Colour operator* (const double& a) const;
+	Colour operator/ (const double& a) const;
   Colour operator+ (const Colour& b) const;
 
 private:

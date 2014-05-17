@@ -32,6 +32,7 @@ class Image {
     void toneReproduction(const double& max);
     void toneReproduction(const double& max,const int& type);
     Image lumImage()const;
+    double logAvLum()const;
     void toPPM(const std::string fname) const;
 
     Image& operator=(const Image &im);
